@@ -230,6 +230,11 @@ const hasHalf = product.ratingValue % 1 >= 0.5;
               </li>
             ))}
           </ul>
+          {related[0] && (
+            <p class="section-prose-link">
+              Frequently ordered alongside <a href={`/products/${related[0].slug}/`} class="prose-link">{related[0].title}</a> by restaurants and food businesses looking for a complete packaging solution.
+            </p>
+          )}
         </div>
         <div class="product-materials">
           <h2>Available Materials</h2>
@@ -238,6 +243,11 @@ const hasHalf = product.ratingValue % 1 >= 0.5;
               <span class="material-tag">{m}</span>
             ))}
           </div>
+          {related[1] && (
+            <p class="section-prose-link">
+              For different material or application requirements, explore our <a href={`/products/${related[1].slug}/`} class="prose-link">{related[1].title}</a>.
+            </p>
+          )}
         </div>
         <div class="product-printing">
           <h2>Custom Printing Options</h2>
@@ -539,6 +549,14 @@ const hasHalf = product.ratingValue % 1 >= 0.5;
   }
   .material-tag { background: var(--color-bg-alt); color: var(--color-brown); border: 1px solid var(--color-kraft-light); }
   .print-tag { background: rgba(74,124,89,0.08); color: var(--color-copper-dark); border: 1px solid rgba(74,124,89,0.2); }
+  .section-prose-link { font-size: 0.88rem; color: var(--color-gray-600); line-height: 1.7; margin-top: 1rem; }
+  .prose-link {
+    color: var(--color-copper);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .prose-link:hover { color: var(--color-brown); }
 
   .specs-section { background: var(--color-bg-alt); }
   .specs-wrap { max-width: 700px; }
