@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { products } from '../data/products';
+
+const popularProducts = products.slice(0, 6);
+---
+
+<BaseLayout
+  title="Page Not Found | The Wax Papers USA"
+  description="The page you're looking for doesn't exist. Browse our custom food packaging products or get a free quote from The Wax Papers."
+  canonical="https://thewaxpapers.co/404"
+>
+  <Fragment slot="navbar"><Navbar /></Fragment>
+
+  <section class="not-found-section">
+    <div class="container not-found-inner">
+      <div class="not-found-text">
+        <span class="not-found-code">404</span>
+        <h1 class="not-found-h1">Page Not Found</h1>
+        <p class="not-found-desc">
+          Looks like this page has been wrapped up and shipped out. Let's get you back to the good stuff.
+        </p>
+        <div class="not-found-btns">
+          <a href="/" class="btn btn-primary">Back to Homepage</a>
+          <a href="/products" class="btn btn-outline">Browse Products</a>
+        </div>
+        <div class="not-found-links">
+          <p>Popular pages:</p>
+          <ul>
+            <li><a href="/products/custom-burger-paper">Custom Burger Paper</a></li>
+            <li><a href="/products/custom-deli-paper">Custom Deli Paper</a></li>
+            <li><a href="/products/custom-greaseproof-paper">Greaseproof Paper</a></li>
+            <li><a href="/get-quote">Get a Free Quote</a></li>
+            <li><a href="/contact">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="not-found-visual" aria-hidden="true">
+        <div class="not-found-icon">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+            <circle cx="60" cy="60" r="58" stroke="var(--color-kraft-light)" stroke-width="4"/>
+            <path d="M35 50h50M35 60h40M35 70h30" stroke="var(--color-kraft)" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="82" cy="78" r="18" fill="var(--color-bg-alt)" stroke="var(--color-copper)" stroke-width="3"/>
+            <path d="M76 78h12M82 72v12" stroke="var(--color-copper)" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Popular products -->
+    <div class="container not-found-products">
+      <h2>Popular Products</h2>
+      <div class="not-found-grid">
+        {popularProducts.map(p => (
+          <a href={`/products/${p.slug}`} class="not-found-card card">
+            <img src={p.heroImage} alt={`${p.title} — custom printed food paper`} loading="lazy" width="220" height="140" />
+            <div class="not-found-card-body">
+              <span>{p.title}</span>
+              <span class="not-found-card-link">View →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>
+
+<style>
+  .not-found-section { padding: 5rem 0; background: var(--color-bg); }
+  .not-found-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    align-items: center;
+    margin-bottom: 5rem;
+  }
+  @media (max-width: 768px) { .not-found-inner { grid-template-columns: 1fr; } .not-found-visual { display: none; } }
+
+  .not-found-code {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(5rem, 12vw, 9rem);
+    font-weight: 700;
+    color: var(--color-kraft-light);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .not-found-h1 { font-size: clamp(1.75rem, 3vw, 2.5rem); color: var(--color-brown); margin-bottom: 1rem; }
+  .not-found-desc { font-size: 1.05rem; color: var(--color-gray-600); line-height: 1.75; max-width: 460px; margin-bottom: 2rem; }
+  .not-found-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2rem; }
+
+  .not-found-links p { font-size: 0.88rem; font-weight: 700; color: var(--color-brown); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  .not-found-links ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .not-found-links a { font-size: 0.88rem; color: var(--color-copper); padding: 0.25rem 0.75rem; background: rgba(74,124,89,0.08); border-radius: 999px; }
+  .not-found-links a:hover { background: rgba(74,124,89,0.15); }
+
+  .not-found-products h2 { font-size: 1.3rem; color: var(--color-brown); margin-bottom: 1.5rem; }
+  .not-found-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1rem; }
+  @media (max-width: 1100px) { .not-found-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 600px) { .not-found-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .not-found-card { text-decoration: none; }
+  .not-found-card img { width: 100%; height: 130px; object-fit: cover; }
+  .not-found-card-body { padding: 0.75rem; display: flex; justify-content: space-between; align-items: center; }
+  .not-found-card-body span { font-size: 0.8rem; color: var(--color-brown); font-weight: 500; }
+  .not-found-card-link { font-size: 0.78rem; color: var(--color-copper); font-weight: 600; }
+</style>

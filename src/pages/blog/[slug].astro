@@ -1,0 +1,213 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { blogPosts, getBlogPostBySlug } from '../../data/blog';
+import { getRelatedProducts } from '../../data/products';
+
+export async function getStaticPaths() {
+  return blogPosts.map(p => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const post = getBlogPostBySlug(slug as string);
+if (!post) return Astro.redirect('/blog');
+
+const related = getRelatedProducts(post.relatedProducts).slice(0, 3);
+const canonicalUrl = `https://thewaxpapers.co/blog/${post.slug}`;
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": canonicalUrl,
+  "headline": post.h1,
+  "name": post.h1,
+  "description": post.metaDescription,
+  "url": canonicalUrl,
+  "datePublished": post.date,
+  "dateModified": post.date,
+  "inLanguage": "en-US",
+  "author": {
+    "@type": "Organization",
+    "@id": "https://thewaxpapers.co/#organization",
+    "name": "The Wax Papers",
+    "url": "https://thewaxpapers.co"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://thewaxpapers.co/#organization",
+    "name": "The Wax Papers",
+    "url": "https://thewaxpapers.co",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://thewaxpapers.co/favicon.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonicalUrl
+  },
+  "articleSection": "Food Packaging",
+  "keywords": "custom wax paper, food packaging, restaurant packaging, greaseproof paper, deli paper"
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://thewaxpapers.co" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://thewaxpapers.co/blog" },
+    { "@type": "ListItem", "position": 3, "name": post.title, "item": canonicalUrl }
+  ]
+};
+
+// Process content: convert markdown-like links to HTML
+function processContent(content: string): string {
+  return content
+    .replace(/\[([^\]]+)\]\(\/products\/([^\)]+)\)/g, '<a href="/products/$2">$1</a>')
+    .replace(/\[([^\]]+)\]\(\/([^\)]+)\)/g, '<a href="/$2">$1</a>')
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    .replace(/^- (.+)$/gm, '<li>$1</li>')
+    .replace(/(<li>.*<\/li>\n?)+/g, (m) => `<ul>${m}</ul>`)
+    .replace(/^\|(.+)\|$/gm, (row) => {
+      const cells = row.split('|').filter(c => c.trim() && !c.match(/^[\s\-]+$/));
+      return '<tr>' + cells.map(c => `<td>${c.trim()}</td>`).join('') + '</tr>';
+    })
+    .replace(/(<tr>.*<\/tr>\n?)+/g, (m) => `<table>${m}</table>`)
+    .replace(/\n\n/g, '</p><p>')
+    .replace(/^(?!<[htup]|<li|<tr|<ta)(.+)$/gm, '<p>$1</p>');
+}
+---
+
+<BaseLayout
+  title={post.metaTitle}
+  description={post.metaDescription}
+  canonical={canonicalUrl}
+  schema={[articleSchema, breadcrumbSchema]}
+>
+  <Fragment slot="navbar"><Navbar /></Fragment>
+
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb-sep" aria-hidden="true">/</span>
+        <a href="/blog">Blog</a>
+        <span class="breadcrumb-sep" aria-hidden="true">/</span>
+        <span aria-current="page">{post.title}</span>
+      </nav>
+    </div>
+  </div>
+
+  <article class="blog-article">
+    <div class="container">
+      <div class="blog-layout">
+        <!-- Main content -->
+        <div class="blog-main">
+          <header class="blog-header">
+            <span class="blog-date-label">
+              {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </span>
+            <h1 class="blog-h1">{post.h1}</h1>
+            <p class="blog-excerpt">{post.excerpt}</p>
+          </header>
+
+          <div class="prose blog-content" set:html={processContent(post.content)} />
+
+          <!-- Related products inline -->
+          {related.length > 0 && (
+            <div class="blog-related-products">
+              <h2>Related Products</h2>
+              <div class="blog-related-grid">
+                {related.map(rp => (
+                  <a href={`/products/${rp.slug}`} class="blog-related-card card">
+                    <img src={rp.heroImage} alt={rp.title} loading="lazy" width="200" height="130" />
+                    <div class="blog-related-body">
+                      <strong>{rp.title}</strong>
+                      <span>View Product →</span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="blog-sidebar">
+          <div class="sidebar-widget">
+            <h3>Get a Free Quote</h3>
+            <p>Ready to order custom food paper for your business? Get a free, no-obligation quote today.</p>
+            <a href="/get-quote" class="btn btn-primary sidebar-btn">Request a Quote</a>
+          </div>
+
+          <div class="sidebar-widget">
+            <h3>Popular Products</h3>
+            <ul class="sidebar-product-list">
+              {related.map(rp => (
+                <li><a href={`/products/${rp.slug}`}>{rp.title}</a></li>
+              ))}
+              <li><a href="/products/custom-burger-paper">Custom Burger Paper</a></li>
+              <li><a href="/products/custom-deli-paper">Custom Deli Paper</a></li>
+              <li><a href="/products/custom-greaseproof-paper">Custom Greaseproof Paper</a></li>
+              <li><a href="/products/parchment-paper">Parchment Paper</a></li>
+            </ul>
+          </div>
+
+          <div class="sidebar-widget sidebar-contact">
+            <h3>Need Help Choosing?</h3>
+            <p>Call our team at <a href="tel:+15033580443">(503) 358-0443</a> or email <a href="mailto:info@thewaxpapers.co">info@thewaxpapers.co</a>.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </article>
+
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>
+
+<style>
+  .breadcrumb-bar { background: var(--color-bg-alt); border-bottom: 1px solid var(--color-kraft-light); }
+
+  .blog-article { padding: 3rem 0 5rem; background: var(--color-bg); }
+  .blog-layout { display: grid; grid-template-columns: 1fr 300px; gap: 4rem; align-items: start; }
+  @media (max-width: 1000px) { .blog-layout { grid-template-columns: 1fr; } }
+
+  .blog-header { margin-bottom: 2.5rem; border-bottom: 1px solid var(--color-gray-200); padding-bottom: 1.5rem; }
+  .blog-date-label { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-copper); display: block; margin-bottom: 0.75rem; }
+  .blog-h1 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); color: var(--color-brown); margin-bottom: 1rem; }
+  .blog-excerpt { font-size: 1.05rem; color: var(--color-gray-600); line-height: 1.75; }
+
+  .blog-related-products { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--color-gray-200); }
+  .blog-related-products h2 { font-size: 1.3rem; color: var(--color-brown); margin-bottom: 1.25rem; }
+  .blog-related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  @media (max-width: 600px) { .blog-related-grid { grid-template-columns: 1fr; } }
+  .blog-related-card { display: flex; flex-direction: column; text-decoration: none; }
+  .blog-related-card img { width: 100%; height: 130px; object-fit: cover; }
+  .blog-related-body { padding: 0.85rem; }
+  .blog-related-body strong { display: block; font-size: 0.88rem; color: var(--color-brown); margin-bottom: 0.3rem; }
+  .blog-related-body span { font-size: 0.8rem; color: var(--color-copper); font-weight: 600; }
+
+  /* Sidebar */
+  .blog-sidebar { position: sticky; top: 90px; display: flex; flex-direction: column; gap: 1.5rem; }
+  @media (max-width: 1000px) { .blog-sidebar { position: static; } }
+
+  .sidebar-widget {
+    background: var(--color-white);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+  }
+  .sidebar-widget h3 { font-size: 1rem; color: var(--color-brown); margin-bottom: 0.75rem; }
+  .sidebar-widget p { font-size: 0.88rem; color: var(--color-gray-600); line-height: 1.65; margin-bottom: 1rem; }
+  .sidebar-btn { width: 100%; justify-content: center; font-size: 0.9rem; }
+
+  .sidebar-product-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .sidebar-product-list a { font-size: 0.87rem; color: var(--color-gray-700); }
+  .sidebar-product-list a:hover { color: var(--color-copper); }
+
+  .sidebar-contact p a { color: var(--color-copper); text-decoration: underline; }
+</style>

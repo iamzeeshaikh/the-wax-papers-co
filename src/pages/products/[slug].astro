@@ -1,0 +1,607 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { products, getProductBySlug, getRelatedProducts } from '../../data/products';
+
+export async function getStaticPaths() {
+  return products.map(p => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const product = getProductBySlug(slug as string);
+if (!product) return Astro.redirect('/products');
+
+const related = getRelatedProducts(product.relatedProducts).slice(0, 3);
+const canonicalUrl = `https://thewaxpapers.co/products/${product.slug}`;
+
+const productSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": product.title,
+  "description": product.metaDescription,
+  "image": `https://thewaxpapers.co${product.heroImage}`,
+  "url": canonicalUrl,
+  "brand": {
+    "@type": "Brand",
+    "name": "The Wax Papers"
+  },
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "priceCurrency": "USD",
+    "seller": {
+      "@type": "Organization",
+      "name": "The Wax Papers"
+    }
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": product.ratingValue,
+    "reviewCount": product.ratingCount,
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": product.faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": f.a
+    }
+  }))
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://thewaxpapers.co" },
+    { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://thewaxpapers.co/products" },
+    { "@type": "ListItem", "position": 3, "name": product.title, "item": canonicalUrl }
+  ]
+};
+
+const fullStars = Math.floor(product.ratingValue);
+const hasHalf = product.ratingValue % 1 >= 0.5;
+---
+
+<BaseLayout
+  title={product.metaTitle}
+  description={product.metaDescription}
+  canonical={canonicalUrl}
+  ogImage={product.heroImage}
+  preloadImage={product.heroImage}
+  schema={[productSchema, faqSchema, breadcrumbSchema]}
+>
+  <Fragment slot="navbar"><Navbar /></Fragment>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb-sep" aria-hidden="true">/</span>
+        <a href="/products">Products</a>
+        <span class="breadcrumb-sep" aria-hidden="true">/</span>
+        <span aria-current="page">{product.title}</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Product Hero -->
+  <section class="product-hero">
+    <div class="container product-hero-inner">
+      <!-- Gallery -->
+      <div class="product-gallery">
+        <div class="product-gallery-main">
+          <img
+            src={product.heroImage}
+            alt={`${product.title} — custom printed food paper`}
+            loading="eager"
+            width="600"
+            height="400"
+            id="mainProductImg"
+          />
+          <div class="gallery-badge">
+            <span>★ {product.ratingValue}</span>
+          </div>
+        </div>
+        {product.images.length > 1 && (
+          <div class="product-gallery-thumbs">
+            {product.images.map((img, i) => (
+              <button
+                class={`product-gallery-thumb${i === 0 ? ' active' : ''}`}
+                data-src={img}
+                aria-label={`View ${product.title} image ${i + 1}`}
+              >
+                <img src={img} alt="" loading="lazy" width="80" height="70" />
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <!-- Product Info -->
+      <div class="product-info">
+        <div class="product-info-top">
+          <span class="product-cat section-tag">{product.category}</span>
+          <div class="product-rating">
+            <span class="stars" aria-label={`${product.ratingValue} out of 5 stars`}>
+              {'★'.repeat(fullStars)}{hasHalf ? '½' : ''}{'☆'.repeat(5 - fullStars - (hasHalf ? 1 : 0))}
+            </span>
+            <strong>{product.ratingValue}</strong>
+            <span class="rating-count">({product.ratingCount} reviews)</span>
+          </div>
+        </div>
+
+        <h1 class="product-h1">{product.h1}</h1>
+        <p class="product-intro">{product.intro}</p>
+
+        <div class="product-ctas">
+          <a href="/get-quote" class="btn btn-primary">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+            Get a Free Quote
+          </a>
+          <a href="/contact" class="btn btn-outline">Ask a Question</a>
+        </div>
+
+        <!-- Trust badges -->
+        <div class="product-trust-row">
+          <div class="trust-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            FDA-Compliant
+          </div>
+          <div class="trust-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+            Ships Nationwide
+          </div>
+          <div class="trust-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            8–12 Day Lead Time
+          </div>
+          <div class="trust-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Free Digital Proof
+          </div>
+        </div>
+
+        <div class="product-quick-specs">
+          {product.specs.slice(0, 4).map(s => (
+            <div class="quick-spec">
+              <span class="quick-spec-label">{s.label}</span>
+              <span class="quick-spec-value">{s.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Answer-first summary for AEO/GEO -->
+  <section class="product-answer-section">
+    <div class="container">
+      <div class="product-answer-inner">
+        <div class="product-answer-text">
+          <h2 class="product-answer-h2">What Is {product.title}?</h2>
+          <p>
+            {product.title} from The Wax Papers is custom-printed food packaging paper manufactured to FDA standards for direct food contact. Each sheet is made using food-safe materials and printed with your logo, brand colors, or design using food-grade inks. It is used by restaurants, delis, bakeries, and food trucks across all 50 states.
+          </p>
+          <p>
+            <strong>Key facts:</strong> Minimum order 500 sheets · Ships nationwide from Bensalem, PA · 8–12 business day production · Free digital proof included · No setup fees on standard orders.
+          </p>
+          <div class="product-answer-links">
+            <a href="/get-quote" class="btn btn-primary">Get a Free Quote</a>
+            <a href="/products" class="btn btn-outline">Browse All Products</a>
+          </div>
+        </div>
+        <div class="product-answer-stats">
+          {product.specs.slice(0, 4).map(s => (
+            <div class="answer-stat">
+              <span class="answer-stat-val">{s.value}</span>
+              <span class="answer-stat-lbl">{s.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits & Uses -->
+  <section class="section product-details-section">
+    <div class="container">
+      <div class="product-details-grid">
+        <div class="product-benefits">
+          <h2>Key Benefits of {product.title}</h2>
+          <ul class="benefits-list">
+            {product.benefits.map(b => (
+              <li>
+                <span class="benefit-check" aria-hidden="true">✓</span>
+                {b}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="product-uses">
+          <h2>Common Uses &amp; Applications</h2>
+          <ul class="uses-list">
+            {product.commonUses.map(u => (
+              <li>
+                <span class="use-dot" aria-hidden="true">→</span>
+                {u}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="product-materials">
+          <h2>Available Materials</h2>
+          <div class="materials-tags">
+            {product.materials.map(m => (
+              <span class="material-tag">{m}</span>
+            ))}
+          </div>
+        </div>
+        <div class="product-printing">
+          <h2>Custom Printing Options</h2>
+          <div class="materials-tags">
+            {product.printingOptions.map(o => (
+              <span class="print-tag">{o}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specifications Table -->
+  <section class="section specs-section">
+    <div class="container">
+      <div class="specs-wrap">
+        <h2 class="specs-title">Product Specifications</h2>
+        <table class="specs-table" aria-label="Product specifications">
+          <tbody>
+            {product.specs.map(s => (
+              <tr>
+                <td>{s.label}</td>
+                <td>{s.value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <a href="/get-quote" class="btn btn-primary specs-cta">Request a Custom Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Split Section 1: Content left, Image right -->
+  <section class="section split-section-wrap">
+    <div class="container">
+      <div class="split-section">
+        <div class="split-section-content">
+          <span class="section-tag">Quality You Can See</span>
+          <h2>Custom Printing That Represents Your Brand</h2>
+          <p>
+            Every sheet of {product.title} from The Wax Papers is printed using food-safe inks that stay vivid through handling, service, and delivery. Whether you choose a single-color logo or a full-color design across the entire sheet, the result is a professional presentation that customers notice.
+          </p>
+          <p>
+            Our pre-press team reviews your artwork before production begins and provides a digital proof for your approval. There are no hidden setup charges, and your design is stored for accurate, consistent reorders.
+          </p>
+          <a href="/get-quote" class="btn btn-primary">Get Printing Quote</a>
+        </div>
+        <div class="split-section-image">
+          <img
+            src={product.images[1] || product.heroImage}
+            alt={`Custom printed ${product.title} close-up`}
+            loading="lazy"
+            width="560"
+            height="380"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Split Section 2: Image left, Content right -->
+  <section class="section split-section-wrap alt-bg">
+    <div class="container">
+      <div class="split-section reverse">
+        <div class="split-section-image">
+          <img
+            src={product.images[2] || product.images[1] || product.heroImage}
+            alt={`${product.title} in use`}
+            loading="lazy"
+            width="560"
+            height="380"
+          />
+        </div>
+        <div class="split-section-content">
+          <span class="section-tag">Food-Safe Performance</span>
+          <h2>FDA-Compliant and Safe for Direct Food Contact</h2>
+          <p>
+            All {product.title} supplied by The Wax Papers is manufactured using FDA-compliant materials. Every coating, ink, and adhesive used in production meets or exceeds food safety standards for direct food contact applications in the USA.
+          </p>
+          <p>
+            We supply restaurants, delis, bakeries, and food trucks nationwide. Our products are trusted in professional kitchens because they perform consistently in real service conditions — not just in testing environments.
+          </p>
+          <ul class="split-list">
+            <li>✓ FDA-compliant materials and inks</li>
+            <li>✓ Tested for direct food contact safety</li>
+            <li>✓ Consistent quality across all batch sizes</li>
+            <li>✓ Nationwide shipping from Pennsylvania</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Products -->
+  {related.length > 0 && (
+    <section class="section related-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">You May Also Need</span>
+          <h2 class="section-title">Related Custom Food Paper Products</h2>
+          <p class="section-subtitle">Other popular products from The Wax Papers, trusted by food businesses across the USA.</p>
+        </div>
+        <div class="related-grid">
+          {related.map(rp => (
+            <a href={`/products/${rp.slug}/`} class="card related-card" aria-label={`View ${rp.title} — custom printed food paper`}>
+              <div class="related-card-img">
+                <img src={rp.heroImage} alt={`${rp.title} — custom printed for US food businesses`} loading="lazy" width="320" height="200" />
+              </div>
+              <div class="related-card-body">
+                <h3>{rp.title}</h3>
+                <p>{rp.intro.slice(0, 85)}…</p>
+                <span class="related-link">View {rp.title} →</span>
+              </div>
+            </a>
+          ))}
+        </div>
+        <div class="related-all-link">
+          <a href="/products/">Browse All 25 Custom Food Packaging Products →</a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- FAQs -->
+  <section class="section faq-section-product">
+    <div class="container">
+      <div class="faq-product-inner">
+        <div>
+          <span class="section-tag">FAQs</span>
+          <h2 class="section-title">{product.title} — Frequently Asked Questions</h2>
+          <p class="section-subtitle">Everything you need to know before ordering.</p>
+        </div>
+        <div class="faq-list" style="border-top: 1px solid var(--color-gray-200)">
+          {product.faqs.map(faq => (
+            <details class="faq-item">
+              <summary>{faq.q}</summary>
+              <div class="faq-body">{faq.a}</div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="product-cta-section">
+    <div class="container">
+      <div class="product-cta-inner">
+        <h2>Ready to Order Custom {product.title}?</h2>
+        <p>
+          Get a free, no-obligation quote for your custom {product.title.toLowerCase()} order. Our team will confirm your specifications, review your artwork, and get production started quickly.
+        </p>
+        <div class="product-cta-btns">
+          <a href="/get-quote" class="btn btn-primary">Get a Free Quote</a>
+          <a href="/contact" class="btn btn-white">Contact Us</a>
+        </div>
+        <p class="product-cta-contact">
+          Call <a href="tel:+15033580443">(503) 358-0443</a> · <a href="mailto:info@thewaxpapers.co">info@thewaxpapers.co</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>
+
+<style>
+  .breadcrumb-bar { background: var(--color-bg-alt); border-bottom: 1px solid var(--color-kraft-light); }
+
+  .product-hero { padding: 3.5rem 0; background: var(--color-bg); }
+  .product-hero-inner {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .product-hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  /* Gallery badge */
+  .product-gallery-main { position: relative; }
+  .gallery-badge {
+    position: absolute;
+    top: 0.75rem; left: 0.75rem;
+    background: rgba(26,51,34,0.85);
+    color: #f59e0b;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    font-family: var(--font-sans);
+    backdrop-filter: blur(4px);
+  }
+
+  .product-info { padding-top: 0.5rem; }
+  .product-info-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem; }
+  .product-h1 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0.5rem 0 1rem; }
+  .product-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.87rem;
+    color: var(--color-gray-600);
+  }
+  .product-rating .stars { font-size: 0.95rem; color: #f59e0b; }
+  .product-rating strong { color: var(--color-brown); }
+  .rating-count { color: var(--color-gray-600); }
+  .product-intro { font-size: 0.97rem; color: var(--color-gray-600); line-height: 1.8; margin-bottom: 1.5rem; }
+  .product-ctas { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+
+  /* Trust badges */
+  .product-trust-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.75rem;
+    padding: 1rem;
+    background: var(--color-bg-alt);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-kraft-light);
+  }
+  .trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--color-copper-dark);
+    font-family: var(--font-sans);
+  }
+  .trust-badge svg { color: var(--color-copper); flex-shrink: 0; }
+
+  .product-quick-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    background: var(--color-bg-alt);
+    border-radius: var(--radius);
+    padding: 1rem;
+  }
+  .quick-spec { display: flex; flex-direction: column; }
+  .quick-spec-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-copper); margin-bottom: 0.15rem; }
+  .quick-spec-value { font-size: 0.88rem; color: var(--color-brown); font-weight: 500; }
+
+  .product-details-section { background: var(--color-white); }
+  .product-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+  @media (max-width: 768px) { .product-details-grid { grid-template-columns: 1fr; } }
+  .product-details-grid h2 { font-size: 1.2rem; color: var(--color-brown); margin-bottom: 1rem; }
+
+  .benefits-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+  .benefits-list li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.92rem; color: var(--color-gray-700); }
+  .benefit-check { color: var(--color-copper); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+
+  .uses-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+  .uses-list li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.92rem; color: var(--color-gray-700); }
+  .use-dot { color: var(--color-copper); flex-shrink: 0; }
+
+  .materials-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .material-tag, .print-tag {
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 500;
+  }
+  .material-tag { background: var(--color-bg-alt); color: var(--color-brown); border: 1px solid var(--color-kraft-light); }
+  .print-tag { background: rgba(74,124,89,0.08); color: var(--color-copper-dark); border: 1px solid rgba(74,124,89,0.2); }
+
+  .specs-section { background: var(--color-bg-alt); }
+  .specs-wrap { max-width: 700px; }
+  .specs-title { font-size: 1.4rem; color: var(--color-brown); margin-bottom: 1.25rem; }
+  .specs-cta { margin-top: 1.5rem; }
+
+  .split-section-wrap { background: var(--color-white); }
+  .split-section-wrap.alt-bg { background: var(--color-bg-alt); }
+  .split-section-content h2 { font-size: 1.5rem; color: var(--color-brown); margin: 0.75rem 0 1rem; }
+  .split-section-content p { font-size: 0.95rem; color: var(--color-gray-600); line-height: 1.8; margin-bottom: 1rem; }
+  .split-list { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 1.5rem; }
+  .split-list li { font-size: 0.9rem; color: var(--color-gray-600); }
+
+  .split-section.reverse { direction: rtl; }
+  .split-section.reverse > * { direction: ltr; }
+
+  /* Answer-first section */
+  .product-answer-section { background: var(--color-bg-alt); padding: 3rem 0; }
+  .product-answer-inner {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 3rem;
+    align-items: start;
+  }
+  @media (max-width: 900px) { .product-answer-inner { grid-template-columns: 1fr; } }
+  .product-answer-h2 { font-size: 1.4rem; color: var(--color-brown); margin-bottom: 1rem; }
+  .product-answer-text p { font-size: 0.95rem; color: var(--color-gray-600); line-height: 1.8; margin-bottom: 1rem; }
+  .product-answer-text strong { color: var(--color-brown); }
+  .product-answer-links { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.25rem; }
+  .product-answer-stats {
+    background: var(--color-white);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .answer-stat { display: flex; flex-direction: column; border-bottom: 1px solid var(--color-gray-100); padding-bottom: 0.75rem; }
+  .answer-stat:last-child { border-bottom: none; padding-bottom: 0; }
+  .answer-stat-val { font-family: var(--font-display); font-size: 1.3rem; color: var(--color-brown); font-weight: 700; }
+  .answer-stat-lbl { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-copper); }
+
+  .related-section { background: var(--color-bg); }
+  .related-card { text-decoration: none; }
+  .related-card-img img { width: 100%; height: 180px; object-fit: cover; }
+  .related-card-body { padding: 1.1rem; }
+  .related-card-body h3 { font-size: 1rem; color: var(--color-brown); margin-bottom: 0.4rem; }
+  .related-card-body p { font-size: 0.83rem; color: var(--color-gray-600); margin-bottom: 0.6rem; line-height: 1.6; }
+  .related-link { font-size: 0.83rem; font-weight: 600; color: var(--color-copper); }
+  .related-all-link { margin-top: 1.5rem; text-align: center; }
+  .related-all-link a { font-size: 0.9rem; color: var(--color-copper); font-weight: 600; }
+  .related-all-link a:hover { text-decoration: underline; }
+
+  .faq-section-product { background: var(--color-white); }
+  .faq-product-inner { display: grid; grid-template-columns: 1fr 1.6fr; gap: 4rem; align-items: start; }
+  @media (max-width: 900px) { .faq-product-inner { grid-template-columns: 1fr; gap: 2rem; } }
+
+  .product-cta-section {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #1a3322, #3d6b4f);
+  }
+  .product-cta-inner {
+    text-align: center;
+    color: var(--color-white);
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  .product-cta-inner h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--color-white); margin-bottom: 1rem; }
+  .product-cta-inner p { font-size: 0.97rem; color: rgba(255,255,255,0.8); line-height: 1.75; margin-bottom: 1.75rem; }
+  .product-cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .product-cta-contact { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+  .product-cta-contact a { color: var(--color-kraft-light); text-decoration: underline; }
+</style>
+
+<script>
+  // Thumb gallery switcher
+  const thumbs = document.querySelectorAll('.product-gallery-thumb');
+  const mainImg = document.getElementById('mainProductImg') as HTMLImageElement;
+  thumbs.forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      const src = (thumb as HTMLButtonElement).dataset.src;
+      if (mainImg && src) mainImg.src = src;
+      thumbs.forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+    });
+  });
+</script>

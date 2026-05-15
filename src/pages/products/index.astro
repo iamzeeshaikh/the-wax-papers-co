@@ -1,0 +1,384 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { products } from '../../data/products';
+
+const categories = [...new Set(products.map(p => p.category))];
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://thewaxpapers.co" },
+    { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://thewaxpapers.co/products" }
+  ]
+};
+---
+
+<BaseLayout
+  title="Custom Food Packaging Products | The Wax Papers USA"
+  description="Browse 25 custom food packaging products including wax paper, greaseproof paper, deli paper, burger paper, pizza liners, and more. Printed with your brand. Ships nationwide."
+  canonical="https://thewaxpapers.co/products"
+  schema={breadcrumbSchema}
+>
+  <Fragment slot="navbar"><Navbar /></Fragment>
+
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb-sep" aria-hidden="true">/</span>
+        <span aria-current="page">Products</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="products-hero">
+    <div class="products-hero-bg"></div>
+    <div class="container products-hero-inner">
+      <div class="products-hero-text">
+        <span class="section-tag products-tag">25 Products</span>
+        <h1 class="products-h1">Custom Food Packaging<br /><em>Printed with Your Brand</em></h1>
+        <p class="products-intro">
+          Every product in our range ships to all 50 states from our Pennsylvania facility. FDA-compliant, food-safe materials. Custom print from single-color logo to full-color design.
+        </p>
+        <div class="products-hero-pills">
+          <span>✓ 500 Sheet Minimum</span>
+          <span>✓ 8–12 Day Lead Time</span>
+          <span>✓ No Setup Fees</span>
+          <span>✓ Free Digital Proof</span>
+        </div>
+        <a href="/get-quote" class="btn btn-primary products-hero-cta">Get a Free Quote</a>
+      </div>
+      <div class="products-hero-mosaic">
+        {products.slice(0, 4).map((p, i) => (
+          <a href={`/products/${p.slug}`} class={`mosaic-thumb mosaic-${i}`}>
+            <img src={p.heroImage} alt={p.title} loading="eager" width="180" height="140" />
+            <span>{p.title}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+    <div class="products-hero-wave">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#faf8f3"/></svg>
+    </div>
+  </section>
+
+  <!-- Sticky category nav -->
+  <div class="cat-nav-wrap" id="catNav">
+    <div class="container">
+      <nav class="cat-nav" aria-label="Product categories">
+        {categories.map((cat, i) => {
+          const id = cat.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+          return (
+            <a href={`#${id}`} class="cat-nav-link">
+              {cat}
+              <span class="cat-nav-count">{products.filter(p => p.category === cat).length}</span>
+            </a>
+          );
+        })}
+      </nav>
+    </div>
+  </div>
+
+  <!-- Products by category -->
+  <section class="all-products-section">
+    <div class="container">
+      {categories.map(cat => {
+        const catProducts = products.filter(p => p.category === cat);
+        const id = cat.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+        return (
+          <div class="product-category-block" id={id}>
+            <div class="cat-heading-row">
+              <div class="cat-heading-left">
+                <span class="cat-pill">{catProducts.length} products</span>
+                <h2 class="cat-heading">{cat}</h2>
+              </div>
+              <a href="/get-quote" class="cat-quote-link">Get a Quote for Any Product →</a>
+            </div>
+            <div class="all-products-grid">
+              {catProducts.map((product, idx) => (
+                <a href={`/products/${product.slug}`} class={`product-card card${idx === 0 ? ' product-card-featured' : ''}`}>
+                  <div class="product-card-img">
+                    <img
+                      src={product.heroImage}
+                      alt={`${product.title} — custom printed`}
+                      loading="lazy"
+                      width="320"
+                      height="220"
+                    />
+                    <div class="product-card-overlay">
+                      <span class="product-card-overlay-btn">View Product</span>
+                    </div>
+                  </div>
+                  <div class="product-card-body">
+                    <div class="product-card-top">
+                      <span class="product-cat">{product.category}</span>
+                      <div class="product-card-rating">
+                        <span class="stars" aria-label={`${product.ratingValue} stars`}>{'★'.repeat(Math.floor(product.ratingValue))}</span>
+                        <span>{product.ratingValue}</span>
+                      </div>
+                    </div>
+                    <h3 class="product-card-title">{product.title}</h3>
+                    <p class="product-card-desc">{product.intro.slice(0, 88)}…</p>
+                    <span class="product-card-link">Get a Quote →</span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </section>
+
+  <!-- Bottom CTA band -->
+  <section class="products-bottom-cta">
+    <div class="container">
+      <div class="products-cta-inner">
+        <div class="products-cta-text">
+          <h2>Need a Custom Size or Quantity?</h2>
+          <p>We accommodate custom sizes, mixed orders, and wholesale quantities for all products. Contact us for a tailored quote with no obligation.</p>
+        </div>
+        <div class="products-cta-btns">
+          <a href="/get-quote" class="btn btn-primary">Get a Free Quote</a>
+          <a href="/contact" class="btn btn-outline">Contact Our Team</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>
+
+<style>
+  .breadcrumb-bar { background: var(--color-bg-alt); border-bottom: 1px solid var(--color-kraft-light); }
+
+  /* Hero */
+  .products-hero {
+    position: relative;
+    background: linear-gradient(135deg, #1a3322 0%, #2d5c3e 60%, #3d7a55 100%);
+    overflow: hidden;
+    padding: 4rem 0 3.5rem;
+  }
+  .products-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 80% 40%, rgba(90,154,110,0.18) 0%, transparent 55%);
+  }
+  .products-hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 3rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  @media (max-width: 900px) {
+    .products-hero-inner { grid-template-columns: 1fr; }
+    .products-hero-mosaic { display: none; }
+  }
+
+  .products-tag { background: rgba(255,255,255,0.15); color: var(--color-kraft-light); }
+  .products-h1 {
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    color: var(--color-white);
+    margin: 0.75rem 0 1.25rem;
+    line-height: 1.15;
+  }
+  .products-h1 em { color: #a3d4b0; font-style: italic; }
+  .products-intro { font-size: 1rem; color: rgba(255,255,255,0.8); line-height: 1.75; max-width: 540px; margin-bottom: 1.25rem; }
+  .products-hero-pills { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; margin-bottom: 1.75rem; }
+  .products-hero-pills span { font-size: 0.83rem; color: #a3d4b0; font-weight: 600; }
+  .products-hero-cta { align-self: flex-start; }
+
+  .products-hero-mosaic {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .mosaic-thumb {
+    position: relative;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    text-decoration: none;
+    display: block;
+  }
+  .mosaic-thumb img { width: 100%; height: 140px; object-fit: cover; transition: transform 0.3s; }
+  .mosaic-thumb:hover img { transform: scale(1.05); }
+  .mosaic-thumb span {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 0.5rem 0.6rem;
+    background: linear-gradient(transparent, rgba(26,51,34,0.85));
+    font-size: 0.75rem;
+    color: white;
+    font-weight: 600;
+  }
+
+  .products-hero-wave { position: absolute; bottom: -1px; left: 0; right: 0; line-height: 0; }
+  .products-hero-wave svg { width: 100%; height: 60px; }
+
+  /* Category nav */
+  .cat-nav-wrap {
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-gray-200);
+    position: sticky;
+    top: 66px;
+    z-index: 100;
+  }
+  .cat-nav {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .cat-nav::-webkit-scrollbar { display: none; }
+  .cat-nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.85rem 1.1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-gray-600);
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+    font-family: var(--font-sans);
+    text-decoration: none;
+  }
+  .cat-nav-link:hover { color: var(--color-copper); border-bottom-color: var(--color-copper); }
+  .cat-nav-count {
+    background: var(--color-bg-alt);
+    color: var(--color-gray-600);
+    padding: 0.1rem 0.45rem;
+    border-radius: 999px;
+    font-size: 0.73rem;
+    font-weight: 700;
+  }
+
+  /* Product sections */
+  .all-products-section { background: var(--color-bg); padding: 3rem 0 5rem; }
+
+  .product-category-block { margin-bottom: 4rem; scroll-margin-top: 120px; }
+
+  .cat-heading-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--color-kraft-light);
+  }
+  .cat-heading-left { display: flex; flex-direction: column; gap: 0.3rem; }
+  .cat-pill {
+    font-size: 0.73rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-copper);
+    background: rgba(74,124,89,0.1);
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    display: inline-block;
+  }
+  .cat-heading {
+    font-size: 1.35rem;
+    font-family: var(--font-display);
+    color: var(--color-brown);
+    margin: 0;
+  }
+  .cat-quote-link { font-size: 0.85rem; font-weight: 600; color: var(--color-copper); flex-shrink: 0; }
+  .cat-quote-link:hover { text-decoration: underline; }
+
+  .all-products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  @media (max-width: 1100px) { .all-products-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 768px) { .all-products-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .all-products-grid { grid-template-columns: 1fr; } }
+
+  .product-card { display: flex; flex-direction: column; text-decoration: none; }
+  .product-card-img { overflow: hidden; position: relative; }
+  .product-card-img img { width: 100%; height: 210px; object-fit: cover; transition: transform 0.35s; }
+  .product-card:hover .product-card-img img { transform: scale(1.05); }
+
+  .product-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(26,51,34,0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .product-card:hover .product-card-overlay { opacity: 1; }
+  .product-card-overlay-btn {
+    background: var(--color-white);
+    color: var(--color-brown);
+    padding: 0.55rem 1.25rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+    font-weight: 700;
+    font-family: var(--font-sans);
+  }
+
+  .product-card-body { padding: 1rem 1.1rem 1.25rem; flex: 1; display: flex; flex-direction: column; }
+  .product-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.4rem; }
+  .product-cat { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-copper); }
+  .product-card-rating { display: flex; align-items: center; gap: 0.3rem; font-size: 0.75rem; color: var(--color-gray-600); }
+  .product-card-rating .stars { font-size: 0.75rem; color: #f59e0b; letter-spacing: 0; }
+  .product-card-title { font-size: 0.97rem; color: var(--color-brown); margin-bottom: 0.4rem; line-height: 1.3; }
+  .product-card-desc { font-size: 0.82rem; color: var(--color-gray-600); line-height: 1.6; flex: 1; margin-bottom: 0.6rem; }
+  .product-card-link { font-size: 0.83rem; font-weight: 600; color: var(--color-copper); }
+
+  /* Featured first card spans 2 columns on large screens */
+  @media (min-width: 1100px) {
+    .product-card-featured {
+      grid-column: span 1;
+    }
+    .product-card-featured .product-card-img img { height: 210px; }
+  }
+
+  /* Bottom CTA */
+  .products-bottom-cta {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #1a3322, #2d5c3e);
+  }
+  .products-cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .products-cta-text h2 { font-size: clamp(1.4rem, 2.5vw, 2rem); color: var(--color-white); margin-bottom: 0.6rem; }
+  .products-cta-text p { font-size: 0.97rem; color: rgba(255,255,255,0.75); max-width: 480px; line-height: 1.7; }
+  .products-cta-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; flex-shrink: 0; }
+</style>
+
+<script>
+  // Sticky category nav: highlight active section
+  const catLinks = document.querySelectorAll('.cat-nav-link');
+  const catBlocks = document.querySelectorAll('.product-category-block');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        catLinks.forEach(link => {
+          link.classList.toggle('active', (link as HTMLAnchorElement).getAttribute('href') === `#${id}`);
+        });
+      }
+    });
+  }, { threshold: 0.25, rootMargin: '-120px 0px -50% 0px' });
+  catBlocks.forEach(block => observer.observe(block));
+</script>

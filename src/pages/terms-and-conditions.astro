@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Terms and Conditions | The Wax Papers USA"
+  description="Terms and Conditions for The Wax Papers. Read our terms for ordering custom food paper, wax paper, and food packaging products across the USA."
+  canonical="https://thewaxpapers.co/terms-and-conditions"
+>
+  <Fragment slot="navbar"><Navbar /></Fragment>
+
+  <section class="policy-hero">
+    <div class="container">
+      <h1>Terms and Conditions</h1>
+      <p>Last updated: January 1, 2025</p>
+    </div>
+  </section>
+
+  <section class="policy-content">
+    <div class="container">
+      <div class="policy-layout">
+        <div class="prose policy-prose">
+          <h2>1. Acceptance of Terms</h2>
+          <p>By accessing thewaxpapers.co or placing an order with The Wax Papers, you agree to be bound by these Terms and Conditions. If you do not agree to these terms, please do not use our website or services.</p>
+
+          <h2>2. Products and Orders</h2>
+          <p>All products sold by The Wax Papers are custom manufactured to your specifications. Due to the custom nature of our products:</p>
+          <ul>
+            <li>All orders require approval of a digital proof before production begins</li>
+            <li>Orders cannot be cancelled once production has started</li>
+            <li>Minimum order quantities apply as stated on individual product pages</li>
+            <li>Prices are subject to change without notice; confirmed orders are held at the price quoted</li>
+          </ul>
+
+          <h2>3. Artwork and Design</h2>
+          <p>By submitting artwork to The Wax Papers, you confirm that:</p>
+          <ul>
+            <li>You own the rights to all submitted artwork, logos, and designs</li>
+            <li>The artwork does not infringe on any third-party intellectual property rights</li>
+            <li>You grant The Wax Papers a license to use the artwork solely for order production purposes</li>
+          </ul>
+          <p>The Wax Papers is not responsible for errors in submitted artwork. Always review proofs carefully before approval.</p>
+
+          <h2>4. Food Safety Compliance</h2>
+          <p>All products supplied by The Wax Papers are manufactured using FDA-compliant materials and food-safe inks for the specified applications. Customers are responsible for ensuring products are used in accordance with their intended application and applicable food safety regulations.</p>
+
+          <h2>5. Payment Terms</h2>
+          <p>Payment is required at the time of order unless a credit account has been approved. We accept major credit cards and ACH bank transfer. All prices are in US dollars (USD).</p>
+
+          <h2>6. Shipping and Delivery</h2>
+          <ul>
+            <li>Lead times are estimates and may vary due to production demand</li>
+            <li>The Wax Papers is not liable for delays caused by shipping carriers</li>
+            <li>Risk of loss passes to the customer upon delivery to the carrier</li>
+            <li>We ship to all 50 states within the contiguous USA</li>
+          </ul>
+
+          <h2>7. Returns and Defective Products</h2>
+          <p>Due to the custom nature of our products, we do not accept returns. However, if products are received with manufacturing defects or errors that differ from the approved proof, we will work with you to provide a replacement or credit. Claims must be made within 5 business days of delivery with photographic evidence.</p>
+
+          <h2>8. Limitation of Liability</h2>
+          <p>The Wax Papers shall not be liable for any indirect, incidental, special, or consequential damages arising from the use of our products or services. Our liability is limited to the value of the specific order in question.</p>
+
+          <h2>9. Intellectual Property</h2>
+          <p>All content on thewaxpapers.co including text, design, graphics, and product descriptions is the intellectual property of The Wax Papers and may not be reproduced without written permission.</p>
+
+          <h2>10. Governing Law</h2>
+          <p>These Terms and Conditions are governed by the laws of the Commonwealth of Pennsylvania, USA. Any disputes shall be resolved in the courts of Bucks County, Pennsylvania.</p>
+
+          <h2>11. Changes to Terms</h2>
+          <p>We reserve the right to update these Terms and Conditions at any time. Continued use of our services after changes constitutes acceptance.</p>
+
+          <h2>12. Contact</h2>
+          <address>
+            <strong>The Wax Papers</strong><br />
+            1121 Neshaminy Valley Drive<br />
+            Bensalem, Pennsylvania 19020<br />
+            Email: <a href="mailto:info@thewaxpapers.co">info@thewaxpapers.co</a><br />
+            Phone: <a href="tel:+15033580443">(503) 358-0443</a>
+          </address>
+        </div>
+        <aside class="policy-sidebar">
+          <div class="policy-sidebar-card">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="/privacy-policy">Privacy Policy</a></li>
+              <li><a href="/contact">Contact Us</a></li>
+              <li><a href="/get-quote">Get a Quote</a></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>
+
+<style>
+  .policy-hero { padding: 3rem 0 2rem; background: linear-gradient(135deg, #1a3322, #2d5c3e); color: var(--color-white); }
+  .policy-hero h1 { font-size: 2.2rem; color: var(--color-white); margin-bottom: 0.5rem; }
+  .policy-hero p { color: rgba(255,255,255,0.6); font-size: 0.9rem; }
+  .policy-content { padding: 4rem 0 5rem; background: var(--color-bg); }
+  .policy-layout { display: grid; grid-template-columns: 1fr 250px; gap: 4rem; align-items: start; }
+  @media (max-width: 900px) { .policy-layout { grid-template-columns: 1fr; } }
+  .policy-prose address { font-style: normal; background: var(--color-bg-alt); padding: 1.25rem; border-radius: var(--radius-sm); margin-top: 0.5rem; line-height: 1.9; }
+  .policy-prose address a { color: var(--color-copper); }
+  .policy-sidebar-card { background: var(--color-white); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow-sm); position: sticky; top: 90px; }
+  .policy-sidebar-card h3 { font-size: 0.97rem; color: var(--color-brown); margin-bottom: 0.75rem; }
+  .policy-sidebar-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .policy-sidebar-card a { font-size: 0.88rem; color: var(--color-copper); }
+</style>

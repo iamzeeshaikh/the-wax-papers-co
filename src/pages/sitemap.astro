@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { products } from '../data/products';
+import { blogPosts } from '../data/blog';
+
+const categories = [...new Set(products.map(p => p.category))];
+---
+
+<BaseLayout
+  title="HTML Sitemap | The Wax Papers — Custom Food Paper USA"
+  description="Complete sitemap for thewaxpapers.co. Find all product pages, blog articles, and company pages for custom wax paper, greaseproof paper, deli paper, and food packaging."
+  canonical="https://thewaxpapers.co/sitemap"
+>
+  <Fragment slot="navbar"><Navbar /></Fragment>
+
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb-sep" aria-hidden="true">/</span>
+        <span aria-current="page">Sitemap</span>
+      </nav>
+    </div>
+  </div>
+
+  <section class="sitemap-hero">
+    <div class="container">
+      <span class="section-tag sitemap-tag">Site Navigation</span>
+      <h1 class="sitemap-h1">HTML Sitemap</h1>
+      <p>A complete index of every page on <strong>thewaxpapers.co</strong> — custom food paper and packaging for US food businesses.</p>
+    </div>
+  </section>
+
+  <section class="sitemap-section">
+    <div class="container">
+
+      <!-- Main Pages -->
+      <div class="sitemap-block">
+        <h2 class="sitemap-cat-heading">Main Pages</h2>
+        <ul class="sitemap-list sitemap-list--grid">
+          <li><a href="/">Home — Custom Wax Paper &amp; Food Packaging USA</a></li>
+          <li><a href="/about/">About The Wax Papers</a></li>
+          <li><a href="/products/">All Custom Food Packaging Products</a></li>
+          <li><a href="/get-quote/">Get a Free Quote</a></li>
+          <li><a href="/contact/">Contact Us</a></li>
+          <li><a href="/blog/">Food Packaging Blog</a></li>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/terms-and-conditions/">Terms &amp; Conditions</a></li>
+        </ul>
+      </div>
+
+      <!-- Products by Category -->
+      {categories.map(cat => {
+        const catProducts = products.filter(p => p.category === cat);
+        return (
+          <div class="sitemap-block">
+            <h2 class="sitemap-cat-heading">{cat} Products</h2>
+            <ul class="sitemap-list sitemap-list--grid">
+              {catProducts.map(p => (
+                <li>
+                  <a href={`/products/${p.slug}/`}>{p.title}</a>
+                  <span class="sitemap-desc">{p.metaDescription.slice(0, 80)}…</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      })}
+
+      <!-- Blog Posts -->
+      <div class="sitemap-block">
+        <h2 class="sitemap-cat-heading">Food Packaging Blog</h2>
+        <ul class="sitemap-list">
+          {blogPosts.map(post => (
+            <li>
+              <a href={`/blog/${post.slug}/`}>{post.h1}</a>
+              <span class="sitemap-desc">{post.excerpt.slice(0, 90)}…</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>
+
+<style>
+  .breadcrumb-bar { background: var(--color-bg-alt); border-bottom: 1px solid var(--color-kraft-light); }
+
+  .sitemap-hero {
+    padding: 3.5rem 0 2.5rem;
+    background: linear-gradient(135deg, #1a3322, #2d5c3e);
+    color: var(--color-white);
+  }
+  .sitemap-tag { background: rgba(255,255,255,0.15); color: var(--color-kraft-light); }
+  .sitemap-h1 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); color: var(--color-white); margin: 0.75rem 0 0.75rem; }
+  .sitemap-hero p { color: rgba(255,255,255,0.8); font-size: 1rem; }
+  .sitemap-hero strong { color: var(--color-kraft-light); }
+
+  .sitemap-section { padding: 4rem 0 5rem; background: var(--color-bg); }
+
+  .sitemap-block { margin-bottom: 3rem; }
+  .sitemap-cat-heading {
+    font-size: 1rem;
+    font-family: var(--font-sans);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-copper);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-kraft-light);
+  }
+
+  .sitemap-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .sitemap-list--grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem 2rem; }
+  @media (max-width: 900px) { .sitemap-list--grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .sitemap-list--grid { grid-template-columns: 1fr; } }
+
+  .sitemap-list li { display: flex; flex-direction: column; gap: 0.15rem; }
+  .sitemap-list a { font-size: 0.9rem; color: var(--color-copper); font-weight: 500; }
+  .sitemap-list a:hover { text-decoration: underline; }
+  .sitemap-desc { font-size: 0.78rem; color: var(--color-gray-600); line-height: 1.4; }
+</style>

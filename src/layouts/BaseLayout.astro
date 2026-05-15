@@ -1,0 +1,608 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  schema?: object | object[];
+  preloadImage?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonical = Astro.url.href,
+  ogImage = '/images/og-default.png',
+  schema,
+  preloadImage,
+  noindex = false,
+} = Astro.props;
+
+const siteUrl = 'https://thewaxpapers.co';
+const canonicalUrl = canonical.startsWith('http') ? canonical : `${siteUrl}${canonical}`;
+const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
+
+const schemaArray = schema
+  ? Array.isArray(schema) ? schema : [schema]
+  : [];
+
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": ["Organization", "LocalBusiness"],
+  "@id": `${siteUrl}/#organization`,
+  "name": "The Wax Papers",
+  "legalName": "The Wax Papers",
+  "url": siteUrl,
+  "logo": {
+    "@type": "ImageObject",
+    "url": `${siteUrl}/favicon.svg`,
+    "width": 40,
+    "height": 40
+  },
+  "image": `${siteUrl}/images/og-default.png`,
+  "description": "Custom wax paper, greaseproof paper, deli paper, burger paper, and restaurant food packaging supplier serving all 50 US states from Bensalem, Pennsylvania.",
+  "telephone": "+15033580443",
+  "email": "info@thewaxpapers.co",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1121 Neshaminy Valley Drive",
+    "addressLocality": "Bensalem",
+    "addressRegion": "PA",
+    "postalCode": "19020",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "40.1021",
+    "longitude": "-74.9388"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "United States"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+    "opens": "09:00",
+    "closes": "17:00"
+  },
+  "priceRange": "$$",
+  "currenciesAccepted": "USD",
+  "paymentAccepted": "Credit Card, Bank Transfer",
+  "hasMap": "https://maps.google.com/?q=1121+Neshaminy+Valley+Drive,+Bensalem,+PA+19020",
+  "sameAs": [
+    "https://thewaxpapers.co"
+  ],
+  "knowsAbout": [
+    "Custom wax paper",
+    "Custom greaseproof paper",
+    "Custom deli paper",
+    "Custom burger paper",
+    "Custom butcher paper",
+    "Food packaging",
+    "Restaurant packaging",
+    "Custom food wrapping paper"
+  ]
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${siteUrl}/#website`,
+  "name": "The Wax Papers",
+  "url": siteUrl,
+  "description": "Custom printed food paper and packaging for restaurants, delis, bakeries, and food trucks across the USA.",
+  "publisher": { "@id": `${siteUrl}/#organization` },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": `${siteUrl}/products?q={search_term_string}`
+    },
+    "query-input": "required name=search_term_string"
+  },
+  "inLanguage": "en-US"
+};
+
+const allSchemas = [orgSchema, websiteSchema, ...schemaArray];
+---
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+
+  {noindex
+    ? <meta name="robots" content="noindex, nofollow" />
+    : <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  }
+
+  <!-- Geo / Local -->
+  <meta name="geo.region" content="US-PA" />
+  <meta name="geo.placename" content="Bensalem, Pennsylvania, USA" />
+  <meta name="geo.position" content="40.1021;-74.9388" />
+  <meta name="ICBM" content="40.1021, -74.9388" />
+
+  <!-- Theme -->
+  <meta name="theme-color" content="#1a3322" />
+  <meta name="msapplication-TileColor" content="#1a3322" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:site_name" content="The Wax Papers" />
+  <meta property="og:image" content={ogImageUrl} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="The Wax Papers — Custom Food Packaging USA" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImageUrl} />
+  <meta name="twitter:site" content="@thewaxpapers" />
+
+  <!-- Business / Contact -->
+  <meta name="author" content="The Wax Papers" />
+  <meta name="contact" content="info@thewaxpapers.co" />
+  <meta name="coverage" content="United States" />
+  <meta name="distribution" content="global" />
+  <meta name="target" content="all" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.svg" />
+
+  <!-- DNS Prefetch -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Preload critical fonts -->
+  <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+
+  <!-- Preload LCP image if provided -->
+  {preloadImage && (
+    <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />
+  )}
+
+  <!-- JSON-LD Schemas -->
+  <script type="application/ld+json" set:html={JSON.stringify(allSchemas)} />
+
+  <style is:global>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-bg: #faf8f3;
+      --color-bg-alt: #f0ede4;
+      --color-white: #ffffff;
+      --color-brown: #1a3322;
+      --color-charcoal: #1a3322;
+      --color-copper: #4a7c59;
+      --color-copper-light: #5a9a6e;
+      --color-copper-dark: #2d5c3e;
+      --color-kraft: #8aab96;
+      --color-kraft-light: #d4e6da;
+      --color-gray-50: #f9fafb;
+      --color-gray-100: #f3f4f6;
+      --color-gray-200: #e5e7eb;
+      --color-gray-600: #4b5563;
+      --color-gray-700: #374151;
+      --color-gray-800: #1f2937;
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --max-width: 1280px;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.10);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--color-bg);
+      color: var(--color-charcoal);
+      line-height: 1.7;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-display);
+      color: var(--color-brown);
+      line-height: 1.25;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: 1.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--color-copper);
+      color: var(--color-white);
+      border-color: var(--color-copper);
+    }
+    .btn-primary:hover {
+      background: var(--color-copper-dark);
+      border-color: var(--color-copper-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(74,124,89,0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--color-copper);
+      border-color: var(--color-copper);
+    }
+    .btn-outline:hover {
+      background: var(--color-copper);
+      color: var(--color-white);
+      transform: translateY(-1px);
+    }
+
+    .btn-white {
+      background: var(--color-white);
+      color: var(--color-copper);
+      border-color: var(--color-white);
+    }
+    .btn-white:hover {
+      background: var(--color-kraft-light);
+      transform: translateY(-1px);
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-copper);
+      background: rgba(74,124,89,0.1);
+      padding: 0.3rem 0.85rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      color: var(--color-brown);
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      font-family: var(--font-sans);
+      font-size: 1.05rem;
+      color: var(--color-gray-600);
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    .section-header { margin-bottom: 3rem; }
+    .section-header.centered { text-align: center; }
+    .section-header.centered .section-subtitle { margin-inline: auto; }
+
+    .section { padding: 5rem 0; }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      align-items: center;
+      font-size: 0.85rem;
+      color: var(--color-gray-600);
+      padding: 0.75rem 0;
+    }
+    .breadcrumb a { color: var(--color-gray-600); }
+    .breadcrumb a:hover { color: var(--color-copper); }
+    .breadcrumb-sep { color: var(--color-gray-200); }
+    .breadcrumb [aria-current="page"] { color: var(--color-brown); font-weight: 500; }
+
+    /* Utility */
+    .text-copper { color: var(--color-copper); }
+    .text-center { text-align: center; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+
+    @media (max-width: 900px) {
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+    }
+
+    /* FAQ accordion */
+    .faq-item { border-bottom: 1px solid var(--color-gray-200); }
+    .faq-item summary {
+      list-style: none;
+      padding: 1.1rem 0;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--color-brown);
+      font-size: 0.97rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      user-select: none;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '+';
+      font-size: 1.4rem;
+      color: var(--color-copper);
+      font-weight: 400;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    .faq-item[open] summary::after { content: '−'; }
+    .faq-body {
+      padding: 0 0 1.1rem;
+      color: var(--color-gray-600);
+      font-size: 0.95rem;
+      line-height: 1.75;
+    }
+
+    /* Specs table */
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.93rem;
+    }
+    .specs-table tr:nth-child(odd) td { background: var(--color-bg-alt); }
+    .specs-table td { padding: 0.75rem 1rem; border: none; }
+    .specs-table td:first-child { font-weight: 600; color: var(--color-brown); width: 40%; }
+
+    /* Badge */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.3rem 0.7rem;
+      background: rgba(74,124,89,0.1);
+      color: var(--color-copper-dark);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* Star rating */
+    .stars { color: #f59e0b; letter-spacing: 0.05em; }
+
+    /* Product image gallery */
+    .product-gallery { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
+    .product-gallery-main {
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--color-white);
+      position: relative;
+    }
+    .product-gallery-main img { width: 100%; height: 400px; object-fit: cover; }
+    .product-gallery-thumbs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; }
+    .product-gallery-thumb {
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color 0.2s;
+      background: var(--color-white);
+    }
+    .product-gallery-thumb.active,
+    .product-gallery-thumb:hover { border-color: var(--color-copper); }
+    .product-gallery-thumb img { width: 100%; height: 70px; object-fit: cover; }
+
+    /* Content sections layout */
+    .split-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .split-section { grid-template-columns: 1fr; gap: 2rem; }
+      .split-section.reverse { direction: ltr; }
+    }
+    .split-section-image { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); }
+    .split-section-image img { width: 100%; height: 380px; object-fit: cover; }
+
+    /* Related products */
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    @media (max-width: 900px) { .related-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+
+    /* Blog markdown / prose */
+    .prose h2 { font-size: 1.5rem; margin: 2.5rem 0 1rem; color: var(--color-brown); }
+    .prose h3 { font-size: 1.2rem; margin: 2rem 0 0.75rem; color: var(--color-brown); }
+    .prose p { margin-bottom: 1.25rem; color: var(--color-gray-700); line-height: 1.8; }
+    .prose ul, .prose ol { margin: 0 0 1.25rem 1.5rem; color: var(--color-gray-700); }
+    .prose li { margin-bottom: 0.4rem; line-height: 1.7; }
+    .prose a { color: var(--color-copper); text-decoration: underline; }
+    .prose strong { color: var(--color-brown); }
+    .prose table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: 0.92rem; }
+    .prose table th { background: var(--color-brown); color: var(--color-white); padding: 0.6rem 1rem; text-align: left; font-family: var(--font-sans); }
+    .prose table td { padding: 0.6rem 1rem; border-bottom: 1px solid var(--color-gray-200); }
+    .prose table tr:nth-child(even) td { background: var(--color-bg-alt); }
+    .prose blockquote {
+      border-left: 3px solid var(--color-copper);
+      padding: 0.75rem 1.25rem;
+      background: var(--color-bg-alt);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Forms */
+    .form-group { margin-bottom: 1.25rem; }
+    .form-label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--color-brown);
+      margin-bottom: 0.4rem;
+    }
+    .form-label span[aria-hidden] { color: #e53e3e; margin-left: 2px; }
+    .form-control {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border: 1.5px solid var(--color-gray-200);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      background: var(--color-white);
+      color: var(--color-charcoal);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .form-control:focus { border-color: var(--color-copper); box-shadow: 0 0 0 3px rgba(74,124,89,0.12); }
+    textarea.form-control { resize: vertical; min-height: 120px; }
+    select.form-control { cursor: pointer; }
+    .form-hint { font-size: 0.8rem; color: var(--color-gray-600); margin-top: 0.4rem; }
+
+    /* Honeypot field — visually hidden */
+    .hp-field { position: absolute; left: -9999px; top: -9999px; opacity: 0; width: 0; height: 0; overflow: hidden; }
+
+    /* Cards */
+    .card {
+      background: var(--color-white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+    /* Scroll reveal animation */
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+      .reveal.visible { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Skip link (accessibility) */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      z-index: 9999;
+      background: var(--color-brown);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+      font-weight: 600;
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* Focus visible */
+    :focus-visible {
+      outline: 2px solid var(--color-copper);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <slot name="navbar" />
+  <main id="main-content">
+    <slot />
+  </main>
+  <slot name="footer" />
+
+  <script>
+    // Intersection Observer for reveal animations
+    const reveals = document.querySelectorAll('.reveal');
+    if (reveals.length) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      reveals.forEach(el => observer.observe(el));
+    }
+
+    // Product image gallery
+    const thumbs = document.querySelectorAll('.product-gallery-thumb');
+    const mainImg = document.querySelector('.product-gallery-main img');
+    thumbs.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        const src = thumb.querySelector('img')?.src;
+        if (mainImg && src) { (mainImg as HTMLImageElement).src = src; }
+        thumbs.forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
+      });
+    });
+    if (thumbs[0]) thumbs[0].classList.add('active');
+
+    // Honeypot validation — block form submissions where HP field is filled
+    document.querySelectorAll('form').forEach(form => {
+      form.addEventListener('submit', (e) => {
+        const hp = form.querySelector('.hp-field input') as HTMLInputElement | null;
+        if (hp && hp.value) {
+          e.preventDefault();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

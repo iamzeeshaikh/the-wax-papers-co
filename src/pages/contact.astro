@@ -1,0 +1,336 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const contactPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "@id": "https://thewaxpapers.co/contact",
+  "name": "Contact The Wax Papers",
+  "description": "Contact The Wax Papers for custom food packaging inquiries. Call (503) 358-0443 or email info@thewaxpapers.co.",
+  "url": "https://thewaxpapers.co/contact",
+  "inLanguage": "en-US",
+  "isPartOf": { "@id": "https://thewaxpapers.co/#website" }
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://thewaxpapers.co" },
+    { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://thewaxpapers.co/contact" }
+  ]
+};
+---
+
+<BaseLayout
+  title="Contact The Wax Papers | Custom Food Paper USA"
+  description="Contact The Wax Papers for custom food packaging inquiries. Call (503) 358-0443 or email info@thewaxpapers.co. Based in Bensalem, Pennsylvania. Ships nationwide."
+  canonical="https://thewaxpapers.co/contact"
+  schema={[contactPageSchema, breadcrumbSchema]}
+>
+  <Fragment slot="navbar"><Navbar /></Fragment>
+
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb-sep">/</span>
+        <span aria-current="page">Contact</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="contact-hero">
+    <div class="contact-hero-bg"></div>
+    <div class="container contact-hero-inner">
+      <div>
+        <span class="section-tag contact-tag">Get in Touch</span>
+        <h1 class="contact-h1">We'd Love to<br /><em>Hear From You</em></h1>
+        <p class="contact-hero-desc">Our team is ready to help with quotes, product questions, and order support. Reach out by phone, email, or the form — we respond within one business day.</p>
+      </div>
+      <div class="contact-hero-cards">
+        <a href="tel:+15033580443" class="contact-hero-card">
+          <div class="chc-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 10.18a19.79 19.79 0 01-3.07-8.67A2 2 0 011.9 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <span class="chc-label">Phone</span>
+            <strong class="chc-value">(503) 358-0443</strong>
+            <span class="chc-sub">Mon–Fri, 9am–5pm EST</span>
+          </div>
+        </a>
+        <a href="mailto:info@thewaxpapers.co" class="contact-hero-card">
+          <div class="chc-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          </div>
+          <div>
+            <span class="chc-label">Email</span>
+            <strong class="chc-value">info@thewaxpapers.co</strong>
+            <span class="chc-sub">Reply within 1 business day</span>
+          </div>
+        </a>
+        <div class="contact-hero-card contact-hero-card--addr">
+          <div class="chc-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <div>
+            <span class="chc-label">Address</span>
+            <strong class="chc-value">Bensalem, Pennsylvania</strong>
+            <span class="chc-sub">Ships to all 50 states</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-hero-wave">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#faf8f3"/></svg>
+    </div>
+  </section>
+
+  <!-- Main contact section -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- Form -->
+        <div class="contact-form-wrap">
+          <div class="contact-form-header">
+            <h2>Send Us a Message</h2>
+            <p>Prefer to talk? Call <a href="tel:+15033580443">(503) 358-0443</a> or email <a href="mailto:info@thewaxpapers.co">info@thewaxpapers.co</a>.</p>
+          </div>
+          <form name="contact" method="POST" class="contact-form" aria-label="Contact form">
+            <!-- Honeypot spam trap -->
+            <div class="hp-field" aria-hidden="true">
+              <label for="hp-url">Website URL</label>
+              <input type="text" id="hp-url" name="url" tabindex="-1" autocomplete="off" />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="c-name">Full Name <span aria-hidden="true">*</span></label>
+                <input class="form-control" type="text" id="c-name" name="name" required placeholder="Your name" autocomplete="name" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="c-email">Email Address <span aria-hidden="true">*</span></label>
+                <input class="form-control" type="email" id="c-email" name="email" required placeholder="your@email.com" autocomplete="email" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="c-phone">Phone Number</label>
+                <input class="form-control" type="tel" id="c-phone" name="phone" placeholder="(555) 000-0000" autocomplete="tel" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="c-subject">Subject</label>
+                <input class="form-control" type="text" id="c-subject" name="subject" placeholder="e.g. Quote Request, Order Question" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="c-message">Message <span aria-hidden="true">*</span></label>
+              <textarea class="form-control" id="c-message" name="message" rows="5" required placeholder="How can we help you?"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary contact-submit">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+              Send Message
+            </button>
+            <p class="form-privacy-note">Your information is kept private and never shared with third parties.</p>
+          </form>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="contact-sidebar">
+          <div class="contact-sidebar-widget">
+            <h3>Direct Contact</h3>
+            <div class="contact-detail-list">
+              <a href="tel:+15033580443" class="contact-detail-item">
+                <div class="cdi-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 10.18a19.79 19.79 0 01-3.07-8.67A2 2 0 011.9 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                </div>
+                <div>
+                  <span class="cdi-label">Phone</span>
+                  <strong>(503) 358-0443</strong>
+                  <span class="cdi-sub">Mon–Fri, 9am–5pm EST</span>
+                </div>
+              </a>
+              <a href="mailto:info@thewaxpapers.co" class="contact-detail-item">
+                <div class="cdi-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                </div>
+                <div>
+                  <span class="cdi-label">Email</span>
+                  <strong>info@thewaxpapers.co</strong>
+                  <span class="cdi-sub">Reply within 1 business day</span>
+                </div>
+              </a>
+              <div class="contact-detail-item contact-detail-item--addr">
+                <div class="cdi-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                </div>
+                <div>
+                  <span class="cdi-label">Address</span>
+                  <address>
+                    1121 Neshaminy Valley Drive<br />
+                    Bensalem, PA 19020, USA
+                  </address>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-sidebar-widget contact-cta-widget">
+            <h3>Need a Quote?</h3>
+            <p>For pricing on custom food paper orders, use our dedicated quote form for the fastest response.</p>
+            <a href="/get-quote" class="btn btn-primary sidebar-cta-btn">Get a Free Quote</a>
+            <a href="/products" class="btn btn-outline sidebar-cta-btn">Browse Products</a>
+          </div>
+
+          <div class="contact-sidebar-widget">
+            <h3>Response Times</h3>
+            <ul class="contact-response-list">
+              <li><span>Quote requests</span><strong>Within 1 business day</strong></li>
+              <li><span>Order questions</span><strong>Within 1 business day</strong></li>
+              <li><span>General inquiries</span><strong>Within 2 business days</strong></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>
+
+<style>
+  .breadcrumb-bar { background: var(--color-bg-alt); border-bottom: 1px solid var(--color-kraft-light); }
+
+  /* Hero */
+  .contact-hero {
+    position: relative;
+    background: linear-gradient(135deg, #1a3322 0%, #2d5c3e 60%, #3d7a55 100%);
+    overflow: hidden;
+    padding: 4rem 0 3.5rem;
+  }
+  .contact-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 70% 50%, rgba(90,154,110,0.15) 0%, transparent 55%);
+  }
+  .contact-hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 440px;
+    gap: 3rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  @media (max-width: 960px) { .contact-hero-inner { grid-template-columns: 1fr; } }
+
+  .contact-tag { background: rgba(255,255,255,0.15); color: var(--color-kraft-light); }
+  .contact-h1 { font-size: clamp(2rem, 3.5vw, 2.8rem); color: var(--color-white); margin: 0.75rem 0 1.25rem; line-height: 1.15; }
+  .contact-h1 em { color: #a3d4b0; font-style: italic; }
+  .contact-hero-desc { font-size: 1rem; color: rgba(255,255,255,0.8); line-height: 1.75; max-width: 480px; }
+
+  .contact-hero-cards { display: flex; flex-direction: column; gap: 0.75rem; }
+  .contact-hero-card {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .contact-hero-card:hover { background: rgba(255,255,255,0.15); }
+  .contact-hero-card--addr { cursor: default; }
+  .contact-hero-card--addr:hover { background: rgba(255,255,255,0.1); }
+
+  .chc-icon {
+    width: 44px; height: 44px;
+    background: rgba(255,255,255,0.15);
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    color: #a3d4b0;
+    flex-shrink: 0;
+  }
+  .chc-label { display: block; font-size: 0.73rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: rgba(255,255,255,0.5); margin-bottom: 0.15rem; font-family: var(--font-sans); }
+  .chc-value { display: block; font-size: 0.97rem; font-weight: 700; color: var(--color-white); font-family: var(--font-sans); }
+  .chc-sub { display: block; font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-top: 0.15rem; font-family: var(--font-sans); }
+
+  .contact-hero-wave { position: absolute; bottom: -1px; left: 0; right: 0; line-height: 0; }
+  .contact-hero-wave svg { width: 100%; height: 60px; }
+
+  /* Main section */
+  .contact-section { padding: 4rem 0 5rem; background: var(--color-bg); }
+  .contact-layout { display: grid; grid-template-columns: 1fr 300px; gap: 4rem; align-items: start; }
+  @media (max-width: 1000px) { .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+  /* Form */
+  .contact-form-wrap {
+    background: var(--color-white);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-md);
+  }
+  .contact-form-header { margin-bottom: 1.75rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--color-gray-100); }
+  .contact-form-header h2 { font-size: 1.45rem; color: var(--color-brown); margin-bottom: 0.4rem; }
+  .contact-form-header p { font-size: 0.88rem; color: var(--color-gray-600); }
+  .contact-form-header a { color: var(--color-copper); }
+  .contact-form-header a:hover { text-decoration: underline; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+
+  .contact-submit { width: 100%; justify-content: center; font-size: 1rem; padding: 0.9rem; margin-top: 0.5rem; gap: 0.6rem; }
+  .form-privacy-note { font-size: 0.77rem; color: var(--color-gray-600); text-align: center; margin-top: 0.75rem; }
+
+  /* Sidebar */
+  .contact-sidebar { display: flex; flex-direction: column; gap: 1.25rem; position: sticky; top: 90px; }
+  @media (max-width: 1000px) { .contact-sidebar { position: static; } }
+
+  .contact-sidebar-widget {
+    background: var(--color-white);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+  }
+  .contact-sidebar-widget h3 { font-size: 0.97rem; color: var(--color-brown); margin-bottom: 1rem; border-bottom: 1px solid var(--color-gray-100); padding-bottom: 0.6rem; }
+
+  .contact-detail-list { display: flex; flex-direction: column; gap: 0.75rem; }
+  .contact-detail-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: var(--radius-sm);
+    background: var(--color-bg-alt);
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  a.contact-detail-item:hover { background: rgba(74,124,89,0.07); }
+  .contact-detail-item--addr { cursor: default; }
+
+  .cdi-icon {
+    width: 36px; height: 36px;
+    background: rgba(74,124,89,0.1);
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--color-copper);
+    flex-shrink: 0;
+  }
+  .cdi-label { display: block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--color-gray-600); margin-bottom: 0.15rem; }
+  .contact-detail-item strong { display: block; font-size: 0.88rem; color: var(--color-brown); font-family: var(--font-sans); }
+  .contact-detail-item address { font-style: normal; font-size: 0.83rem; color: var(--color-gray-600); line-height: 1.55; margin-top: 0.15rem; }
+  .cdi-sub { display: block; font-size: 0.75rem; color: var(--color-gray-600); margin-top: 0.1rem; }
+
+  .contact-cta-widget p { font-size: 0.85rem; color: var(--color-gray-600); line-height: 1.65; margin-bottom: 1rem; }
+  .sidebar-cta-btn { width: 100%; justify-content: center; font-size: 0.88rem; margin-bottom: 0.5rem; }
+
+  .contact-response-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .contact-response-list li { display: flex; justify-content: space-between; align-items: center; font-size: 0.83rem; gap: 0.5rem; flex-wrap: wrap; }
+  .contact-response-list li span { color: var(--color-gray-600); }
+  .contact-response-list li strong { color: var(--color-copper-dark); font-weight: 600; }
+</style>

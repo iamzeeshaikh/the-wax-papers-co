@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Privacy Policy | The Wax Papers USA"
+  description="Privacy Policy for The Wax Papers. Learn how we collect, use, and protect your personal information when you use our website and request custom food paper quotes."
+  canonical="https://thewaxpapers.co/privacy-policy"
+>
+  <Fragment slot="navbar"><Navbar /></Fragment>
+
+  <section class="policy-hero">
+    <div class="container">
+      <h1>Privacy Policy</h1>
+      <p>Last updated: January 1, 2025</p>
+    </div>
+  </section>
+
+  <section class="policy-content">
+    <div class="container">
+      <div class="policy-layout">
+        <div class="prose policy-prose">
+          <h2>1. Information We Collect</h2>
+          <p>When you visit thewaxpapers.co or submit a quote request, we may collect the following information:</p>
+          <ul>
+            <li>Contact information (name, email address, phone number)</li>
+            <li>Business information (company name, business type)</li>
+            <li>Order and product inquiry details</li>
+            <li>Artwork files you upload for custom printing</li>
+            <li>Technical data (IP address, browser type, pages visited)</li>
+          </ul>
+
+          <h2>2. How We Use Your Information</h2>
+          <p>We use the information you provide to:</p>
+          <ul>
+            <li>Process and respond to quote requests and inquiries</li>
+            <li>Prepare and produce custom food packaging orders</li>
+            <li>Communicate order status, shipping, and follow-up</li>
+            <li>Improve our website and services</li>
+            <li>Send relevant updates about products or promotions (with your consent)</li>
+          </ul>
+
+          <h2>3. Information Sharing</h2>
+          <p>We do not sell, trade, or rent your personal information to third parties. We may share information with:</p>
+          <ul>
+            <li>Service providers who assist in operating our business (e.g., shipping carriers)</li>
+            <li>Professionals who assist in website operation and order management</li>
+            <li>Legal authorities if required by law</li>
+          </ul>
+
+          <h2>4. Data Security</h2>
+          <p>We implement appropriate technical and organizational measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. Our website uses HTTPS encryption for all data transmission.</p>
+
+          <h2>5. Cookies and Tracking</h2>
+          <p>Our website may use cookies to improve user experience and analyze site traffic. You can control cookie settings through your browser preferences. We use analytics tools to understand how visitors use our site; this data is aggregated and not personally identifiable.</p>
+
+          <h2>6. Your Rights</h2>
+          <p>You have the right to:</p>
+          <ul>
+            <li>Request access to personal data we hold about you</li>
+            <li>Request correction of inaccurate information</li>
+            <li>Request deletion of your personal data</li>
+            <li>Opt out of marketing communications at any time</li>
+          </ul>
+
+          <h2>7. Data Retention</h2>
+          <p>We retain customer data for as long as necessary to fulfill orders and comply with legal obligations. Inquiry data from non-customers is retained for up to 12 months unless you request earlier deletion.</p>
+
+          <h2>8. Children's Privacy</h2>
+          <p>Our website is intended for business use and is not directed at individuals under 18 years of age. We do not knowingly collect personal information from children.</p>
+
+          <h2>9. Changes to This Policy</h2>
+          <p>We may update this Privacy Policy from time to time. The updated version will be posted on this page with a revised date. Continued use of our website after changes constitutes acceptance of the updated policy.</p>
+
+          <h2>10. Contact Us</h2>
+          <p>For any questions or concerns about this Privacy Policy or how we handle your data, please contact us:</p>
+          <address>
+            <strong>The Wax Papers</strong><br />
+            1121 Neshaminy Valley Drive<br />
+            Bensalem, Pennsylvania 19020<br />
+            Email: <a href="mailto:info@thewaxpapers.co">info@thewaxpapers.co</a><br />
+            Phone: <a href="tel:+15033580443">(503) 358-0443</a>
+          </address>
+        </div>
+        <aside class="policy-sidebar">
+          <div class="policy-sidebar-card">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="/terms-and-conditions">Terms & Conditions</a></li>
+              <li><a href="/contact">Contact Us</a></li>
+              <li><a href="/get-quote">Get a Quote</a></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>
+
+<style>
+  .policy-hero { padding: 3rem 0 2rem; background: linear-gradient(135deg, #1a3322, #2d5c3e); color: var(--color-white); }
+  .policy-hero h1 { font-size: 2.2rem; color: var(--color-white); margin-bottom: 0.5rem; }
+  .policy-hero p { color: rgba(255,255,255,0.6); font-size: 0.9rem; }
+
+  .policy-content { padding: 4rem 0 5rem; background: var(--color-bg); }
+  .policy-layout { display: grid; grid-template-columns: 1fr 250px; gap: 4rem; align-items: start; }
+  @media (max-width: 900px) { .policy-layout { grid-template-columns: 1fr; } }
+
+  .policy-prose address { font-style: normal; background: var(--color-bg-alt); padding: 1.25rem; border-radius: var(--radius-sm); margin-top: 0.5rem; line-height: 1.9; }
+  .policy-prose address a { color: var(--color-copper); }
+
+  .policy-sidebar-card { background: var(--color-white); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow-sm); position: sticky; top: 90px; }
+  .policy-sidebar-card h3 { font-size: 0.97rem; color: var(--color-brown); margin-bottom: 0.75rem; }
+  .policy-sidebar-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .policy-sidebar-card a { font-size: 0.88rem; color: var(--color-copper); }
+  .policy-sidebar-card a:hover { text-decoration: underline; }
+</style>

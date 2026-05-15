@@ -1,0 +1,556 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const aboutPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "@id": "https://thewaxpapers.co/about",
+  "name": "About The Wax Papers",
+  "description": "Learn about The Wax Papers, a USA-based custom food packaging supplier serving restaurants, delis, bakeries, and food trucks nationwide from Bensalem, Pennsylvania.",
+  "url": "https://thewaxpapers.co/about",
+  "inLanguage": "en-US",
+  "isPartOf": { "@id": "https://thewaxpapers.co/#website" },
+  "about": { "@id": "https://thewaxpapers.co/#organization" }
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://thewaxpapers.co" },
+    { "@type": "ListItem", "position": 2, "name": "About", "item": "https://thewaxpapers.co/about" }
+  ]
+};
+---
+
+<BaseLayout
+  title="About The Wax Papers | Custom Food Packaging Supplier USA"
+  description="Learn about The Wax Papers, a USA-based custom food packaging supplier serving restaurants, delis, bakeries, and food trucks nationwide from Bensalem, Pennsylvania."
+  canonical="https://thewaxpapers.co/about"
+  schema={[aboutPageSchema, breadcrumbSchema]}
+>
+  <Fragment slot="navbar"><Navbar /></Fragment>
+
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb-sep">/</span>
+        <span aria-current="page">About Us</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero with diagonal split -->
+  <section class="about-hero">
+    <div class="about-hero-bg"></div>
+    <div class="container about-hero-inner">
+      <div class="about-hero-text">
+        <span class="section-tag about-tag">Who We Are</span>
+        <h1 class="about-h1">Packaging That <em>Tells Your Story</em></h1>
+        <p class="about-hero-desc">
+          The Wax Papers is a USA-based custom food packaging supplier trusted by restaurants, delis, bakeries, and food trucks across all 50 states. Every product we make is an extension of your brand.
+        </p>
+        <div class="about-hero-btns">
+          <a href="/get-quote" class="btn btn-primary">Get a Free Quote</a>
+          <a href="/products" class="btn btn-white-outline">Browse Products</a>
+        </div>
+      </div>
+      <div class="about-hero-card">
+        <div class="about-stat-card">
+          <div class="about-stat-item">
+            <span class="about-stat-num">25+</span>
+            <span class="about-stat-lbl">Custom Products</span>
+          </div>
+          <div class="about-stat-divider"></div>
+          <div class="about-stat-item">
+            <span class="about-stat-num">50</span>
+            <span class="about-stat-lbl">States Served</span>
+          </div>
+          <div class="about-stat-divider"></div>
+          <div class="about-stat-item">
+            <span class="about-stat-num">500</span>
+            <span class="about-stat-lbl">Sheet Minimum</span>
+          </div>
+          <div class="about-stat-divider"></div>
+          <div class="about-stat-item">
+            <span class="about-stat-num">8–12</span>
+            <span class="about-stat-lbl">Day Lead Time</span>
+          </div>
+          <div class="about-trust-badges">
+            <span>✓ FDA-Compliant</span>
+            <span>✓ Ships Nationwide</span>
+            <span>✓ No Setup Fees</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="about-hero-wave">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#faf8f3"/></svg>
+    </div>
+  </section>
+
+  <!-- Mission section -->
+  <section class="section about-mission">
+    <div class="container">
+      <div class="about-split">
+        <div class="about-img-stack">
+          <img class="about-img-back" src="/images/products/custom-food-paper/custom food paper-PBEE-2.png" alt="Custom food paper production" loading="lazy" width="480" height="360" />
+          <div class="about-img-accent">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+              <circle cx="24" cy="24" r="24" fill="rgba(74,124,89,0.15)"/>
+              <path d="M14 24h20M24 14v20" stroke="#4a7c59" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+            <span>FDA-Compliant Materials</span>
+          </div>
+        </div>
+        <div class="about-text">
+          <span class="section-tag">Our Mission</span>
+          <h2 class="section-title">Food Packaging That Does More Than Wrap</h2>
+          <p>
+            At The Wax Papers, we believe packaging is an extension of your brand. Every custom food paper we produce is a chance for your business to make a lasting impression — on the counter, at the table, and in the delivery bag.
+          </p>
+          <p>
+            We supply custom-printed wax paper, greaseproof paper, deli paper, butcher paper, pizza liners, and more to restaurants, delis, bakeries, and food trucks across all 50 states. Every product is FDA-compliant, food-safe, and printed with your brand using high-quality inks.
+          </p>
+          <p>
+            Based in Bensalem, Pennsylvania, we operate as a reliable wholesale partner for food businesses that need consistent quality, reliable lead times, and pricing that makes sense at scale.
+          </p>
+          <div class="about-mission-checks">
+            <span>✓ No hidden setup fees</span>
+            <span>✓ Digital proof before production</span>
+            <span>✓ Reorder matching guaranteed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values section with icons -->
+  <section class="section about-values">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-tag">Our Values</span>
+        <h2 class="section-title">What We Stand For</h2>
+        <p class="section-subtitle">Four principles that guide every order we process.</p>
+      </div>
+      <div class="values-grid">
+        {[
+          {
+            icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>`,
+            title: "Food Safety First",
+            desc: "Every product we supply meets FDA food safety standards. We do not compromise on material quality or ink safety for direct food contact."
+          },
+          {
+            icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>`,
+            title: "Consistent Quality",
+            desc: "From your first order to your fiftieth, the quality stays the same. Consistent print, consistent material, consistent delivery — every time."
+          },
+          {
+            icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>`,
+            title: "Genuine Partnership",
+            desc: "We work with our customers as long-term partners, not one-off vendors. Relationships built on reliability, transparency, and fair pricing."
+          },
+          {
+            icon: `<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21l1.9-5.7a8.5 8.5 0 113.8 3.8z"/></svg>`,
+            title: "USA-Focused Service",
+            desc: "We understand the specific requirements of US food businesses and supply products that meet domestic food safety and labeling standards."
+          },
+        ].map(v => (
+          <div class="value-card reveal">
+            <div class="value-icon" set:html={v.icon}></div>
+            <h3>{v.title}</h3>
+            <p>{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Dark stats band -->
+  <section class="about-stats-band">
+    <div class="container">
+      <div class="stats-band-inner">
+        <div class="stats-band-text">
+          <h2>Numbers That <em>Matter</em></h2>
+          <p>Fast production, nationwide coverage, and no minimum-order surprises.</p>
+        </div>
+        <div class="stats-band-grid">
+          {[
+            { number: "25+", label: "Custom Products", sub: "From wax paper to pizza liners" },
+            { number: "50", label: "States Served", sub: "Coast to coast delivery" },
+            { number: "500", label: "Sheet Minimum", sub: "Low minimums, big results" },
+            { number: "8–12", label: "Days Lead Time", sub: "From artwork to your door" },
+          ].map(s => (
+            <div class="stat-box">
+              <span class="stat-box-num">{s.number}</span>
+              <span class="stat-box-label">{s.label}</span>
+              <span class="stat-box-sub">{s.sub}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How we work timeline -->
+  <section class="section about-process">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-tag">How It Works</span>
+        <h2 class="section-title">From Quote to Doorstep</h2>
+        <p class="section-subtitle">A simple, transparent process with no surprises.</p>
+      </div>
+      <div class="process-timeline">
+        <div class="process-line" aria-hidden="true"></div>
+        {[
+          { step: "01", title: "Request a Quote", desc: "Fill out our quote form or call us directly. Tell us your product, quantity, and design requirements." },
+          { step: "02", title: "Artwork Review", desc: "Our pre-press team reviews your logo or artwork and provides a free digital proof for your approval." },
+          { step: "03", title: "Production", desc: "Once you approve the proof, we go to press. Most orders are in production within 2 business days." },
+          { step: "04", title: "Delivery", desc: "Your custom food paper ships from our Pennsylvania facility to anywhere in the USA in 8–12 business days total." },
+        ].map((p, i) => (
+          <div class="process-node reveal">
+            <div class="process-icon">{p.step}</div>
+            <h3>{p.title}</h3>
+            <p>{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Location section -->
+  <section class="section about-location">
+    <div class="container">
+      <div class="about-split reverse">
+        <div class="about-text">
+          <span class="section-tag">Our Location</span>
+          <h2 class="section-title">Bensalem, Pennsylvania — Shipping Nationwide</h2>
+          <p>
+            Our fulfillment center is located at 1121 Neshaminy Valley Drive, Bensalem, Pennsylvania 19020. From here, we ship custom food packaging to food businesses in all 50 states — from New York delis to California food trucks and Texas burger chains.
+          </p>
+          <div class="about-address-card">
+            <div class="address-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+            <address>
+              <strong>The Wax Papers</strong><br />
+              1121 Neshaminy Valley Drive<br />
+              Bensalem, Pennsylvania 19020, USA
+            </address>
+          </div>
+          <div class="about-contact-btns">
+            <a href="tel:+15033580443" class="btn btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 10.18a19.79 19.79 0 01-3.07-8.67A2 2 0 011.9 0h3a2 2 0 012 1.72 12.08 12.08 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.08 12.08 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+              (503) 358-0443
+            </a>
+            <a href="/contact" class="btn btn-outline">Contact Us</a>
+          </div>
+        </div>
+        <div class="about-img-stack">
+          <img class="about-img-back" src="/images/products/custom-butcher-paper/custom butcher paper-PBEE-1.png" alt="USA food packaging shipping" loading="lazy" width="480" height="380" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="about-cta-section">
+    <div class="about-cta-wave">
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0,30 C480,0 960,60 1440,30 L1440,0 L0,0 Z" fill="#faf8f3"/></svg>
+    </div>
+    <div class="container">
+      <div class="about-cta-inner">
+        <span class="section-tag about-cta-tag">Ready to Start?</span>
+        <h2>Get Your Custom Food Paper Quote</h2>
+        <p>No obligation, no setup fee. Tell us what you need and we'll come back with pricing within one business day.</p>
+        <div class="about-cta-btns">
+          <a href="/get-quote" class="btn btn-primary">Get a Free Quote</a>
+          <a href="/products" class="btn btn-white">Browse All Products</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>
+
+<style>
+  .breadcrumb-bar { background: var(--color-bg-alt); border-bottom: 1px solid var(--color-kraft-light); }
+
+  /* Hero */
+  .about-hero {
+    position: relative;
+    background: linear-gradient(135deg, #1a3322 0%, #2d5c3e 60%, #3d7a55 100%);
+    overflow: hidden;
+    padding: 4rem 0 3rem;
+  }
+  .about-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 75% 50%, rgba(90,154,110,0.15) 0%, transparent 60%);
+  }
+  .about-hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 3rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  @media (max-width: 900px) {
+    .about-hero-inner { grid-template-columns: 1fr; }
+    .about-hero-card { order: -1; }
+  }
+
+  .about-tag { background: rgba(255,255,255,0.15); color: var(--color-kraft-light); }
+  .about-h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--color-white);
+    margin: 0.75rem 0 1.25rem;
+    line-height: 1.15;
+  }
+  .about-h1 em { font-style: italic; color: #a3d4b0; }
+  .about-hero-desc {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.75;
+    max-width: 520px;
+    margin-bottom: 1.75rem;
+  }
+  .about-hero-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .btn-white-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: var(--radius-sm);
+    color: var(--color-white);
+    font-weight: 600;
+    font-size: 0.95rem;
+    font-family: var(--font-sans);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .btn-white-outline:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+  .about-stat-card {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .about-stat-item { display: flex; flex-direction: column; }
+  .about-stat-num { font-family: var(--font-display); font-size: 2rem; color: var(--color-white); font-weight: 700; line-height: 1; }
+  .about-stat-lbl { font-size: 0.82rem; color: rgba(255,255,255,0.65); font-weight: 500; margin-top: 0.2rem; }
+  .about-stat-divider { height: 1px; background: rgba(255,255,255,0.15); }
+  .about-trust-badges { display: flex; flex-direction: column; gap: 0.4rem; padding-top: 0.25rem; }
+  .about-trust-badges span { font-size: 0.82rem; color: #a3d4b0; font-weight: 600; }
+
+  .about-hero-wave { position: absolute; bottom: -1px; left: 0; right: 0; line-height: 0; }
+  .about-hero-wave svg { width: 100%; height: 60px; }
+
+  /* Mission */
+  .about-mission { background: var(--color-bg); }
+  .about-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4.5rem;
+    align-items: center;
+  }
+  .about-split.reverse { direction: rtl; }
+  .about-split.reverse > * { direction: ltr; }
+  @media (max-width: 900px) {
+    .about-split, .about-split.reverse { grid-template-columns: 1fr; direction: ltr; gap: 2rem; }
+  }
+
+  .about-img-stack { position: relative; }
+  .about-img-back {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+  }
+  .about-img-accent {
+    position: absolute;
+    bottom: -1rem;
+    right: -1rem;
+    background: var(--color-white);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-brown);
+    max-width: 200px;
+  }
+  @media (max-width: 600px) { .about-img-accent { display: none; } }
+
+  .about-text .section-title { font-size: clamp(1.5rem, 3vw, 2.1rem); }
+  .about-text p { font-size: 0.97rem; color: var(--color-gray-600); line-height: 1.8; margin-bottom: 1rem; }
+  .about-mission-checks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    margin-top: 1.25rem;
+  }
+  .about-mission-checks span { font-size: 0.87rem; color: var(--color-copper-dark); font-weight: 600; }
+
+  /* Values */
+  .about-values { background: var(--color-bg-alt); }
+  .values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  @media (max-width: 1100px) { .values-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .values-grid { grid-template-columns: 1fr; } }
+
+  .value-card {
+    background: var(--color-white);
+    border-radius: var(--radius);
+    padding: 2rem 1.5rem;
+    box-shadow: var(--shadow-sm);
+    border-top: 3px solid var(--color-kraft-light);
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .value-card:hover { border-top-color: var(--color-copper); transform: translateY(-3px); box-shadow: var(--shadow-md); }
+  .value-icon {
+    width: 52px; height: 52px;
+    background: rgba(74,124,89,0.1);
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--color-copper);
+    margin-bottom: 1.1rem;
+  }
+  .value-card h3 { font-size: 1.05rem; color: var(--color-brown); margin-bottom: 0.6rem; }
+  .value-card p { font-size: 0.88rem; color: var(--color-gray-600); line-height: 1.7; }
+
+  /* Stats band */
+  .about-stats-band {
+    background: var(--color-brown);
+    padding: 4rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-stats-band::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(74,124,89,0.12);
+  }
+  .stats-band-inner {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  @media (max-width: 900px) { .stats-band-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+  .stats-band-text h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--color-white); margin-bottom: 0.75rem; }
+  .stats-band-text h2 em { color: #a3d4b0; font-style: italic; }
+  .stats-band-text p { font-size: 0.97rem; color: rgba(255,255,255,0.65); line-height: 1.7; }
+
+  .stats-band-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  @media (max-width: 768px) { .stats-band-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .stat-box {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .stat-box-num { font-family: var(--font-display); font-size: 2.2rem; color: var(--color-white); font-weight: 700; }
+  .stat-box-label { font-size: 0.88rem; color: var(--color-kraft-light); font-weight: 600; }
+  .stat-box-sub { font-size: 0.78rem; color: rgba(255,255,255,0.45); }
+
+  /* Process timeline */
+  .about-process { background: var(--color-bg); }
+  .process-timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    position: relative;
+    margin-top: 1rem;
+  }
+  @media (max-width: 900px) { .process-timeline { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 540px) { .process-timeline { grid-template-columns: 1fr; } }
+
+  .process-line {
+    position: absolute;
+    top: 26px;
+    left: calc(12.5% + 26px);
+    right: calc(12.5% + 26px);
+    height: 2px;
+    background: var(--color-kraft-light);
+    z-index: 0;
+  }
+  @media (max-width: 900px) { .process-line { display: none; } }
+
+  .process-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .process-icon {
+    width: 52px; height: 52px;
+    background: var(--color-copper);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 0 6px var(--color-bg), 0 0 0 8px var(--color-kraft-light);
+  }
+  .process-node h3 { font-size: 1rem; color: var(--color-brown); margin-bottom: 0.5rem; }
+  .process-node p { font-size: 0.85rem; color: var(--color-gray-600); line-height: 1.65; }
+
+  /* Location */
+  .about-location { background: var(--color-bg-alt); }
+  .about-address-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background: var(--color-white);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    margin: 1.5rem 0;
+    box-shadow: var(--shadow-sm);
+    border-left: 3px solid var(--color-copper);
+  }
+  .address-icon { color: var(--color-copper); flex-shrink: 0; margin-top: 2px; }
+  .about-address-card address { font-style: normal; font-size: 0.93rem; color: var(--color-gray-600); line-height: 1.8; }
+  .about-address-card address strong { color: var(--color-brown); display: block; margin-bottom: 0.2rem; }
+  .about-contact-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+  /* CTA */
+  .about-cta-section {
+    background: linear-gradient(135deg, #1a3322, #2d5c3e);
+    padding: 4rem 0;
+    position: relative;
+    text-align: center;
+  }
+  .about-cta-wave { position: absolute; top: -1px; left: 0; right: 0; line-height: 0; }
+  .about-cta-wave svg { width: 100%; height: 60px; }
+  .about-cta-inner { color: var(--color-white); padding-top: 1rem; }
+  .about-cta-tag { background: rgba(255,255,255,0.15); color: var(--color-kraft-light); }
+  .about-cta-inner h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); color: var(--color-white); margin: 0.75rem 0 1rem; }
+  .about-cta-inner p { font-size: 1rem; color: rgba(255,255,255,0.8); margin-bottom: 2rem; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.75; }
+  .about-cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+</style>

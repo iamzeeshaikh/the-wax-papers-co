@@ -1,0 +1,925 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { products } from '../data/products';
+
+const featured = products.slice(0, 9);
+
+const homeSchema = [{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Custom Wax Paper and Food Wrapping Paper in the USA | The Wax Papers",
+  "description": "The Wax Papers supplies custom printed wax paper, greaseproof paper, and food wrapping paper to restaurants, delis, bakeries, and food trucks across the USA.",
+  "url": "https://thewaxpapers.co",
+  "breadcrumb": { "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://thewaxpapers.co" }] }
+}];
+
+const testimonials = [
+  { name: "Marcus T.", role: "Flame Burger — Austin, TX", rating: 5, text: "Two years of ordering custom burger paper from The Wax Papers. Quality is consistent, lead times are reliable, and our customers always comment on the branding." },
+  { name: "Sarah K.", role: "Brooklyn Deli Co — New York, NY", rating: 5, text: "Custom deli paper arrived on time, colors exactly as approved. The food-safe certification gave us complete peace of mind. We order every month." },
+  { name: "James R.", role: "Red Mesa Tacos — Phoenix, AZ", rating: 5, text: "The taco wrapping paper handles our saucy fillings without any grease bleed-through. Full-color printing made our brand look professional from day one." },
+  { name: "Linda M.", role: "Sweet Crumb Bakery — Chicago, IL", rating: 5, text: "From parchment paper for our ovens to tissue paper for our gift boxes, The Wax Papers covers all our bakery packaging needs." },
+];
+
+const industries = [
+  "Restaurants", "Bakeries", "Delis & Butchers", "Food Trucks", "Cafes", "Burger Joints",
+  "Taco Shops", "Pizza Shops", "Cheese Shops", "Seafood Restaurants", "Sandwich Shops", "Catering"
+];
+
+const faqs = [
+  { q: "What is the minimum order quantity?", a: "Minimum order starts at 500 sheets for most products — accessible for independent restaurants, food trucks, and small bakeries." },
+  { q: "How long does production take?", a: "Standard production is 8–12 business days after artwork approval. We provide a digital proof before any order enters production." },
+  { q: "Is the food paper FDA-compliant?", a: "Yes. All products use FDA-compliant materials and food-safe inks approved for direct food contact in the USA." },
+  { q: "Can I print full-color on the paper?", a: "Yes. We offer single-color, 2–4 color flexo, full-color CMYK, and all-over pattern printing on every product." },
+  { q: "Do you ship across all 50 states?", a: "Yes. We ship nationwide from our Bensalem, Pennsylvania facility with competitive freight rates to all 50 states." },
+  { q: "Can I get samples before ordering?", a: "Yes. Sample packs are available on request so you can review quality before placing a full order." },
+];
+---
+
+<BaseLayout
+  title="Custom Wax Paper & Food Wrapping Paper USA | The Wax Papers"
+  description="Custom printed wax paper, greaseproof paper, deli paper, burger paper & food packaging for US restaurants, bakeries & food trucks. 500 sheet min. Free quote."
+  canonical="https://thewaxpapers.co"
+  schema={homeSchema}
+  preloadImage="/images/products/custom-burger-paper/custom burger paper-TCB-1.png"
+>
+  <Fragment slot="navbar"><Navbar /></Fragment>
+
+  <!-- ═══════════════════════════════════════════
+       HERO — diagonal split, floating cards
+  ═══════════════════════════════════════════ -->
+  <section class="hero" aria-label="Hero">
+    <div class="hero-diagonal" aria-hidden="true"></div>
+
+    <div class="container hero-layout">
+      <!-- Left: text -->
+      <div class="hero-text">
+        <span class="hero-badge">
+          <span class="badge-dot"></span>
+          USA Food Packaging Supplier
+        </span>
+        <h1 class="hero-h1">
+          Custom Wax Paper<br />
+          <em>and Food Wrapping</em><br />
+          Paper in the USA
+        </h1>
+        <p class="hero-sub">
+          Brand every wrap, every basket, every delivery. FDA-compliant custom food paper printed with your logo and shipped to all 50 states.
+        </p>
+        <div class="hero-actions">
+          <a href="/get-quote" class="btn btn-primary hero-cta-main">
+            Get a Free Quote
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/products" class="btn btn-ghost">View All Products</a>
+        </div>
+        <!-- Trust strip -->
+        <div class="hero-trust">
+          <div class="trust-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            FDA Compliant
+          </div>
+          <div class="trust-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            All 50 States
+          </div>
+          <div class="trust-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            8–12 Day Lead Time
+          </div>
+          <div class="trust-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A2 2 0 013 12V7a4 4 0 014-4z"/></svg>
+            500 Sheet Min
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: floating image mosaic -->
+      <div class="hero-mosaic" aria-hidden="true">
+        <div class="mosaic-card mosaic-1">
+          <img src="/images/products/custom-burger-paper/custom burger paper-TCB-1.png" alt="" loading="eager" />
+          <div class="mosaic-label">Custom Burger Paper</div>
+        </div>
+        <div class="mosaic-card mosaic-2">
+          <img src="/images/products/custom-deli-paper/Deli paper-PBEE-1.png" alt="" loading="eager" />
+          <div class="mosaic-label">Custom Deli Paper</div>
+        </div>
+        <div class="mosaic-card mosaic-3">
+          <img src="/images/products/parchment-paper/parchment paper-PBEE-1.png" alt="" loading="lazy" />
+          <div class="mosaic-label">Parchment Paper</div>
+        </div>
+        <div class="mosaic-card mosaic-4">
+          <img src="/images/products/custom-pizza-liner/Pizza Liner-PBEE-1.png" alt="" loading="lazy" />
+          <div class="mosaic-label">Pizza Liner</div>
+        </div>
+        <!-- Floating stats chips -->
+        <div class="mosaic-chip chip-a">
+          <strong>25+</strong>
+          <span>Products</span>
+        </div>
+        <div class="mosaic-chip chip-b">
+          <strong>4.8 ★</strong>
+          <span>Rated</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wave bottom -->
+    <div class="hero-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0 60V30C240 0 480 60 720 30C960 0 1200 60 1440 30V60H0Z" fill="#faf8f3"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       MARQUEE: industries
+  ═══════════════════════════════════════════ -->
+  <div class="marquee-bar" aria-label="Industries we serve">
+    <div class="marquee-track">
+      {[...industries, ...industries].map(ind => (
+        <span class="marquee-item">
+          <span class="marquee-dot" aria-hidden="true">●</span>
+          {ind}
+        </span>
+      ))}
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       PRODUCT GRID — magazine style
+  ═══════════════════════════════════════════ -->
+  <section class="section products-section" aria-labelledby="products-heading">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-tag">25 Custom Products</span>
+        <h2 class="section-title" id="products-heading">Food Packaging for Every Food Business</h2>
+        <p class="section-subtitle">Every product custom-printed with your brand, shipped across the USA.</p>
+      </div>
+
+      <!-- Magazine grid: first 2 cards large, rest small -->
+      <div class="magazine-grid">
+        {featured.map((p, i) => (
+          <a href={`/products/${p.slug}`}
+             class:list={['mag-card', { 'mag-card-large': i < 2, 'mag-card-small': i >= 2 }]}>
+            <div class="mag-img">
+              <img src={p.heroImage} alt={`${p.title}`} loading={i < 2 ? 'eager' : 'lazy'}
+                   width={i < 2 ? 600 : 320} height={i < 2 ? 400 : 240} />
+              <div class="mag-overlay">
+                <span class="btn btn-white mag-btn">Get a Quote →</span>
+              </div>
+            </div>
+            <div class="mag-body">
+              <span class="mag-cat">{p.category}</span>
+              <h3 class="mag-title">{p.title}</h3>
+              {i < 2 && <p class="mag-desc">{p.intro.slice(0, 100)}…</p>}
+              <div class="mag-rating">
+                <span class="stars" aria-label={`${p.ratingValue} stars`}>{'★'.repeat(Math.floor(p.ratingValue))}{'☆'.repeat(5-Math.floor(p.ratingValue))}</span>
+                <span>{p.ratingValue}</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div class="products-cta-row">
+        <a href="/products" class="btn btn-outline">Browse All 25 Products</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       WHY CHOOSE US — icon stat cards
+  ═══════════════════════════════════════════ -->
+  <section class="section why-section" aria-labelledby="why-heading">
+    <div class="why-bg-strip" aria-hidden="true"></div>
+    <div class="container">
+      <div class="why-layout">
+        <div class="why-left reveal">
+          <span class="section-tag">Why The Wax Papers</span>
+          <h2 class="section-title" id="why-heading">Packaging That Works as Hard as You Do</h2>
+          <p class="section-subtitle" style="max-width:100%">
+            We combine genuine food-safe performance with professional branding so every order your kitchen sends out reinforces your identity.
+          </p>
+          <div class="why-img-stack">
+            <img src="/images/products/custom-greaseproof-paper/Custom Greaseproof Paper -TCB-1.png"
+                 alt="Custom greaseproof paper" loading="lazy" class="why-img-a" />
+            <img src="/images/products/custom-food-paper/custom food paper-PBEE-2.png"
+                 alt="Custom food paper" loading="lazy" class="why-img-b" />
+          </div>
+        </div>
+        <div class="why-right">
+          <div class="why-cards">
+            {[
+              { icon: "🛡️", title: "FDA Compliant", desc: "Every material and ink meets FDA standards for direct food contact." },
+              { icon: "🖨️", title: "Full-Color Printing", desc: "Your logo, brand colors, and design on every single sheet." },
+              { icon: "🚚", title: "Ships All 50 States", desc: "Fast reliable freight from our Pennsylvania facility nationwide." },
+              { icon: "📦", title: "Low Minimums", desc: "500 sheet minimums make custom printing accessible for all operators." },
+              { icon: "⏱️", title: "8–12 Day Lead Time", desc: "Consistent production windows so you can plan stock reliably." },
+              { icon: "✏️", title: "Free Artwork Review", desc: "Pre-press team reviews files and sends a digital proof before production." },
+            ].map(f => (
+              <div class="why-card reveal">
+                <span class="why-card-icon" aria-hidden="true">{f.icon}</span>
+                <div>
+                  <strong>{f.title}</strong>
+                  <p>{f.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       HOW IT WORKS — connected timeline
+  ═══════════════════════════════════════════ -->
+  <section class="section how-section" aria-labelledby="how-heading">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-tag">Simple 4-Step Process</span>
+        <h2 class="section-title" id="how-heading">From Quote to Your Door</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-line" aria-hidden="true"></div>
+        {[
+          { n: "01", title: "Request a Quote", desc: "Fill in our online form with your product, size, quantity, and print requirements.", icon: "📋" },
+          { n: "02", title: "Submit Artwork", desc: "Send your logo in AI, EPS, or high-res PDF. Our team handles the rest.", icon: "🎨" },
+          { n: "03", title: "Approve Proof", desc: "We send a digital proof for sign-off before any production begins.", icon: "✅" },
+          { n: "04", title: "Delivered to You", desc: "Your branded food paper produced and shipped in 8–12 business days.", icon: "📬" },
+        ].map((s, i) => (
+          <div class="tl-step reveal" style={`animation-delay:${i*0.1}s`}>
+            <div class="tl-node">
+              <span class="tl-icon" aria-hidden="true">{s.icon}</span>
+            </div>
+            <div class="tl-content">
+              <span class="tl-num">{s.n}</span>
+              <h3 class="tl-title">{s.title}</h3>
+              <p class="tl-desc">{s.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="text-center" style="margin-top:3rem">
+        <a href="/get-quote" class="btn btn-primary">Start Your Order</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SPLIT FEATURE — printing options
+  ═══════════════════════════════════════════ -->
+  <section class="section split-feature-section" aria-labelledby="print-heading">
+    <div class="container">
+      <div class="split-feature">
+        <div class="sf-images reveal">
+          <div class="sf-img-main">
+            <img src="/images/products/custom-sandwich-paper/Custom Sandwich Paper-PBEE-1.png"
+                 alt="Custom sandwich paper printing" loading="lazy" />
+          </div>
+          <div class="sf-img-float">
+            <img src="/images/products/custom-kraft-paper/Custom kraft Paper-PBEE-2.png"
+                 alt="Custom kraft paper" loading="lazy" />
+          </div>
+        </div>
+        <div class="sf-content reveal">
+          <span class="section-tag">Printing Options</span>
+          <h2 id="print-heading">Full-Color Printing on Every Product</h2>
+          <p>
+            From a clean single-color logo to a full-surface pattern, every product in our range supports custom printing using food-safe inks that stay sharp through handling, service, and delivery.
+          </p>
+          <div class="print-opts">
+            {[
+              { label: "Single-Color Logo", note: "Cost-effective brand presence" },
+              { label: "2–4 Color Flexo", note: "Consistent brand colors at scale" },
+              { label: "Full-Color CMYK", note: "Maximum detail and vibrancy" },
+              { label: "All-Over Pattern", note: "100% surface brand coverage" },
+            ].map(o => (
+              <div class="print-opt">
+                <span class="print-tick" aria-hidden="true">✓</span>
+                <div><strong>{o.label}</strong><span class="print-note"> — {o.note}</span></div>
+              </div>
+            ))}
+          </div>
+          <a href="/get-quote" class="btn btn-primary" style="margin-top:1.75rem">Get Printing Quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       MATERIALS — horizontal scroll cards
+  ═══════════════════════════════════════════ -->
+  <section class="section materials-section" aria-labelledby="materials-heading">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-tag">Paper Materials</span>
+        <h2 class="section-title" id="materials-heading">Food-Safe Paper for Every Application</h2>
+        <p class="section-subtitle">FDA-compliant materials matched to your food type and service.</p>
+      </div>
+      <div class="mat-scroll">
+        {[
+          { name: "Wax Paper", icon: "📄", desc: "Moisture barrier for cold wrapping and deli use", href: "/products/custom-food-paper" },
+          { name: "Greaseproof Paper", icon: "🛡️", desc: "Heavy grease barrier for burgers and fried food", href: "/products/custom-greaseproof-paper" },
+          { name: "Kraft Paper", icon: "📦", desc: "Natural artisan look for wrapping and retail", href: "/products/custom-kraft-paper" },
+          { name: "Parchment Paper", icon: "🔥", desc: "Non-stick, oven-safe up to 450°F for baking", href: "/products/parchment-paper" },
+          { name: "Freezer Paper", icon: "❄️", desc: "Poly-coated for long-term meat and fish storage", href: "/products/custom-freezer-paper" },
+          { name: "Tissue Paper", icon: "🎁", desc: "Lightweight premium wrap for retail and gifting", href: "/products/custom-printed-tissue-paper" },
+        ].map(m => (
+          <a href={m.href} class="mat-card reveal">
+            <span class="mat-icon" aria-hidden="true">{m.icon}</span>
+            <strong class="mat-name">{m.name}</strong>
+            <p class="mat-desc">{m.desc}</p>
+            <span class="mat-link">Learn more →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       USA SECTION — full-width angled banner
+  ═══════════════════════════════════════════ -->
+  <section class="usa-band" aria-labelledby="usa-heading">
+    <div class="usa-band-bg" aria-hidden="true"></div>
+    <div class="container usa-band-inner">
+      <div class="usa-band-text reveal">
+        <span class="section-tag usa-tag">Nationwide USA Supplier</span>
+        <h2 id="usa-heading">Shipping to All 50 States from Pennsylvania</h2>
+        <p>
+          Based in Bensalem, Pennsylvania, we supply custom food packaging to restaurants, delis, food trucks, and bakeries from New York to Los Angeles, Texas to Washington.
+        </p>
+        <ul class="usa-list">
+          <li><span aria-hidden="true">✓</span> Consistent quality on every order</li>
+          <li><span aria-hidden="true">✓</span> Wholesale accounts for chains and distributors</li>
+          <li><span aria-hidden="true">✓</span> Flexible lead times for seasonal peaks</li>
+          <li><span aria-hidden="true">✓</span> Dedicated team for US food businesses</li>
+        </ul>
+        <a href="/contact" class="btn btn-white" style="margin-top:1.75rem">Contact Our Team</a>
+      </div>
+      <div class="usa-band-img reveal">
+        <img src="/images/products/custom-food-basket-liners/Custom Food Basket liners-TCB-1.png"
+             alt="Custom food packaging shipped across the USA" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       TESTIMONIALS — overlapping card layout
+  ═══════════════════════════════════════════ -->
+  <section class="section testi-section" aria-labelledby="testi-heading">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-tag">Customer Reviews</span>
+        <h2 class="section-title" id="testi-heading">Trusted by Food Businesses Across the USA</h2>
+      </div>
+      <div class="testi-grid">
+        {testimonials.map((t, i) => (
+          <div class:list={['testi-card reveal', { 'testi-featured': i === 0 }]}>
+            <div class="testi-stars" aria-label={`${t.rating} out of 5`}>{'★'.repeat(t.rating)}</div>
+            <blockquote class="testi-quote">"{t.text}"</blockquote>
+            <footer class="testi-footer">
+              <div class="testi-avatar" aria-hidden="true">{t.name[0]}</div>
+              <div>
+                <cite class="testi-name">{t.name}</cite>
+                <span class="testi-role">{t.role}</span>
+              </div>
+            </footer>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FAQs — two-column accordion
+  ═══════════════════════════════════════════ -->
+  <section class="section faq-section" aria-labelledby="faq-heading">
+    <div class="container">
+      <div class="faq-layout">
+        <div class="faq-intro reveal">
+          <span class="section-tag">FAQs</span>
+          <h2 class="section-title" id="faq-heading">Common Questions</h2>
+          <p class="section-subtitle">
+            Everything you need to know about ordering custom food paper from The Wax Papers.
+          </p>
+          <a href="/get-quote" class="btn btn-primary faq-cta">Get a Free Quote</a>
+        </div>
+        <div class="faq-list">
+          {faqs.map(f => (
+            <details class="faq-item">
+              <summary>{f.q}</summary>
+              <div class="faq-body">{f.a}</div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FINAL CTA — centered banner
+  ═══════════════════════════════════════════ -->
+  <section class="final-cta-section" aria-labelledby="cta-heading">
+    <div class="cta-wave-top" aria-hidden="true">
+      <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0 0V30C240 60 480 0 720 30C960 60 1200 0 1440 30V0H0Z" fill="#faf8f3"/>
+      </svg>
+    </div>
+    <div class="container final-cta-inner">
+      <h2 id="cta-heading">Ready to Brand Your Food Packaging?</h2>
+      <p>Join hundreds of US food businesses using custom food paper from The Wax Papers. Free quote, no obligation.</p>
+      <div class="final-cta-btns">
+        <a href="/get-quote" class="btn btn-primary final-btn">Get a Free Quote</a>
+        <a href="/products" class="btn btn-white">View Products</a>
+      </div>
+      <div class="final-contact">
+        <a href="tel:+15033580443">(503) 358-0443</a>
+        <span aria-hidden="true">·</span>
+        <a href="mailto:info@thewaxpapers.co">info@thewaxpapers.co</a>
+        <span aria-hidden="true">·</span>
+        <span>Bensalem, Pennsylvania</span>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>
+
+<style>
+/* ── HERO ── */
+.hero {
+  position: relative;
+  background: linear-gradient(150deg, #1a3322 0%, #2d5c3e 55%, #3d6b4f 100%);
+  overflow: hidden;
+  padding: 4.5rem 0 5.5rem;
+  min-height: 620px;
+  display: flex;
+  align-items: center;
+}
+.hero-diagonal {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 48%;
+  background: rgba(255,255,255,0.04);
+  clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
+}
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.hero-text { color: var(--color-white); }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.9);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  margin-bottom: 1.25rem;
+  font-family: var(--font-sans);
+}
+.badge-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #a3d4b0;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity:1; transform:scale(1); }
+  50% { opacity:0.6; transform:scale(1.3); }
+}
+
+.hero-h1 {
+  font-size: clamp(2rem, 4.2vw, 3.1rem);
+  color: var(--color-white);
+  line-height: 1.18;
+  margin-bottom: 1.25rem;
+  font-weight: 700;
+}
+.hero-h1 em {
+  font-style: normal;
+  color: #a3d4b0;
+}
+
+.hero-sub {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.75;
+  max-width: 460px;
+  margin-bottom: 2rem;
+}
+
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.hero-cta-main { font-size: 1rem; padding: 0.85rem 2rem; }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: var(--font-sans);
+  background: rgba(255,255,255,0.1);
+  border: 2px solid rgba(255,255,255,0.25);
+  color: var(--color-white);
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.btn-ghost:hover {
+  background: rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.4);
+}
+
+.hero-trust { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.trust-pill {
+  display: flex; align-items: center; gap: 0.35rem;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.85);
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+}
+
+/* Mosaic */
+.hero-mosaic {
+  position: relative;
+  height: 440px;
+}
+.mosaic-card {
+  position: absolute;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  background: var(--color-white);
+}
+.mosaic-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.mosaic-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 0.4rem 0.75rem;
+  background: rgba(26,51,34,0.85);
+  color: rgba(255,255,255,0.9);
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+}
+
+.mosaic-1 { width: 55%; height: 52%; top: 0; left: 0; z-index: 3; }
+.mosaic-2 { width: 42%; height: 44%; top: 8%; right: 0; z-index: 2; }
+.mosaic-3 { width: 44%; height: 42%; bottom: 0; left: 2%; z-index: 2; }
+.mosaic-4 { width: 50%; height: 44%; bottom: 4%; right: 2%; z-index: 3; }
+
+.mosaic-chip {
+  position: absolute;
+  background: var(--color-white);
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 0.9rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.2;
+  z-index: 10;
+  font-family: var(--font-sans);
+}
+.mosaic-chip strong { font-size: 1.1rem; color: var(--color-brown); font-weight: 800; }
+.mosaic-chip span { font-size: 0.68rem; color: var(--color-copper); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+.chip-a { top: 50%; left: 48%; transform: translateY(-50%); }
+.chip-b { bottom: 0; right: 52%; }
+
+.hero-wave {
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+}
+.hero-wave svg { width: 100%; height: 60px; display: block; }
+
+@media (max-width: 960px) {
+  .hero { padding: 3rem 0 4rem; min-height: auto; }
+  .hero-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .hero-mosaic { display: none; }
+  .hero-diagonal { display: none; }
+}
+
+/* ── MARQUEE ── */
+.marquee-bar {
+  background: var(--color-copper);
+  overflow: hidden;
+  padding: 0.6rem 0;
+  white-space: nowrap;
+}
+.marquee-track {
+  display: inline-flex;
+  animation: marquee 30s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-right: 2.5rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: rgba(255,255,255,0.92);
+}
+.marquee-dot { font-size: 0.4rem; color: rgba(255,255,255,0.5); }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ── PRODUCTS ── */
+.products-section { background: var(--color-bg); }
+.magazine-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  grid-template-rows: auto auto auto;
+}
+/* First 2 cards span differently */
+.mag-card-large:nth-child(1) { grid-column: 1 / 3; }
+.mag-card-large:nth-child(2) { grid-column: 3 / 4; grid-row: 1 / 3; }
+
+.mag-card { text-decoration: none; display: flex; flex-direction: column; border-radius: var(--radius); overflow: hidden; background: var(--color-white); box-shadow: var(--shadow-sm); transition: transform 0.25s, box-shadow 0.25s; }
+.mag-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+.mag-img { position: relative; overflow: hidden; }
+.mag-card-large .mag-img { height: 260px; }
+.mag-card-small .mag-img { height: 180px; }
+.mag-card-large:nth-child(2) .mag-img { height: 100%; min-height: 280px; }
+.mag-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.35s; }
+.mag-card:hover .mag-img img { transform: scale(1.04); }
+
+.mag-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26,51,34,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.mag-card:hover .mag-overlay { opacity: 1; }
+.mag-btn { font-size: 0.85rem; padding: 0.55rem 1.25rem; }
+
+.mag-body { padding: 1rem 1.1rem 1.2rem; }
+.mag-cat { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-copper); display: block; margin-bottom: 0.25rem; }
+.mag-title { font-size: 0.97rem; color: var(--color-brown); margin-bottom: 0.3rem; }
+.mag-desc { font-size: 0.83rem; color: var(--color-gray-600); line-height: 1.6; margin-bottom: 0.5rem; }
+.mag-rating { display: flex; align-items: center; gap: 0.35rem; font-size: 0.78rem; color: var(--color-gray-600); }
+.mag-rating .stars { font-size: 0.8rem; color: #f59e0b; }
+
+@media (max-width: 900px) {
+  .magazine-grid { grid-template-columns: repeat(2, 1fr); }
+  .mag-card-large:nth-child(1) { grid-column: auto; }
+  .mag-card-large:nth-child(2) { grid-column: auto; grid-row: auto; }
+  .mag-card-large .mag-img, .mag-card-large:nth-child(2) .mag-img { height: 220px; min-height: unset; }
+}
+@media (max-width: 560px) {
+  .magazine-grid { grid-template-columns: 1fr; }
+}
+
+.products-cta-row { text-align: center; margin-top: 2.5rem; }
+
+/* ── WHY ── */
+.why-section { background: var(--color-white); position: relative; overflow: hidden; }
+.why-bg-strip {
+  position: absolute;
+  right: -100px; top: -60px;
+  width: 480px; height: 480px;
+  border-radius: 50%;
+  background: rgba(74,124,89,0.05);
+  pointer-events: none;
+}
+.why-layout { display: grid; grid-template-columns: 1fr 1.1fr; gap: 5rem; align-items: start; }
+@media (max-width: 900px) { .why-layout { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+.why-img-stack { position: relative; margin-top: 2rem; height: 300px; }
+.why-img-a, .why-img-b { position: absolute; border-radius: var(--radius); object-fit: cover; box-shadow: var(--shadow-md); }
+.why-img-a { width: 65%; height: 200px; top: 0; left: 0; }
+.why-img-b { width: 55%; height: 170px; bottom: 0; right: 0; border: 4px solid var(--color-white); }
+
+.why-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 500px) { .why-cards { grid-template-columns: 1fr; } }
+.why-card {
+  background: var(--color-bg);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  border: 1px solid var(--color-kraft-light);
+  transition: border-color 0.2s, transform 0.2s;
+}
+.why-card:hover { border-color: var(--color-copper); transform: translateY(-2px); }
+.why-card-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 1px; }
+.why-card strong { display: block; font-size: 0.9rem; color: var(--color-brown); margin-bottom: 0.25rem; font-family: var(--font-sans); }
+.why-card p { font-size: 0.82rem; color: var(--color-gray-600); line-height: 1.6; margin: 0; }
+
+/* ── TIMELINE ── */
+.how-section { background: var(--color-bg-alt); }
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+  margin-top: 3rem;
+}
+.timeline-line {
+  position: absolute;
+  top: 36px;
+  left: 12.5%;
+  right: 12.5%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-copper), var(--color-copper-light));
+  z-index: 0;
+}
+.tl-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 1rem;
+  position: relative;
+  z-index: 1;
+}
+.tl-node {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: var(--color-white);
+  border: 3px solid var(--color-copper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 16px rgba(74,124,89,0.2);
+}
+.tl-icon { font-size: 1.5rem; }
+.tl-num { font-family: var(--font-display); font-size: 2rem; color: rgba(74,124,89,0.15); font-weight: 700; display: block; line-height: 1; margin-bottom: 0.4rem; }
+.tl-title { font-size: 0.97rem; color: var(--color-brown); margin-bottom: 0.5rem; }
+.tl-desc { font-size: 0.83rem; color: var(--color-gray-600); line-height: 1.65; }
+
+@media (max-width: 800px) {
+  .timeline { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+  .timeline-line { display: none; }
+}
+@media (max-width: 480px) { .timeline { grid-template-columns: 1fr; } }
+
+/* ── SPLIT FEATURE ── */
+.split-feature-section { background: var(--color-bg); }
+.split-feature { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+@media (max-width: 900px) { .split-feature { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+.sf-images { position: relative; height: 380px; }
+.sf-img-main { position: absolute; top: 0; left: 0; right: 8%; bottom: 6%; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); }
+.sf-img-main img { width: 100%; height: 100%; object-fit: cover; }
+.sf-img-float { position: absolute; bottom: 0; right: 0; width: 48%; height: 52%; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-md); border: 4px solid var(--color-white); }
+.sf-img-float img { width: 100%; height: 100%; object-fit: cover; }
+
+.sf-content h2 { font-size: clamp(1.4rem, 2.5vw, 2rem); color: var(--color-brown); margin: 0.75rem 0 1rem; }
+.sf-content p { font-size: 0.95rem; color: var(--color-gray-600); line-height: 1.8; margin-bottom: 1.5rem; }
+.print-opts { display: flex; flex-direction: column; gap: 0.8rem; }
+.print-opt { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.92rem; font-family: var(--font-sans); }
+.print-tick { color: var(--color-copper); font-weight: 700; flex-shrink: 0; font-size: 1rem; }
+.print-opt strong { color: var(--color-brown); }
+.print-note { color: var(--color-gray-600); }
+
+/* ── MATERIALS ── */
+.materials-section { background: var(--color-white); }
+.mat-scroll {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+@media (max-width: 1100px) { .mat-scroll { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 600px) { .mat-scroll { grid-template-columns: repeat(2, 1fr); } }
+
+.mat-card {
+  background: var(--color-bg);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.1rem;
+  border: 1px solid var(--color-kraft-light);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  text-decoration: none;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.mat-card:hover { border-color: var(--color-copper); transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.mat-icon { font-size: 2rem; }
+.mat-name { font-size: 0.92rem; color: var(--color-brown); font-family: var(--font-display); }
+.mat-desc { font-size: 0.79rem; color: var(--color-gray-600); line-height: 1.55; flex: 1; }
+.mat-link { font-size: 0.78rem; font-weight: 700; color: var(--color-copper); margin-top: 0.3rem; }
+
+/* ── USA BAND ── */
+.usa-band {
+  position: relative;
+  overflow: hidden;
+  padding: 5rem 0;
+}
+.usa-band-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #1a3322 0%, #2d5c3e 60%, #3d6b4f 100%);
+}
+.usa-band-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 900px) { .usa-band-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+.usa-band-text { color: var(--color-white); }
+.usa-tag { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.9); }
+.usa-band-text h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); color: var(--color-white); margin: 0.75rem 0 1rem; }
+.usa-band-text p { font-size: 0.97rem; color: rgba(255,255,255,0.78); line-height: 1.8; margin-bottom: 1rem; }
+.usa-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.usa-list li { font-size: 0.92rem; color: rgba(255,255,255,0.82); display: flex; align-items: center; gap: 0.5rem; }
+.usa-list span { color: #a3d4b0; font-weight: 700; }
+
+.usa-band-img img { width: 100%; height: 380px; object-fit: cover; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
+
+/* ── TESTIMONIALS ── */
+.testi-section { background: var(--color-bg-alt); }
+.testi-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap: 1.25rem; align-items: start; }
+@media (max-width: 1100px) { .testi-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .testi-grid { grid-template-columns: 1fr; } }
+
+.testi-card {
+  background: var(--color-white);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-sm);
+}
+.testi-featured {
+  background: var(--color-brown);
+  grid-row: span 1;
+}
+.testi-stars { color: #f59e0b; font-size: 1rem; margin-bottom: 0.85rem; }
+.testi-featured .testi-stars { color: #f4c774; }
+.testi-quote { font-size: 0.92rem; color: var(--color-gray-600); line-height: 1.75; font-style: italic; margin-bottom: 1.25rem; }
+.testi-featured .testi-quote { color: rgba(255,255,255,0.82); }
+.testi-footer { display: flex; align-items: center; gap: 0.75rem; }
+.testi-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--color-copper); color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 0.95rem; flex-shrink: 0;
+}
+.testi-featured .testi-avatar { background: rgba(255,255,255,0.2); }
+.testi-name { display: block; font-size: 0.88rem; font-weight: 700; color: var(--color-brown); font-style: normal; font-family: var(--font-sans); }
+.testi-featured .testi-name { color: var(--color-white); }
+.testi-role { font-size: 0.76rem; color: var(--color-gray-600); display: block; margin-top: 0.1rem; }
+.testi-featured .testi-role { color: rgba(255,255,255,0.6); }
+
+/* ── FAQ ── */
+.faq-section { background: var(--color-bg); }
+.faq-layout { display: grid; grid-template-columns: 340px 1fr; gap: 5rem; align-items: start; }
+@media (max-width: 900px) { .faq-layout { grid-template-columns: 1fr; gap: 2.5rem; } }
+.faq-intro { position: sticky; top: 90px; }
+.faq-cta { margin-top: 1.75rem; }
+.faq-list { border-top: 1px solid var(--color-gray-200); }
+
+/* ── FINAL CTA ── */
+.final-cta-section {
+  background: linear-gradient(150deg, #1a3322 0%, #2d5c3e 60%, #3d6b4f 100%);
+  padding: 5rem 0;
+  position: relative;
+}
+.cta-wave-top {
+  position: absolute;
+  top: -1px; left: 0; right: 0;
+}
+.cta-wave-top svg { width: 100%; height: 60px; display: block; }
+
+.final-cta-inner { text-align: center; color: var(--color-white); position: relative; z-index: 1; }
+.final-cta-inner h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); color: var(--color-white); margin-bottom: 1rem; }
+.final-cta-inner p { font-size: 1.05rem; color: rgba(255,255,255,0.78); max-width: 520px; margin: 0 auto 2rem; line-height: 1.75; }
+.final-cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.75rem; }
+.final-btn { font-size: 1.05rem; padding: 0.9rem 2.25rem; }
+
+.final-contact { font-size: 0.85rem; color: rgba(255,255,255,0.55); display: flex; align-items: center; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+.final-contact a { color: #a3d4b0; text-decoration: none; }
+.final-contact a:hover { text-decoration: underline; }
+</style>

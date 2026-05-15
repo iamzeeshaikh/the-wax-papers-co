@@ -1,0 +1,210 @@
+---
+import { products } from '../data/products';
+import { blogPosts } from '../data/blog';
+const productLinks = products.slice(0, 12);
+const recentPosts = blogPosts.slice(0, 4);
+---
+
+<footer class="site-footer" itemscope itemtype="https://schema.org/WPFooter">
+  <div class="footer-main">
+    <div class="container footer-grid">
+
+      <!-- Brand / NAP column -->
+      <div class="footer-brand" itemscope itemtype="https://schema.org/LocalBusiness">
+        <a href="/" class="footer-logo" aria-label="The Wax Papers — Custom Food Paper USA">
+          <span class="f-logo-icon" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
+              <rect width="40" height="40" rx="8" fill="#4a7c59"/>
+              <path d="M8 12h24M8 20h20M8 28h16" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="30" cy="24" r="5" fill="white"/>
+            </svg>
+          </span>
+          <span class="f-logo-text" itemprop="name">The Wax Papers</span>
+        </a>
+        <p class="footer-tagline" itemprop="description">
+          Custom printed wax paper, greaseproof paper, deli paper, and food packaging for restaurants, bakeries, delis, and food trucks across all 50 US states.
+        </p>
+        <address class="footer-contact" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+          <a href="tel:+15033580443" class="footer-contact-item" itemprop="telephone">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 10.18a19.79 19.79 0 01-3.07-8.67A2 2 0 011.9 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            (503) 358-0443
+          </a>
+          <a href="mailto:info@thewaxpapers.co" class="footer-contact-item" itemprop="email">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            info@thewaxpapers.co
+          </a>
+          <span class="footer-contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span>
+              <span itemprop="streetAddress">1121 Neshaminy Valley Drive</span>,<br />
+              <span itemprop="addressLocality">Bensalem</span>,
+              <span itemprop="addressRegion">PA</span>
+              <span itemprop="postalCode">19020</span>,
+              <span itemprop="addressCountry">USA</span>
+            </span>
+          </span>
+        </address>
+      </div>
+
+      <!-- Products column -->
+      <div class="footer-col">
+        <h3 class="footer-heading">Custom Food Paper</h3>
+        <ul class="footer-links">
+          {productLinks.map(p => (
+            <li><a href={`/products/${p.slug}/`}>{p.title}</a></li>
+          ))}
+          <li><a href="/products/" class="footer-link-more">View All 25 Products →</a></li>
+        </ul>
+      </div>
+
+      <!-- Company + Blog column -->
+      <div class="footer-col">
+        <h3 class="footer-heading">Company</h3>
+        <ul class="footer-links">
+          <li><a href="/about/">About The Wax Papers</a></li>
+          <li><a href="/blog/">Food Packaging Blog</a></li>
+          <li><a href="/get-quote/">Get a Free Quote</a></li>
+          <li><a href="/contact/">Contact Us</a></li>
+          <li><a href="/sitemap/">Sitemap</a></li>
+          <li><a href="/privacy-policy/">Privacy Policy</a></li>
+          <li><a href="/terms-and-conditions/">Terms &amp; Conditions</a></li>
+        </ul>
+
+        <h3 class="footer-heading" style="margin-top:1.75rem;">Recent Articles</h3>
+        <ul class="footer-links">
+          {recentPosts.map(post => (
+            <li><a href={`/blog/${post.slug}/`}>{post.title}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- CTA column -->
+      <div class="footer-col">
+        <h3 class="footer-heading">Get a Free Quote</h3>
+        <p class="footer-cta-text">
+          Ready to brand your food packaging? Get a free, no-obligation quote in minutes. We respond within 1 business day.
+        </p>
+        <a href="/get-quote/" class="btn btn-primary footer-cta-btn">Request a Quote</a>
+
+        <div class="footer-badges">
+          <div class="footer-badge">
+            <span class="badge-icon" aria-hidden="true">✓</span>
+            <span>FDA-Compliant Materials</span>
+          </div>
+          <div class="footer-badge">
+            <span class="badge-icon" aria-hidden="true">✓</span>
+            <span>Ships to All 50 States</span>
+          </div>
+          <div class="footer-badge">
+            <span class="badge-icon" aria-hidden="true">✓</span>
+            <span>500 Sheet Minimum</span>
+          </div>
+          <div class="footer-badge">
+            <span class="badge-icon" aria-hidden="true">✓</span>
+            <span>8–12 Day Lead Time</span>
+          </div>
+          <div class="footer-badge">
+            <span class="badge-icon" aria-hidden="true">✓</span>
+            <span>Free Digital Proof</span>
+          </div>
+          <div class="footer-badge">
+            <span class="badge-icon" aria-hidden="true">✓</span>
+            <span>No Hidden Setup Fees</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>&copy; {new Date().getFullYear()} The Wax Papers. All rights reserved. Custom food paper supplier — Bensalem, Pennsylvania, USA.</p>
+      <p class="footer-legal-links">
+        <a href="/privacy-policy/">Privacy Policy</a>
+        <span aria-hidden="true">·</span>
+        <a href="/terms-and-conditions/">Terms &amp; Conditions</a>
+        <span aria-hidden="true">·</span>
+        <a href="/sitemap/">Sitemap</a>
+        <span aria-hidden="true">·</span>
+        <a href="/sitemap.xml">XML Sitemap</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer { background: var(--color-brown); color: rgba(255,255,255,0.8); }
+
+  .footer-main { padding: 4rem 0 3rem; }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    color: var(--color-white);
+    text-decoration: none;
+  }
+  .f-logo-text { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; }
+  .footer-tagline { font-size: 0.88rem; line-height: 1.7; margin-bottom: 1.5rem; color: rgba(255,255,255,0.7); font-style: normal; }
+
+  .footer-contact { display: flex; flex-direction: column; gap: 0.75rem; font-style: normal; }
+  .footer-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.5;
+    text-decoration: none;
+  }
+  .footer-contact-item svg { flex-shrink: 0; margin-top: 2px; }
+  a.footer-contact-item:hover { color: var(--color-kraft); }
+
+  .footer-heading {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-kraft);
+    margin-bottom: 1rem;
+  }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+  .footer-links li, .footer-links a { font-size: 0.87rem; color: rgba(255,255,255,0.7); text-decoration: none; }
+  .footer-links a:hover { color: var(--color-kraft-light); }
+  .footer-link-more { color: var(--color-kraft-light) !important; font-weight: 600; }
+
+  .footer-cta-text { font-size: 0.87rem; line-height: 1.65; margin-bottom: 1.25rem; color: rgba(255,255,255,0.7); }
+  .footer-cta-btn { font-size: 0.88rem; padding: 0.6rem 1.4rem; }
+
+  .footer-badges { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1.5rem; }
+  .footer-badge { display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; color: rgba(255,255,255,0.7); }
+  .badge-icon { color: var(--color-copper-light); font-weight: 700; }
+
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding: 1.25rem 0; }
+  .footer-bottom-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .footer-bottom p { font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+  .footer-legal-links { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+  .footer-legal-links a { color: rgba(255,255,255,0.5); text-decoration: none; }
+  .footer-legal-links a:hover { color: rgba(255,255,255,0.8); }
+
+  @media (max-width: 1100px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+  }
+  @media (max-width: 600px) {
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom-inner { flex-direction: column; align-items: flex-start; }
+  }
+</style>

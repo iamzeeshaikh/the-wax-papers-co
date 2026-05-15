@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { blogPosts } from '../../data/blog';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://thewaxpapers.co" },
+    { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://thewaxpapers.co/blog" }
+  ]
+};
+---
+
+<BaseLayout
+  title="Food Packaging Blog | Tips, Guides & Industry Insights | The Wax Papers"
+  description="Read expert guides on custom food paper, wax paper, greaseproof paper, and restaurant packaging. Practical advice for US food businesses from The Wax Papers."
+  canonical="https://thewaxpapers.co/blog"
+  schema={breadcrumbSchema}
+>
+  <Fragment slot="navbar"><Navbar /></Fragment>
+
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="breadcrumb-sep" aria-hidden="true">/</span>
+        <span aria-current="page">Blog</span>
+      </nav>
+    </div>
+  </div>
+
+  <section class="blog-hero">
+    <div class="container">
+      <span class="section-tag">Insights & Guides</span>
+      <h1 class="blog-h1">Food Packaging Blog</h1>
+      <p class="blog-intro">
+        Practical guides and industry insights for restaurant owners, deli operators, bakeries, and food trucks across the USA.
+      </p>
+    </div>
+  </section>
+
+  <section class="section blog-grid-section">
+    <div class="container">
+      <div class="blog-grid">
+        {blogPosts.map((post, i) => (
+          <a href={`/blog/${post.slug}`} class="blog-card card">
+            <div class="blog-card-body">
+              <span class="blog-date">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+              <h2 class="blog-card-title">{post.title}</h2>
+              <p class="blog-card-excerpt">{post.excerpt}</p>
+              <span class="blog-read-more">Read Article →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="blog-cta-section">
+    <div class="container">
+      <div class="blog-cta-inner">
+        <h2>Ready to Order Custom Food Paper?</h2>
+        <p>Browse our full product range and get a free quote for your custom food packaging.</p>
+        <div class="blog-cta-btns">
+          <a href="/get-quote" class="btn btn-primary">Get a Free Quote</a>
+          <a href="/products" class="btn btn-outline">View Products</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>
+
+<style>
+  .breadcrumb-bar { background: var(--color-bg-alt); border-bottom: 1px solid var(--color-kraft-light); }
+
+  .blog-hero {
+    padding: 3.5rem 0 2.5rem;
+    background: linear-gradient(135deg, #1a3322, #2d5c3e);
+    color: var(--color-white);
+  }
+  .blog-hero .section-tag { background: rgba(74,124,89,0.3); color: var(--color-kraft-light); }
+  .blog-h1 { font-size: clamp(1.8rem, 4vw, 2.75rem); color: var(--color-white); margin: 0.75rem 0 1rem; }
+  .blog-intro { font-size: 1.05rem; color: rgba(255,255,255,0.8); max-width: 560px; line-height: 1.75; }
+
+  .blog-grid-section { background: var(--color-bg); }
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+  @media (max-width: 900px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .blog-grid { grid-template-columns: 1fr; } }
+
+  .blog-card { text-decoration: none; }
+  .blog-card-body { padding: 1.75rem; }
+  .blog-date { font-size: 0.78rem; color: var(--color-copper); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; display: block; margin-bottom: 0.6rem; }
+  .blog-card-title { font-size: 1.05rem; color: var(--color-brown); line-height: 1.35; margin-bottom: 0.75rem; }
+  .blog-card-excerpt { font-size: 0.88rem; color: var(--color-gray-600); line-height: 1.7; margin-bottom: 1rem; }
+  .blog-read-more { font-size: 0.85rem; font-weight: 600; color: var(--color-copper); }
+
+  .blog-cta-section { padding: 4rem 0; background: var(--color-bg-alt); }
+  .blog-cta-inner { text-align: center; }
+  .blog-cta-inner h2 { font-size: 1.75rem; color: var(--color-brown); margin-bottom: 0.75rem; }
+  .blog-cta-inner p { font-size: 1rem; color: var(--color-gray-600); margin-bottom: 1.75rem; }
+  .blog-cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+</style>

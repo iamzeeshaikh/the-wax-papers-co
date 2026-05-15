@@ -1,0 +1,362 @@
+---
+import { products } from '../data/products';
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<header class="site-header" id="siteHeader">
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-left">
+        <a href="tel:+15033580443">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 10.18a19.79 19.79 0 01-3.07-8.67A2 2 0 011.9 0h3a2 2 0 012 1.72 12.08 12.08 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.08 12.08 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          (503) 358-0443
+        </a>
+        <a href="mailto:info@thewaxpapers.co">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          info@thewaxpapers.co
+        </a>
+      </div>
+      <div class="topbar-right">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        Bensalem, PA · Ships to All 50 States
+      </div>
+    </div>
+  </div>
+
+  <!-- Main nav -->
+  <nav class="main-nav" role="navigation" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <!-- Logo -->
+      <a href="/" class="site-logo" aria-label="The Wax Papers — Home">
+        <span class="logo-mark" aria-hidden="true">
+          <svg width="34" height="34" viewBox="0 0 40 40" fill="none">
+            <rect width="40" height="40" rx="9" fill="#4a7c59"/>
+            <path d="M9 13h22M9 20h18M9 27h14" stroke="white" stroke-width="2.8" stroke-linecap="round"/>
+            <circle cx="30" cy="27" r="5" fill="white"/>
+          </svg>
+        </span>
+        <span class="logo-words">
+          <span class="logo-main">The Wax Papers</span>
+          <span class="logo-tagline">Custom Food Packaging · USA</span>
+        </span>
+      </a>
+
+      <!-- Desktop nav -->
+      <ul class="nav-menu" id="navMenu" role="list">
+        {navLinks.map(link => (
+          <li>
+            <a
+              href={link.href}
+              class:list={['nav-link', { active: currentPath === link.href }]}
+              aria-current={currentPath === link.href ? 'page' : undefined}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+
+        <!-- Products mega dropdown -->
+        <li class="has-dropdown">
+          <button
+            class:list={['nav-link nav-link-btn', { active: currentPath.startsWith('/products') }]}
+            aria-haspopup="true"
+            aria-expanded="false"
+            id="productsBtn"
+          >
+            Products
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="mega-menu" id="megaMenu" role="region" aria-label="Products menu">
+            <div class="mega-inner">
+              <div class="mega-header">
+                <strong>All Custom Food Paper Products</strong>
+                <a href="/products" class="mega-view-all">View All 25 Products →</a>
+              </div>
+              <ul class="mega-grid">
+                {products.map(p => (
+                  <li>
+                    <a href={`/products/${p.slug}`} class="mega-item">
+                      <img src={p.heroImage} alt={p.title} loading="lazy" width="48" height="48" />
+                      <span>{p.title}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <!-- CTA + hamburger -->
+      <div class="nav-right">
+        <a href="/get-quote" class="btn btn-primary nav-cta">Get a Free Quote</a>
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Floating quote button (mobile) -->
+<a href="/get-quote" class="float-cta" aria-label="Get a free quote">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+  Free Quote
+</a>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: var(--color-white);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  }
+
+  /* Topbar */
+  .topbar {
+    background: var(--color-brown);
+    padding: 0.42rem 0;
+    font-size: 0.78rem;
+  }
+  .topbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .topbar-left { display: flex; gap: 1.5rem; }
+  .topbar-left a, .topbar-right {
+    display: flex; align-items: center; gap: 0.35rem;
+    color: rgba(255,255,255,0.78);
+  }
+  .topbar-left a:hover { color: var(--color-kraft-light); }
+  @media (max-width: 560px) { .topbar-right { display: none; } }
+
+  /* Main nav */
+  .main-nav { background: var(--color-white); }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    height: 66px;
+    gap: 1.5rem;
+  }
+
+  /* Logo */
+  .site-logo { display: flex; align-items: center; gap: 0.7rem; flex-shrink: 0; text-decoration: none; }
+  .logo-words { display: flex; flex-direction: column; line-height: 1.15; }
+  .logo-main { font-family: var(--font-display); font-size: 1.15rem; color: var(--color-brown); font-weight: 700; }
+  .logo-tagline { font-size: 0.65rem; color: var(--color-copper); font-weight: 600; letter-spacing: 0.05em; }
+
+  /* Nav menu */
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 0.1rem;
+    margin-left: auto;
+  }
+  .nav-link, .nav-link-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--color-gray-700);
+    border-radius: var(--radius-sm);
+    transition: color 0.15s, background 0.15s;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    white-space: nowrap;
+  }
+  .nav-link:hover, .nav-link-btn:hover,
+  .nav-link.active, .nav-link-btn.active {
+    color: var(--color-copper);
+    background: rgba(74,124,89,0.07);
+  }
+
+  /* Mega menu */
+  .has-dropdown { position: relative; }
+  .mega-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 780px;
+    background: var(--color-white);
+    border-radius: var(--radius);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.14);
+    border: 1px solid var(--color-gray-100);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-50%) translateY(-8px);
+    transition: opacity 0.2s, transform 0.2s;
+    z-index: 300;
+  }
+  .has-dropdown:hover .mega-menu,
+  .has-dropdown:focus-within .mega-menu,
+  .mega-menu.open {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateX(-50%) translateY(0);
+  }
+  .mega-inner { padding: 1.25rem 1.5rem 1.5rem; }
+  .mega-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--color-gray-100);
+  }
+  .mega-header strong { font-size: 0.82rem; color: var(--color-brown); text-transform: uppercase; letter-spacing: 0.07em; }
+  .mega-view-all { font-size: 0.82rem; color: var(--color-copper); font-weight: 600; }
+  .mega-view-all:hover { text-decoration: underline; }
+  .mega-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.4rem;
+    list-style: none;
+  }
+  .mega-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 0.4rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    color: var(--color-gray-700);
+    text-align: center;
+    font-weight: 500;
+    transition: background 0.15s, color 0.15s;
+    text-decoration: none;
+    line-height: 1.3;
+  }
+  .mega-item:hover { background: rgba(74,124,89,0.07); color: var(--color-copper); }
+  .mega-item img { width: 48px; height: 48px; object-fit: cover; border-radius: var(--radius-sm); }
+
+  /* Right side */
+  .nav-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+  .nav-cta { font-size: 0.875rem; padding: 0.55rem 1.25rem; }
+
+  /* Hamburger */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.4rem;
+  }
+  .nav-toggle span {
+    display: block; width: 22px; height: 2px;
+    background: var(--color-brown); border-radius: 2px;
+    transition: transform 0.25s, opacity 0.25s;
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  /* Float CTA */
+  .float-cta {
+    display: none;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 150;
+    background: var(--color-copper);
+    color: white;
+    padding: 0.7rem 1.25rem;
+    border-radius: 999px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    font-family: var(--font-sans);
+    align-items: center;
+    gap: 0.4rem;
+    box-shadow: 0 4px 20px rgba(74,124,89,0.45);
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .float-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(74,124,89,0.5); }
+
+  @media (max-width: 960px) {
+    .nav-toggle { display: flex; }
+    .nav-cta { display: none; }
+    .float-cta { display: flex; }
+
+    .nav-menu {
+      position: absolute;
+      top: 100%;
+      left: 0; right: 0;
+      background: var(--color-white);
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 0.75rem 1rem 1rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      display: none;
+      margin-left: 0;
+      border-top: 1px solid var(--color-gray-100);
+    }
+    .nav-menu.open { display: flex; }
+    .nav-link, .nav-link-btn { padding: 0.7rem 0.5rem; font-size: 0.95rem; border-bottom: 1px solid var(--color-gray-100); border-radius: 0; justify-content: space-between; width: 100%; }
+    .main-nav { position: relative; }
+
+    .mega-menu {
+      position: static;
+      width: 100%;
+      box-shadow: none;
+      border: none;
+      border-radius: 0;
+      transform: none !important;
+      background: var(--color-bg-alt);
+      opacity: 1;
+      pointer-events: all;
+      display: none;
+    }
+    .mega-menu.open { display: block; }
+    .mega-grid { grid-template-columns: repeat(2, 1fr); }
+    .mega-item { flex-direction: row; text-align: left; justify-content: flex-start; }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const menu = document.getElementById('navMenu');
+  const productsBtn = document.getElementById('productsBtn');
+  const megaMenu = document.getElementById('megaMenu');
+
+  // Hamburger toggle
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  // Products dropdown (mobile: toggle; desktop: hover handled by CSS)
+  productsBtn?.addEventListener('click', () => {
+    if (window.innerWidth < 960) {
+      megaMenu?.classList.toggle('open');
+      const isExp = megaMenu?.classList.contains('open');
+      productsBtn.setAttribute('aria-expanded', String(isExp));
+    }
+  });
+
+  // Sticky header shadow
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header?.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+</script>
