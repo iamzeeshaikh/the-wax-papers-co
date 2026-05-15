@@ -64,8 +64,8 @@ const breadcrumbSchema = {
 // Process content: convert markdown-like links to HTML
 function processContent(content: string): string {
   return content
-    .replace(/\[([^\]]+)\]\(\/products\/([^\)]+)\)/g, '<a href="/products/$2">$1</a>')
-    .replace(/\[([^\]]+)\]\(\/([^\)]+)\)/g, '<a href="/$2">$1</a>')
+    .replace(/\[([^\]]+)\]\(\/products\/([^\)\/]+)\/?/g, '<a href="/products/$2/">$1</a>')
+    .replace(/\[([^\]]+)\]\(\/([^\)\/]+)\/?/g, '<a href="/$2/">$1</a>')
     .replace(/^## (.+)$/gm, '<h2>$1</h2>')
     .replace(/^### (.+)$/gm, '<h3>$1</h3>')
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
@@ -127,7 +127,7 @@ function processContent(content: string): string {
                     <img src={rp.heroImage} alt={rp.title} loading="lazy" width="200" height="130" />
                     <div class="blog-related-body">
                       <strong>{rp.title}</strong>
-                      <span>View Product →</span>
+                      <span>View {rp.title} →</span>
                     </div>
                   </a>
                 ))}

@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import { products, getProductBySlug, getRelatedProducts } from '../../data/products';
+import { blogPosts } from '../../data/blog';
 
 export async function getStaticPaths() {
   return products.map(p => ({ params: { slug: p.slug } }));
@@ -13,6 +14,7 @@ const product = getProductBySlug(slug as string);
 if (!product) return Astro.redirect('/products');
 
 const related = getRelatedProducts(product.relatedProducts).slice(0, 3);
+const relatedPosts = blogPosts.filter(p => p.relatedProducts.includes(product.slug)).slice(0, 3);
 const canonicalUrl = `https://thewaxpapers.co/products/${product.slug}`;
 
 const productSchema = {
@@ -360,6 +362,35 @@ const hasHalf = product.ratingValue % 1 >= 0.5;
     </section>
   )}
 
+  <!-- Related Blog Articles -->
+  {relatedPosts.length > 0 && (
+    <section class="section related-articles-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">From the Blog</span>
+          <h2 class="section-title">Articles About {product.title}</h2>
+        </div>
+        <div class="related-articles-grid">
+          {relatedPosts.map(post => (
+            <a href={`/blog/${post.slug}/`} class="related-article-card card">
+              <div class="related-article-body">
+                <span class="related-article-date">
+                  {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}
+                </span>
+                <h3>{post.title}</h3>
+                <p>{post.excerpt}</p>
+                <span class="related-article-link">Read: {post.title} →</span>
+              </div>
+            </a>
+          ))}
+        </div>
+        <div class="related-all-link">
+          <a href="/blog/">Browse All Food Packaging Articles →</a>
+        </div>
+      </div>
+    </section>
+  )}
+
   <!-- FAQs -->
   <section class="section faq-section-product">
     <div class="container">
@@ -561,6 +592,17 @@ const hasHalf = product.ratingValue % 1 >= 0.5;
   .related-all-link { margin-top: 1.5rem; text-align: center; }
   .related-all-link a { font-size: 0.9rem; color: var(--color-copper); font-weight: 600; }
   .related-all-link a:hover { text-decoration: underline; }
+
+  .related-articles-section { background: var(--color-bg-alt); }
+  .related-articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  @media (max-width: 800px) { .related-articles-grid { grid-template-columns: 1fr; } }
+  .related-article-card { display: flex; flex-direction: column; text-decoration: none; }
+  .related-article-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
+  .related-article-date { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--color-copper); }
+  .related-article-body h3 { font-size: 0.97rem; color: var(--color-brown); line-height: 1.4; }
+  .related-article-body p { font-size: 0.83rem; color: var(--color-gray-600); line-height: 1.6; flex: 1; }
+  .related-article-link { font-size: 0.83rem; font-weight: 600; color: var(--color-copper); margin-top: auto; }
+  .related-article-card:hover .related-article-link { text-decoration: underline; }
 
   .faq-section-product { background: var(--color-white); }
   .faq-product-inner { display: grid; grid-template-columns: 1fr 1.6fr; gap: 4rem; align-items: start; }
