@@ -821,11 +821,12 @@ const hasHalf = product.ratingValue % 1 >= 0.5;
     try {
       const data = new FormData(iqForm);
       const res = await fetch('/api/quote', { method: 'POST', body: data });
-      if (!res.ok) throw new Error('server error');
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(json.detail || json.error || 'server error');
       iqForm.reset();
       if (iqSuccess) iqSuccess.textContent = '✓ Quote request sent! We\'ll respond within 1 business day.';
-    } catch {
-      if (iqSuccess) iqSuccess.textContent = 'Something went wrong. Please email us at info@thewaxpapers.co';
+    } catch (err: any) {
+      if (iqSuccess) iqSuccess.textContent = 'Error: ' + (err.message || 'Something went wrong. Please email info@thewaxpapers.co');
       iqSuccess!.style.color = '#c0392b';
     } finally {
       btn.disabled = false;
