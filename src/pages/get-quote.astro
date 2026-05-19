@@ -120,8 +120,9 @@ import { products } from '../data/products';
               <textarea class="form-control" id="message" name="message" rows="4" placeholder="Tell us more about your requirements, special sizes, deadlines, or any questions you have..."></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary quote-submit">Submit Quote Request</button>
+            <button type="submit" class="btn btn-primary quote-submit" id="quoteSubmitBtn">Submit Quote Request</button>
             <p class="form-privacy">Your information is kept private and never shared. We will respond within 1 business day.</p>
+            <p class="form-success" id="quoteSuccess" aria-live="polite"></p>
           </form>
         </div>
 
@@ -218,4 +219,28 @@ import { products } from '../data/products';
     font-size: 0.9rem; color: var(--color-copper); font-weight: 500;
   }
   .quote-contact-item:hover { text-decoration: underline; }
+  .form-success { font-size: 0.88rem; color: #2d6a3f; font-weight: 600; text-align: center; margin-top: 0.5rem; min-height: 1.2em; }
 </style>
+
+<script>
+  const form = document.querySelector('.quote-form') as HTMLFormElement;
+  const btn  = document.getElementById('quoteSubmitBtn') as HTMLButtonElement;
+  const msg  = document.getElementById('quoteSuccess');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    try {
+      const res = await fetch('/api/quote', { method: 'POST', body: new FormData(form) });
+      if (!res.ok) throw new Error();
+      form.reset();
+      if (msg) msg.textContent = '✓ Quote request sent! We\'ll respond within 1 business day.';
+    } catch {
+      if (msg) { msg.textContent = 'Something went wrong. Please email info@thewaxpapers.co'; msg.style.color = '#c0392b'; }
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Submit Quote Request';
+    }
+  });
+</script>

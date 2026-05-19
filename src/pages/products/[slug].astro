@@ -820,7 +820,8 @@ const hasHalf = product.ratingValue % 1 >= 0.5;
     btn.textContent = 'Sending…';
     try {
       const data = new FormData(iqForm);
-      await fetch('/', { method: 'POST', body: data });
+      const res = await fetch('/api/quote', { method: 'POST', body: data });
+      if (!res.ok) throw new Error('server error');
       iqForm.reset();
       if (iqSuccess) iqSuccess.textContent = '✓ Quote request sent! We\'ll respond within 1 business day.';
     } catch {
