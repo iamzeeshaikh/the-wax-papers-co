@@ -22,10 +22,10 @@ export interface Product {
 export const products: Product[] = [
   {
     slug: 'bagel-paper',
-    title: 'Bagel Paper',
-    metaTitle: 'Custom Bagel Paper | Printed Bagel Wrapping Paper USA',
-    metaDescription: 'Order custom bagel paper for your bakery or deli. Food-safe, grease-resistant, fully branded with your logo. Wholesale pricing across the USA.',
-    h1: 'Custom Bagel Paper for Bakeries and Delis',
+    title: 'Bagel Papers',
+    metaTitle: 'Custom Bagel Papers | Printed Bagel Wrapping Papers USA',
+    metaDescription: 'Order custom bagel papers for your bakery or deli. Food-safe, grease-resistant, fully branded with your logo. Wholesale pricing across the USA.',
+    h1: 'Custom Bagel Papers for Bakeries and Delis',
     intro: 'Our custom bagel paper keeps your bagels fresh, grease-free, and branded from the first wrap. Designed for high-volume bakeries, delis, and food service operations across the USA, each sheet is printed with your logo and colors using food-safe inks.',
     heroImage: '/images/products/bagel-paper/bagel paper-TCB-1.png',
     images: [
@@ -78,10 +78,10 @@ export const products: Product[] = [
   },
   {
     slug: 'christmas-wrapping-paper',
-    title: 'Christmas Wrapping Paper',
-    metaTitle: 'Custom Christmas Wrapping Paper | Branded Holiday Paper USA',
-    metaDescription: 'Custom printed Christmas wrapping paper for retail, food brands, and restaurants. Festive designs with your logo. Order wholesale across the USA.',
-    h1: 'Custom Christmas Wrapping Paper for Food Businesses',
+    title: 'Christmas Wrapping Papers',
+    metaTitle: 'Custom Christmas Wrapping Papers | Branded Holiday Papers USA',
+    metaDescription: 'Custom printed Christmas wrapping papers for retail, food brands, and restaurants. Festive designs with your logo. Order wholesale across the USA.',
+    h1: 'Custom Christmas Wrapping Papers for Food Businesses',
     intro: 'Stand out during the holiday season with custom Christmas wrapping paper printed with your brand, festive designs, and seasonal messaging. Ideal for bakeries, food brands, retail shops, and restaurants that want to deliver a premium holiday experience.',
     heroImage: '/images/products/christmas-wrapping-paper/christmas wrapping paper-PBEE-1.png',
     images: [
@@ -188,10 +188,10 @@ export const products: Product[] = [
   },
   {
     slug: 'custom-burger-paper',
-    title: 'Custom Burger Paper',
-    metaTitle: 'Custom Burger Paper | Branded Burger Wrapping Paper USA',
-    metaDescription: 'Custom printed burger paper for restaurants, burger joints, and food trucks across the USA. Grease-resistant, food-safe, fully branded. Get a free quote.',
-    h1: 'Custom Burger Paper for Restaurants and Food Trucks',
+    title: 'Custom Burger Papers',
+    metaTitle: 'Custom Burger Papers | Branded Burger Wrapping Papers USA',
+    metaDescription: 'Custom printed burger papers for restaurants, burger joints, and food trucks across the USA. Grease-resistant, food-safe, fully branded. Get a free quote.',
+    h1: 'Custom Burger Papers for Restaurants and Food Trucks',
     intro: 'Make every burger a brand moment with custom-printed burger wrapping paper. Our grease-resistant, food-safe sheets keep burgers fresh and your brand visible from kitchen to customer. Trusted by burger restaurants, food trucks, and chains across the USA.',
     heroImage: '/images/products/custom-burger-paper/custom burger paper-TCB-1.png',
     images: [
@@ -244,10 +244,10 @@ export const products: Product[] = [
   },
   {
     slug: 'custom-butcher-paper',
-    title: 'Custom Butcher Paper',
-    metaTitle: 'Custom Butcher Paper | Printed Butcher Paper for Meat USA',
-    metaDescription: 'Custom printed butcher paper for delis, butcher shops, and BBQ restaurants across the USA. Food-safe, grease-resistant, branded. Get wholesale pricing.',
-    h1: 'Custom Butcher Paper for Delis and Butcher Shops',
+    title: 'Custom Butcher Papers',
+    metaTitle: 'Custom Butcher Papers | Printed Butcher Papers for Meat USA',
+    metaDescription: 'Custom printed butcher papers for delis, butcher shops, and BBQ restaurants across the USA. Food-safe, grease-resistant, branded. Get wholesale pricing.',
+    h1: 'Custom Butcher Papers for Delis and Butcher Shops',
     intro: 'Our custom butcher paper delivers the combination of function and branding that meat counters, delis, and BBQ restaurants need. Durable, food-safe, and printed with your brand, it handles everything from raw meat wrapping to smoked brisket service.',
     heroImage: '/images/products/custom-butcher-paper/custom butcher paper-PBEE-1.png',
     images: [
@@ -300,10 +300,10 @@ export const products: Product[] = [
   },
   {
     slug: 'custom-butter-paper',
-    title: 'Custom Butter Paper',
-    metaTitle: 'Custom Butter Paper | Printed Butter Wrapping Paper USA',
-    metaDescription: 'Custom printed butter paper for bakeries, dairies, and food businesses in the USA. Food-safe, grease-resistant, fully branded. Get a free quote today.',
-    h1: 'Custom Butter Paper for Bakeries and Food Brands',
+    title: 'Custom Butter Papers',
+    metaTitle: 'Custom Butter Papers | Printed Butter Wrapping Papers USA',
+    metaDescription: 'Custom printed butter papers for bakeries, dairies, and food businesses in the USA. Food-safe, grease-resistant, fully branded. Get a free quote today.',
+    h1: 'Custom Butter Papers for Bakeries and Food Brands',
     intro: 'Our custom butter paper is food-safe, grease-resistant, and ready for your brand. Used in bakeries, delis, and commercial kitchens, it wraps butter, pastries, and confectionery with a clean professional look that sets your products apart.',
     heroImage: '/images/products/custom-butter-paper/Butter paper-PBEE-1.png',
     images: [
@@ -356,10 +356,10 @@ export const products: Product[] = [
   },
   {
     slug: 'custom-cheese-paper',
-    title: 'Custom Cheese Paper',
-    metaTitle: 'Custom Cheese Paper | Branded Cheese Wrapping Paper USA',
-    metaDescription: 'Custom printed cheese paper for cheese shops, delis, and food retailers in the USA. Breathable, food-safe, branded. Wholesale pricing available.',
-    h1: 'Custom Cheese Paper for Cheese Shops and Delis',
+    title: 'Custom Cheese Papers',
+    metaTitle: 'Custom Cheese Papers | Branded Cheese Wrapping Papers USA',
+    metaDescription: 'Custom printed cheese papers for cheese shops, delis, and food retailers in the USA. Breathable, food-safe, branded. Wholesale pricing available.',
+    h1: 'Custom Cheese Papers for Cheese Shops and Delis',
     intro: 'Specialty cheese deserves specialty packaging. Our custom cheese paper is designed with a two-layer breathable structure that keeps cheese fresh longer while showcasing your brand. Trusted by artisan cheese shops, delis, and grocery retailers across the USA.',
     heroImage: '/images/products/custom-cheese-paper/Custom Cheese Paper-TCB-1.png',
     images: [
@@ -412,10 +412,10 @@ export const products: Product[] = [
   },
   {
     slug: 'custom-deli-paper',
-    title: 'Custom Deli Paper',
-    metaTitle: 'Custom Deli Paper | Printed Deli Wrapping Paper USA',
-    metaDescription: 'Custom printed deli paper for delis, sandwich shops, and food service across the USA. Grease-resistant, food-safe, fully branded. Get wholesale pricing.',
-    h1: 'Custom Deli Paper for Delis and Sandwich Shops',
+    title: 'Custom Deli Papers',
+    metaTitle: 'Custom Deli Papers | Printed Deli Wrapping Papers USA',
+    metaDescription: 'Custom printed deli papers for delis, sandwich shops, and food service across the USA. Grease-resistant, food-safe, fully branded. Get wholesale pricing.',
+    h1: 'Custom Deli Papers for Delis and Sandwich Shops',
     intro: 'Our custom deli paper is a staple in delis, sandwich counters, and food service operations across the USA. Grease-resistant, food-safe, and printed with your brand, it handles everything from wrapping subs and hoagies to lining deli baskets and trays.',
     heroImage: '/images/products/custom-deli-paper/Deli paper-PBEE-1.png',
     images: [
@@ -468,10 +468,10 @@ export const products: Product[] = [
   },
   {
     slug: 'custom-fish-and-chip-paper',
-    title: 'Custom Fish and Chip Paper',
-    metaTitle: 'Custom Fish and Chip Paper | Printed Food Paper USA',
-    metaDescription: 'Custom printed fish and chip paper for restaurants, food trucks, and takeout shops in the USA. Grease-resistant, food-safe, branded. Free quote available.',
-    h1: 'Custom Fish and Chip Paper for Restaurants and Takeout',
+    title: 'Custom Fish and Chip Papers',
+    metaTitle: 'Custom Fish and Chip Papers | Printed Food Papers USA',
+    metaDescription: 'Custom printed fish and chip papers for restaurants, food trucks, and takeout shops in the USA. Grease-resistant, food-safe, branded. Free quote available.',
+    h1: 'Custom Fish and Chip Papers for Restaurants and Takeout',
     intro: 'Our custom fish and chip paper is built for the demands of fried food service. Grease-resistant and food-safe, it wraps hot, oily food without soaking through while keeping your brand front and center at every serve.',
     heroImage: '/images/products/custom-fish-and-chip-paper/Custom Fish and Chip Paper-TCB-1.png',
     images: [
@@ -525,7 +525,7 @@ export const products: Product[] = [
   {
     slug: 'custom-food-basket-liners',
     title: 'Custom Food Basket Liners',
-    metaTitle: 'Custom Food Basket Liners | Printed Basket Liner Paper USA',
+    metaTitle: 'Custom Food Basket Liners | Printed Basket Liner Papers USA',
     metaDescription: 'Custom printed food basket liners for restaurants, food trucks, and takeout across the USA. Grease-resistant, food-safe, branded. Get a free quote.',
     h1: 'Custom Food Basket Liners for Restaurants and Takeout',
     intro: 'Our custom food basket liners turn a simple serving basket into a branded experience. Grease-resistant and food-safe, they line fry baskets, burger baskets, and takeout containers while displaying your logo with every order.',
@@ -580,10 +580,10 @@ export const products: Product[] = [
   },
   {
     slug: 'custom-food-paper',
-    title: 'Custom Food Paper',
-    metaTitle: 'Custom Food Paper | Branded Food Wrapping Paper USA',
-    metaDescription: 'Custom printed food paper for all types of food service businesses in the USA. Grease-resistant, food-safe, fully branded. Wholesale pricing available.',
-    h1: 'Custom Food Paper for Food Service Businesses',
+    title: 'Custom Food Papers',
+    metaTitle: 'Custom Food Papers | Branded Food Wrapping Papers USA',
+    metaDescription: 'Custom printed food papers for all types of food service businesses in the USA. Grease-resistant, food-safe, fully branded. Wholesale pricing available.',
+    h1: 'Custom Food Papers for Food Service Businesses',
     intro: 'Custom food paper is the most versatile branded packaging solution in food service. Our printed sheets work across every type of restaurant, food truck, and deli, wrapping everything from sandwiches to tacos while keeping your brand consistently visible.',
     heroImage: '/images/products/custom-food-paper/custom food paper-PBEE-1.png',
     images: [
@@ -636,10 +636,10 @@ export const products: Product[] = [
   },
   {
     slug: 'custom-freezer-paper',
-    title: 'Custom Freezer Paper',
-    metaTitle: 'Custom Freezer Paper | Printed Freezer Wrap Paper USA',
-    metaDescription: 'Custom printed freezer paper for meat shops, butchers, and food producers in the USA. Poly-coated, food-safe, branded. Get wholesale pricing.',
-    h1: 'Custom Freezer Paper for Butchers and Food Producers',
+    title: 'Custom Freezer Papers',
+    metaTitle: 'Custom Freezer Papers | Printed Freezer Wrap Papers USA',
+    metaDescription: 'Custom printed freezer papers for meat shops, butchers, and food producers in the USA. Poly-coated, food-safe, branded. Get wholesale pricing.',
+    h1: 'Custom Freezer Papers for Butchers and Food Producers',
     intro: 'Our custom freezer paper is poly-coated to lock out moisture and freezer burn, keeping meat, fish, and other food items protected during long-term storage. Print your brand directly on the paper for a professional presentation at the point of sale.',
     heroImage: '/images/products/custom-freezer-paper/Custom Freezer Paper-TCB-1.png',
     images: [
@@ -692,10 +692,10 @@ export const products: Product[] = [
   },
   {
     slug: 'custom-fry-paper',
-    title: 'Custom Fry Paper',
-    metaTitle: 'Custom Fry Paper | Printed Fry Wrapping Paper USA',
-    metaDescription: 'Custom printed fry paper for restaurants, food trucks, and fast food operators in the USA. Grease-resistant, food-safe, fully branded. Get a free quote.',
-    h1: 'Custom Fry Paper for Restaurants and Food Trucks',
+    title: 'Custom Fry Papers',
+    metaTitle: 'Custom Fry Papers | Printed Fry Wrapping Papers USA',
+    metaDescription: 'Custom printed fry papers for restaurants, food trucks, and fast food operators in the USA. Grease-resistant, food-safe, fully branded. Get a free quote.',
+    h1: 'Custom Fry Papers for Restaurants and Food Trucks',
     intro: 'Our custom fry paper is built to handle hot, oily fries, onion rings, and fried snacks without soaking through. Grease-resistant and fully printable, it transforms every serve into a branded moment for your restaurant or food truck.',
     heroImage: '/images/products/custom-fry-paper/Custom Fry Paper-TCB-1.png',
     images: [
@@ -748,10 +748,10 @@ export const products: Product[] = [
   },
   {
     slug: 'custom-greaseproof-paper',
-    title: 'Custom Greaseproof Paper',
-    metaTitle: 'Custom Greaseproof Paper | Printed Greaseproof Wrap USA',
-    metaDescription: 'Custom printed greaseproof paper for restaurants, bakeries, and food service in the USA. FDA-compliant, fully branded. Get wholesale pricing today.',
-    h1: 'Custom Greaseproof Paper for Food Service and Bakeries',
+    title: 'Custom Greaseproof Papers',
+    metaTitle: 'Custom Greaseproof Papers | Printed Greaseproof Wrap USA',
+    metaDescription: 'Custom printed greaseproof papers for restaurants, bakeries, and food service in the USA. FDA-compliant, fully branded. Get wholesale pricing today.',
+    h1: 'Custom Greaseproof Papers for Food Service and Bakeries',
     intro: 'Greaseproof paper is the workhorse of food packaging. Our custom-printed greaseproof paper resists oils, fats, and moisture at the molecular level, making it suitable for everything from burger wrapping to bakery lining. Every sheet is printed with your brand.',
     heroImage: '/images/products/custom-greaseproof-paper/Custom Greaseproof Paper -TCB-1.png',
     images: [
@@ -804,10 +804,10 @@ export const products: Product[] = [
   },
   {
     slug: 'custom-heat-seal-paper',
-    title: 'Custom Heat Seal Paper',
-    metaTitle: 'Custom Heat Seal Paper | Printed Heat Seal Packaging USA',
-    metaDescription: 'Custom printed heat seal paper for food packaging and sealing in the USA. Food-safe, tamper-evident, fully branded. Get wholesale pricing today.',
-    h1: 'Custom Heat Seal Paper for Food Packaging',
+    title: 'Custom Heat Seal Papers',
+    metaTitle: 'Custom Heat Seal Papers | Printed Heat Seal Packaging USA',
+    metaDescription: 'Custom printed heat seal papers for food packaging and sealing in the USA. Food-safe, tamper-evident, fully branded. Get wholesale pricing today.',
+    h1: 'Custom Heat Seal Papers for Food Packaging',
     intro: 'Our custom heat seal paper provides a tamper-evident, airtight seal for food products. Ideal for retail food packaging, deli packs, and prepared meal pouches, it combines food safety with professional branding for a complete packaging solution.',
     heroImage: '/images/products/custom-heat-seal-paper/Custom Heat Seal Paper-TCB-1.png',
     images: [
@@ -860,10 +860,10 @@ export const products: Product[] = [
   },
   {
     slug: 'custom-hot-paper',
-    title: 'Custom Hot Paper',
-    metaTitle: 'Custom Hot Paper | Printed Hot Food Wrapping Paper USA',
-    metaDescription: 'Custom printed hot food paper for restaurants and food service in the USA. Heat-resistant, grease-resistant, food-safe, branded. Get a free quote today.',
-    h1: 'Custom Hot Paper for Hot Food Restaurants and Takeout',
+    title: 'Custom Hot Papers',
+    metaTitle: 'Custom Hot Papers | Printed Hot Food Wrapping Papers USA',
+    metaDescription: 'Custom printed hot food papers for restaurants and food service in the USA. Heat-resistant, grease-resistant, food-safe, branded. Get a free quote today.',
+    h1: 'Custom Hot Papers for Hot Food Restaurants and Takeout',
     intro: 'Our custom hot paper is engineered for hot food service. Heat-resistant and grease-resistant, it wraps hot dogs, burritos, paninis, and other hot food items without breaking down, all while carrying your brand on every piece.',
     heroImage: '/images/products/custom-hot-paper/Custom Hot Paper-TCB-1.png',
     images: [
@@ -916,10 +916,10 @@ export const products: Product[] = [
   },
   {
     slug: 'custom-kraft-paper',
-    title: 'Custom Kraft Paper',
-    metaTitle: 'Custom Kraft Paper | Printed Kraft Wrapping Paper USA',
-    metaDescription: 'Custom printed kraft paper for food businesses, retailers, and restaurants in the USA. Eco-friendly, durable, fully branded. Get wholesale pricing.',
-    h1: 'Custom Kraft Paper for Food Businesses and Retail',
+    title: 'Custom Kraft Papers',
+    metaTitle: 'Custom Kraft Papers | Printed Kraft Wrapping Papers USA',
+    metaDescription: 'Custom printed kraft papers for food businesses, retailers, and restaurants in the USA. Eco-friendly, durable, fully branded. Get wholesale pricing.',
+    h1: 'Custom Kraft Papers for Food Businesses and Retail',
     intro: 'Natural kraft paper delivers a premium artisan look that modern consumers respond to. Our custom kraft paper is printed with your brand and available in food-safe grades for wrapping, lining, and packaging across restaurants, delis, bakeries, and retail shops.',
     heroImage: '/images/products/custom-kraft-paper/Custom kraft Paper-PBEE-1.png',
     images: [
@@ -973,7 +973,7 @@ export const products: Product[] = [
   {
     slug: 'custom-pizza-liner',
     title: 'Custom Pizza Liner',
-    metaTitle: 'Custom Pizza Liner | Printed Pizza Box Liner Paper USA',
+    metaTitle: 'Custom Pizza Liner | Printed Pizza Box Liner Papers USA',
     metaDescription: 'Custom printed pizza box liners for pizza restaurants across the USA. Grease-resistant, food-safe, branded. Low minimum orders. Get a free quote today.',
     h1: 'Custom Pizza Liner for Pizza Restaurants and Delivery',
     intro: 'Our custom pizza liners go inside every pizza box, turning a practical insert into branded marketing space. Grease-resistant and food-safe, they keep the pizza box dry while your logo reaches the customer at every delivery and dine-in order.',
@@ -1026,10 +1026,10 @@ export const products: Product[] = [
   },
   {
     slug: 'custom-printed-tissue-paper',
-    title: 'Custom Printed Tissue Paper',
-    metaTitle: 'Custom Printed Tissue Paper | Branded Tissue Paper USA',
-    metaDescription: 'Custom printed tissue paper for retail, food brands, and gift packaging in the USA. Full-color printing, branded, premium quality. Get a free quote.',
-    h1: 'Custom Printed Tissue Paper for Retail and Gift Packaging',
+    title: 'Custom Printed Tissue Papers',
+    metaTitle: 'Custom Printed Tissue Papers | Branded Tissue Papers USA',
+    metaDescription: 'Custom printed tissue papers for retail, food brands, and gift packaging in the USA. Full-color printing, branded, premium quality. Get a free quote.',
+    h1: 'Custom Printed Tissue Papers for Retail and Gift Packaging',
     intro: 'Tissue paper is the finishing touch that makes packaging memorable. Our custom printed tissue paper carries your logo, patterns, and brand colors on every sheet, making it ideal for retail bags, gift boxes, food baskets, and premium product packaging.',
     heroImage: '/images/products/custom-printed-tissue-paper/custom printed tissue paper-TCB-1.png',
     images: [
@@ -1082,10 +1082,10 @@ export const products: Product[] = [
   },
   {
     slug: 'custom-sandwich-paper',
-    title: 'Custom Sandwich Paper',
-    metaTitle: 'Custom Sandwich Paper | Printed Sandwich Wrap Paper USA',
-    metaDescription: 'Custom printed sandwich paper for delis, sandwich shops, and restaurants in the USA. Grease-resistant, food-safe, branded. Get wholesale pricing.',
-    h1: 'Custom Sandwich Paper for Delis and Sandwich Shops',
+    title: 'Custom Sandwich Papers',
+    metaTitle: 'Custom Sandwich Papers | Printed Sandwich Wrap Papers USA',
+    metaDescription: 'Custom printed sandwich papers for delis, sandwich shops, and restaurants in the USA. Grease-resistant, food-safe, branded. Get wholesale pricing.',
+    h1: 'Custom Sandwich Papers for Delis and Sandwich Shops',
     intro: 'Our custom sandwich paper wraps every sub, hoagie, and sandwich in your brand identity. Grease-resistant, food-safe, and printed to your specifications, it is the go-to choice for delis, sandwich counters, and quick service restaurants across the USA.',
     heroImage: '/images/products/custom-sandwich-paper/Custom Sandwich Paper-PBEE-1.png',
     images: [
@@ -1138,10 +1138,10 @@ export const products: Product[] = [
   },
   {
     slug: 'custom-wrapping-paper',
-    title: 'Custom Wrapping Paper',
-    metaTitle: 'Custom Wrapping Paper | Branded Food Wrapping Paper USA',
-    metaDescription: 'Custom printed wrapping paper for food businesses and retail in the USA. Food-safe options available. Fully branded, premium quality. Get a free quote.',
-    h1: 'Custom Wrapping Paper for Food and Retail Businesses',
+    title: 'Custom Wrapping Papers',
+    metaTitle: 'Custom Wrapping Papers | Branded Food Wrapping Papers USA',
+    metaDescription: 'Custom printed wrapping papers for food businesses and retail in the USA. Food-safe options available. Fully branded, premium quality. Get a free quote.',
+    h1: 'Custom Wrapping Papers for Food and Retail Businesses',
     intro: 'Our custom wrapping paper turns every package into a brand statement. Available in food-safe grades for food service and premium finishes for retail, it is printed with your logo and design for a consistent, professional look across all your packaging.',
     heroImage: '/images/products/custom-wrapping-paper/custom wrapping paper-PBEE-1.png',
     images: [
@@ -1192,10 +1192,10 @@ export const products: Product[] = [
   },
   {
     slug: 'glassine-paper',
-    title: 'Glassine Paper',
-    metaTitle: 'Custom Glassine Paper | Printed Glassine Wrapping Paper USA',
-    metaDescription: 'Custom printed glassine paper for bakeries, confectionery, and specialty food in the USA. Translucent, food-safe, grease-resistant. Get a free quote.',
-    h1: 'Custom Glassine Paper for Bakeries and Specialty Food',
+    title: 'Glassine Papers',
+    metaTitle: 'Custom Glassine Papers | Printed Glassine Wrapping Papers USA',
+    metaDescription: 'Custom printed glassine papers for bakeries, confectionery, and specialty food in the USA. Translucent, food-safe, grease-resistant. Get a free quote.',
+    h1: 'Custom Glassine Papers for Bakeries and Specialty Food',
     intro: 'Glassine paper is the choice of bakeries, confectioneries, and specialty food producers who want a semi-transparent, smooth paper with excellent grease resistance. Our custom-printed glassine carries your branding while maintaining the distinctive look that sets artisan products apart.',
     heroImage: '/images/products/glassine-paper/glassine paper-PBEE-1.png',
     images: [
@@ -1248,10 +1248,10 @@ export const products: Product[] = [
   },
   {
     slug: 'parchment-paper',
-    title: 'Parchment Paper',
-    metaTitle: 'Custom Parchment Paper | Printed Parchment Paper USA',
-    metaDescription: 'Custom printed parchment paper for bakeries, restaurants, and food service in the USA. Silicone-coated, oven-safe, food-safe. Get wholesale pricing.',
-    h1: 'Custom Parchment Paper for Bakeries and Restaurants',
+    title: 'Parchment Papers',
+    metaTitle: 'Custom Parchment Papers | Printed Parchment Papers USA',
+    metaDescription: 'Custom printed parchment papers for bakeries, restaurants, and food service in the USA. Silicone-coated, oven-safe, food-safe. Get wholesale pricing.',
+    h1: 'Custom Parchment Papers for Bakeries and Restaurants',
     intro: 'Our custom parchment paper is silicone-coated for non-stick performance in the oven and on the serving board. Used by professional bakers, caterers, and restaurants across the USA, it handles high heat without burning while carrying your brand on every sheet.',
     heroImage: '/images/products/parchment-paper/parchment paper-PBEE-1.png',
     images: [
@@ -1356,10 +1356,10 @@ export const products: Product[] = [
   },
   {
     slug: 'taco-wrapping-paper',
-    title: 'Taco Wrapping Paper',
-    metaTitle: 'Custom Taco Wrapping Paper | Printed Taco Paper USA',
-    metaDescription: 'Custom printed taco wrapping paper for taco shops, Mexican restaurants, and food trucks in the USA. Grease-resistant, food-safe, branded. Get a free quote.',
-    h1: 'Custom Taco Wrapping Paper for Taco Shops and Mexican Restaurants',
+    title: 'Taco Wrapping Papers',
+    metaTitle: 'Custom Taco Wrapping Papers | Printed Taco Papers USA',
+    metaDescription: 'Custom printed taco wrapping papers for taco shops, Mexican restaurants, and food trucks in the USA. Grease-resistant, food-safe, branded. Get a free quote.',
+    h1: 'Custom Taco Wrapping Papers for Taco Shops and Mexican Restaurants',
     intro: 'Give every taco your brand identity with custom-printed taco wrapping paper. Grease-resistant and food-safe, our taco paper handles the sauces, oils, and heat of fresh tacos without soaking through, all while displaying your logo and brand colors.',
     heroImage: '/images/products/taco-wrapping-paper/Custom taco Paper-TCB-1.png',
     images: [

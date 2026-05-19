@@ -7,18 +7,18 @@ import { products } from '../../data/products';
 const categories = [...new Set(products.map(p => p.category))];
 
 const catDescriptions: Record<string, string> = {
-  'Restaurant & Fast Food': 'Wax paper, greaseproof paper, and basket liners for burger restaurants, fast food, and food trucks across the USA. Restaurants that serve deli-style sandwiches also stock our <a href="/products/custom-deli-paper/" class="cat-prose-link">Custom Deli Paper</a>.',
-  'Bakery & Deli': 'Lightweight printed papers for bakeries, pastry counters, and delis handling breads, pastries, and prepared food. For oven-baking applications, our <a href="/products/parchment-paper/" class="cat-prose-link">Parchment Paper</a> is the recommended complement.',
-  'Deli & Sandwich': 'Purpose-built wrapping papers for sandwich shops, sub counters, and deli takeout. Operations that also serve burgers typically pair these with our <a href="/products/custom-burger-paper/" class="cat-prose-link">Custom Burger Paper</a>.',
-  'Butcher & Deli': 'FDA-compliant papers for butcher counters, meat wrapping, and cold-storage packaging. For longer-term freezer storage, see our <a href="/products/custom-freezer-paper/" class="cat-prose-link">Custom Freezer Paper</a>.',
-  'Bakery & Restaurant': 'Silicone-coated and uncoated parchment for professional baking, roasting, and kitchen use at high temperatures. Bakeries that also handle pastry display order alongside our <a href="/products/custom-butter-paper/" class="cat-prose-link">Custom Butter Paper</a>.',
-  'Pizza & Italian': 'Custom-printed pizza liners for independent pizzerias and Italian restaurants that want branded packaging inside every box. Box exteriors are often paired with our <a href="/products/custom-kraft-paper/" class="cat-prose-link">Custom Kraft Paper</a> wrapping.',
-  'Specialty Packaging': 'Premium-grade papers for heat-sealed products, glassine-wrapped specialty foods, and retail food packaging. Also see our <a href="/products/custom-printed-tissue-paper/" class="cat-prose-link">Custom Printed Tissue Paper</a> for gift and retail use.',
-  'Cheese & Specialty': 'Breathable, wax-laminated paper for artisan cheese shops, charcuterie boards, and specialty food retailers. Frequently ordered alongside our <a href="/products/custom-butcher-paper/" class="cat-prose-link">Custom Butcher Paper</a> for full counter service.',
-  'Beverage & Cafe': 'Printed coffee sleeves for independent cafes, coffee trucks, and roasteries. Cafe owners often order <a href="/products/custom-wrapping-paper/" class="cat-prose-link">Custom Wrapping Paper</a> at the same time for baked goods and retail gift packaging.',
-  'General Purpose': 'Versatile kraft and wrapping papers used across food service, retail, and gifting. Often bundled with our <a href="/products/custom-printed-tissue-paper/" class="cat-prose-link">Custom Printed Tissue Paper</a> for complete retail packaging orders.',
-  'Retail & Gifting': 'Printed tissue paper for retail gift packaging, boutique food brands, and e-commerce fulfillment. Pairs well with <a href="/products/custom-kraft-paper/" class="cat-prose-link">Custom Kraft Paper</a> for wrapped parcel presentation.',
-  'Seasonal & Specialty': 'Custom printed seasonal paper for Christmas, holidays, and limited-edition food brand runs. See our year-round <a href="/products/custom-wrapping-paper/" class="cat-prose-link">Custom Wrapping Paper</a> for non-seasonal gift packaging.',
+  'Restaurant & Fast Food': 'Wax papers, greaseproof papers, and basket liners for burger restaurants, fast food, and food trucks across the USA. Restaurants that serve deli-style sandwiches also stock our <a href="/products/custom-deli-paper/" class="cat-prose-link">Custom Deli Papers</a>.',
+  'Bakery & Deli': 'Lightweight printed papers for bakeries, pastry counters, and delis handling breads, pastries, and prepared food. For oven-baking applications, our <a href="/products/parchment-paper/" class="cat-prose-link">Parchment Papers</a> are the recommended complement.',
+  'Deli & Sandwich': 'Purpose-built wrapping papers for sandwich shops, sub counters, and deli takeout. Operations that also serve burgers typically pair these with our <a href="/products/custom-burger-paper/" class="cat-prose-link">Custom Burger Papers</a>.',
+  'Butcher & Deli': 'FDA-compliant papers for butcher counters, meat wrapping, and cold-storage packaging. For longer-term freezer storage, see our <a href="/products/custom-freezer-paper/" class="cat-prose-link">Custom Freezer Papers</a>.',
+  'Bakery & Restaurant': 'Silicone-coated and uncoated parchment papers for professional baking, roasting, and kitchen use at high temperatures. Bakeries that also handle pastry display order alongside our <a href="/products/custom-butter-paper/" class="cat-prose-link">Custom Butter Papers</a>.',
+  'Pizza & Italian': 'Custom-printed pizza liners for independent pizzerias and Italian restaurants that want branded packaging inside every box. Box exteriors are often paired with our <a href="/products/custom-kraft-paper/" class="cat-prose-link">Custom Kraft Papers</a> wrapping.',
+  'Specialty Packaging': 'Premium-grade papers for heat-sealed products, glassine-wrapped specialty foods, and retail food packaging. Also see our <a href="/products/custom-printed-tissue-paper/" class="cat-prose-link">Custom Printed Tissue Papers</a> for gift and retail use.',
+  'Cheese & Specialty': 'Breathable, wax-laminated papers for artisan cheese shops, charcuterie boards, and specialty food retailers. Frequently ordered alongside our <a href="/products/custom-butcher-paper/" class="cat-prose-link">Custom Butcher Papers</a> for full counter service.',
+  'Beverage & Cafe': 'Printed coffee sleeves for independent cafes, coffee trucks, and roasteries. Cafe owners often order <a href="/products/custom-wrapping-paper/" class="cat-prose-link">Custom Wrapping Papers</a> at the same time for baked goods and retail gift packaging.',
+  'General Purpose': 'Versatile kraft and wrapping papers used across food service, retail, and gifting. Often bundled with our <a href="/products/custom-printed-tissue-paper/" class="cat-prose-link">Custom Printed Tissue Papers</a> for complete retail packaging orders.',
+  'Retail & Gifting': 'Printed tissue papers for retail gift packaging, boutique food brands, and e-commerce fulfillment. Pairs well with <a href="/products/custom-kraft-paper/" class="cat-prose-link">Custom Kraft Papers</a> for wrapped parcel presentation.',
+  'Seasonal & Specialty': 'Custom printed seasonal papers for Christmas, holidays, and limited-edition food brand runs. See our year-round <a href="/products/custom-wrapping-paper/" class="cat-prose-link">Custom Wrapping Papers</a> for non-seasonal gift packaging.',
   'Restaurant Marketing': 'Table tent cards for in-restaurant specials promotion, QR code menus, and upsell campaigns. Often used alongside our <a href="/products/custom-food-basket-liners/" class="cat-prose-link">Custom Food Basket Liners</a> for a fully branded table experience.',
 };
 
@@ -159,7 +159,7 @@ const breadcrumbSchema = {
       <div class="products-cta-inner">
         <div class="products-cta-text">
           <h2>Need a Custom Size or Quantity?</h2>
-          <p>We accommodate custom sizes, mixed orders, and wholesale quantities for all products. Contact us for a tailored quote with no obligation.</p>
+          <p>We accommodate custom sizes, mixed orders, and wholesale quantities for all papers. Contact us for a tailored quote with no obligation.</p>
         </div>
         <div class="products-cta-btns">
           <a href="/get-quote" class="btn btn-primary">Get a Free Quote</a>
