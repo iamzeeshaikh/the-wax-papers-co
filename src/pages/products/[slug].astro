@@ -820,8 +820,23 @@ const hasHalf = product.ratingValue % 1 >= 0.5;
     btn.textContent = 'Sending…';
     try {
       const fd = new FormData(iqForm);
-      const payload: Record<string, string> = {};
+      const payload: Record<string, any> = {};
       fd.forEach((val, key) => { if (typeof val === 'string') payload[key] = val; });
+
+      // Encode artwork as base64 if provided
+      const artworkFile = (document.getElementById('iq-artwork') as HTMLInputElement)?.files?.[0];
+      if (artworkFile) {
+        const base64 = await new Promise<string>((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve((reader.result as string).split(',')[1]);
+          reader.onerror = reject;
+          reader.readAsDataURL(artworkFile);
+        });
+        payload.artwork = base64;
+        payload.artworkName = artworkFile.name;
+        payload.artworkType = artworkFile.type;
+      }
+
       const res = await fetch('/api/quote', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

@@ -51,6 +51,15 @@ export default async function handler(req, res) {
       <div style="padding:16px 28px;background:#f8f5ef;font-size:12px;color:#888">thewaxpapers.co</div>
     </div>`;
 
+  const attachments = [];
+  if (body.artwork && body.artworkName) {
+    attachments.push({
+      filename:    body.artworkName,
+      content:     Buffer.from(body.artwork, 'base64'),
+      contentType: body.artworkType || 'application/octet-stream',
+    });
+  }
+
   try {
     const transporter = nodemailer.createTransport({
       host:   process.env.SMTP_HOST   || 'smtp.gmail.com',
@@ -63,11 +72,12 @@ export default async function handler(req, res) {
     });
 
     await transporter.sendMail({
-      from:    `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM_EMAIL}>`,
-      to:      process.env.SMTP_TO,
-      replyTo: email,
-      subject: `Quote: ${product || 'General'} — ${name}`,
+      from:        `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM_EMAIL}>`,
+      to:          process.env.SMTP_TO,
+      replyTo:     email,
+      subject:     `Quote: ${product || 'General'} — ${name}`,
       html,
+      attachments,
     });
 
     return res.status(200).json({ success: true });
