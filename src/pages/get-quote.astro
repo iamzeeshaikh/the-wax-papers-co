@@ -232,12 +232,20 @@ import { products } from '../data/products';
     btn.disabled = true;
     btn.textContent = 'Sending…';
     try {
-      const res = await fetch('/api/quote', { method: 'POST', body: new FormData(form) });
-      if (!res.ok) throw new Error();
+      const fd = new FormData(form);
+      const payload: Record<string, string> = {};
+      fd.forEach((val, key) => { if (typeof val === 'string') payload[key] = val; });
+      const res = await fetch('/api/quote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(json.detail || json.error || 'server error');
       form.reset();
       if (msg) msg.textContent = '✓ Quote request sent! We\'ll respond within 1 business day.';
-    } catch {
-      if (msg) { msg.textContent = 'Something went wrong. Please email info@thewaxpapers.co'; msg.style.color = '#c0392b'; }
+    } catch (err: any) {
+      if (msg) { msg.textContent = 'Error: ' + (err.message || 'Please email info@thewaxpapers.co'); msg.style.color = '#c0392b'; }
     } finally {
       btn.disabled = false;
       btn.textContent = 'Submit Quote Request';

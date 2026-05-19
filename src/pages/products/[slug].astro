@@ -819,8 +819,14 @@ const hasHalf = product.ratingValue % 1 >= 0.5;
     btn.disabled = true;
     btn.textContent = 'Sending…';
     try {
-      const data = new FormData(iqForm);
-      const res = await fetch('/api/quote', { method: 'POST', body: data });
+      const fd = new FormData(iqForm);
+      const payload: Record<string, string> = {};
+      fd.forEach((val, key) => { if (typeof val === 'string') payload[key] = val; });
+      const res = await fetch('/api/quote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
       const json = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(json.detail || json.error || 'server error');
       iqForm.reset();

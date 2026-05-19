@@ -1,43 +1,29 @@
-import { formidable } from 'formidable';
 import nodemailer from 'nodemailer';
-import { readFileSync } from 'fs';
 
 export default async function handler(req, res) {
-  // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
 
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  // Parse multipart form data
-  let fields = {}, files = {};
+  let body = {};
   try {
-    const form = formidable({ maxFileSize: 20 * 1024 * 1024, keepExtensions: true });
-    [fields, files] = await form.parse(req);
+    // Read raw body
+    const chunks = [];
+    for await (const chunk of req) chunks.push(chunk);
+    const raw = Buffer.concat(chunks).toString();
+    body = JSON.parse(raw);
   } catch (err) {
-    console.error('Form parse error:', err.message);
-    return res.status(400).json({ error: 'Failed to parse form' });
+    return res.status(400).json({ error: 'Invalid request body' });
   }
 
-  const get = (key) => (Array.isArray(fields[key]) ? fields[key][0] : fields[key] || '').trim();
+  const { name, email, phone, message, product, company, quantity, size, printing, website } = body;
 
   // Honeypot
-  if (get('website')) return res.status(200).json({ success: true });
-
-  const name     = get('name');
-  const email    = get('email');
-  const phone    = get('phone');
-  const message  = get('message');
-  const product  = get('product');
-  const company  = get('company');
-  const quantity = get('quantity');
-  const size     = get('size');
-  const printing = get('printing');
-
+  if (website) return res.status(200).json({ success: true });
   if (!name || !email) return res.status(400).json({ error: 'Name and email required' });
 
-  // Build HTML email
   const rows = [
     ['Product',  product  || '—'],
     ['Name',     name],
@@ -62,20 +48,9 @@ export default async function handler(req, res) {
         ${product ? `<p style="color:#a3d4b0;margin:6px 0 0;font-size:14px">${product}</p>` : ''}
       </div>
       <table style="width:100%;border-collapse:collapse;border:1px solid #e8e0d4">${rows}</table>
-      ${files.artwork?.[0]?.size > 0 ? '<p style="padding:12px 28px;color:#666;font-size:13px">📎 Artwork file attached.</p>' : ''}
       <div style="padding:16px 28px;background:#f8f5ef;font-size:12px;color:#888">thewaxpapers.co</div>
     </div>`;
 
-  // Attachments
-  const attachments = [];
-  const art = files.artwork?.[0];
-  if (art && art.size > 0) {
-    try {
-      attachments.push({ filename: art.originalFilename || 'artwork', content: readFileSync(art.filepath) });
-    } catch (_) {}
-  }
-
-  // Send via SMTP
   try {
     const transporter = nodemailer.createTransport({
       host:   process.env.SMTP_HOST   || 'smtp.gmail.com',
@@ -93,7 +68,6 @@ export default async function handler(req, res) {
       replyTo: email,
       subject: `Quote: ${product || 'General'} — ${name}`,
       html,
-      attachments,
     });
 
     return res.status(200).json({ success: true });
