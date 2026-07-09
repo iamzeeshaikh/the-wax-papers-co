@@ -22,3 +22,7 @@ npm-debug.log*
 # OS
 Thumbs.db
 .vercel
+
+# macOS AppleDouble (exFAT)
+._*
+.AppleDouble
