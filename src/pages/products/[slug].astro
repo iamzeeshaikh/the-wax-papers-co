@@ -62,6 +62,53 @@ const breadcrumbSchema = {
 
 const fullStars = Math.floor(product.ratingValue);
 const hasHalf = product.ratingValue % 1 >= 0.5;
+
+// Vary section headings and weave each product's own materials, printing
+// options, and uses into the narrative sections, so no two product pages share
+// identical headings or boilerplate prose. The lists differ per product, so the
+// interpolated paragraphs read differently on every page.
+const headingSeed = product.slug.split('').reduce((sum, ch) => sum + ch.charCodeAt(0), 0);
+const pickVariant = (arr, offset = 0) => arr[(headingSeed + offset) % arr.length];
+const joinLower = (arr) => {
+  const items = arr.map((x) => x.toLowerCase());
+  if (items.length <= 1) return items[0] || '';
+  return items.slice(0, -1).join(', ') + ', and ' + items[items.length - 1];
+};
+const catLower = product.category.toLowerCase();
+const materialsPhrase = joinLower(product.materials);
+const printingPhrase = joinLower(product.printingOptions);
+const usesPhrase = joinLower(product.commonUses.slice(0, 3));
+
+const usesHeading = pickVariant([
+  `Common Uses for ${product.title}`,
+  `Where ${product.title} Are Used`,
+  `Popular Applications for ${product.title}`,
+]);
+const materialsHeading = pickVariant([
+  `${product.title} Material Options`,
+  `Materials Available for ${product.title}`,
+  `Stock Choices for ${product.title}`,
+], 1);
+const printingHeading = pickVariant([
+  `Printing Options for ${product.title}`,
+  `How You Can Print ${product.title}`,
+  `Custom Print Choices for ${product.title}`,
+], 2);
+const specsHeading = pickVariant([
+  `${product.title} Specifications`,
+  `${product.title} Specs at a Glance`,
+  `Technical Details for ${product.title}`,
+], 1);
+const brandHeading = pickVariant([
+  `Branded ${product.title} Customers Notice`,
+  `${product.title} That Represent Your Brand`,
+  `Make Your ${product.title} Unmistakably Yours`,
+], 2);
+const foodSafeHeading = pickVariant([
+  `Food-Safe ${product.title} for Direct Contact`,
+  `FDA-Compliant ${product.title} You Can Trust`,
+  `Why ${product.title} Is Safe for Food`,
+], 1);
 ---
 
 <BaseLayout
@@ -183,7 +230,7 @@ const hasHalf = product.ratingValue % 1 >= 0.5;
         <div class="product-answer-text">
           <h2 class="product-answer-h2">What Is {product.title}?</h2>
           <p>
-            {product.title} from The Wax Papers are custom-printed food packaging papers manufactured to FDA standards for direct food contact. Each sheet is made using food-safe materials and printed with your logo, brand colors, or design using food-grade inks. Used by restaurants, delis, bakeries, and food trucks across all 50 states.
+            {product.title} from The Wax Papers are custom-printed food packaging papers manufactured to FDA standards for direct food contact. Each sheet is produced from {materialsPhrase} and printed with your logo, brand colors, or a full-sheet design using food-grade inks — trusted for {usesPhrase} by food businesses across all 50 states.
           </p>
           <p>
             <strong>Key facts:</strong> Minimum order 500 sheets · Ships nationwide from Bensalem, PA · 8–12 business day production · Free digital proof included · No setup fees on standard orders.
@@ -221,7 +268,7 @@ const hasHalf = product.ratingValue % 1 >= 0.5;
           </ul>
         </div>
         <div class="product-uses">
-          <h2>Common Uses &amp; Applications</h2>
+          <h2>{usesHeading}</h2>
           <ul class="uses-list">
             {product.commonUses.map(u => (
               <li>
@@ -237,7 +284,7 @@ const hasHalf = product.ratingValue % 1 >= 0.5;
           )}
         </div>
         <div class="product-materials">
-          <h2>Available Materials</h2>
+          <h2>{materialsHeading}</h2>
           <div class="materials-tags">
             {product.materials.map(m => (
               <span class="material-tag">{m}</span>
@@ -250,7 +297,7 @@ const hasHalf = product.ratingValue % 1 >= 0.5;
           )}
         </div>
         <div class="product-printing">
-          <h2>Custom Printing Options</h2>
+          <h2>{printingHeading}</h2>
           <div class="materials-tags">
             {product.printingOptions.map(o => (
               <span class="print-tag">{o}</span>
@@ -265,7 +312,7 @@ const hasHalf = product.ratingValue % 1 >= 0.5;
   <section class="section specs-section">
     <div class="container">
       <div class="specs-wrap">
-        <h2 class="specs-title">Product Specifications</h2>
+        <h2 class="specs-title">{specsHeading}</h2>
         <table class="specs-table" aria-label="Product specifications">
           <tbody>
             {product.specs.map(s => (
@@ -368,12 +415,12 @@ const hasHalf = product.ratingValue % 1 >= 0.5;
       <div class="split-section">
         <div class="split-section-content">
           <span class="section-tag">Quality You Can See</span>
-          <h2>Custom Printing That Represents Your Brand</h2>
+          <h2>{brandHeading}</h2>
           <p>
-            Every sheet of {product.title} from The Wax Papers is printed using food-safe inks that stay vivid through handling, service, and delivery. Whether you choose a single-color logo or a full-color design across the entire sheet, the result is a professional presentation that customers notice.
+            Every sheet of {product.title} is printed with food-safe inks that stay vivid through handling, service, and delivery. Choose from {printingPhrase} so your packaging matches your brand exactly — from a simple single-color logo to a full-color design across the whole sheet.
           </p>
           <p>
-            Our pre-press team reviews your artwork before production begins and provides a digital proof for your approval. There are no hidden setup charges, and your design is stored for accurate, consistent reorders.
+            Our pre-press team reviews your artwork before production and sends a digital proof for approval. There are no hidden setup charges on standard {product.title.toLowerCase()} orders, and your design is stored for accurate, consistent reorders.
           </p>
           <a href="/get-quote" class="btn btn-primary">Get Printing Quote</a>
         </div>
@@ -405,12 +452,12 @@ const hasHalf = product.ratingValue % 1 >= 0.5;
         </div>
         <div class="split-section-content">
           <span class="section-tag">Food-Safe Performance</span>
-          <h2>FDA-Compliant and Safe for Direct Food Contact</h2>
+          <h2>{foodSafeHeading}</h2>
           <p>
-            All {product.title} supplied by The Wax Papers is manufactured using FDA-compliant materials. Every coating, ink, and adhesive used in production meets or exceeds food safety standards for direct food contact applications in the USA.
+            All {product.title} supplied by The Wax Papers is manufactured from FDA-compliant materials — every coating, ink, and adhesive across our {materialsPhrase} meets or exceeds food-safety standards for direct food contact in the USA.
           </p>
           <p>
-            We supply restaurants, delis, bakeries, and food trucks nationwide. Our products are trusted in professional kitchens because they perform consistently in real service conditions — not just in testing environments.
+            For {catLower} operations and other food businesses, our {product.title.toLowerCase()} hold up in real service conditions, not just in testing. We supply restaurants, delis, bakeries, and food trucks nationwide.
           </p>
           <ul class="split-list">
             <li>✓ FDA-compliant materials and inks</li>
