@@ -132,7 +132,7 @@ export const products: Product[] = [
   },
   {
     slug: 'coffee-sleeves',
-    title: 'Coffee Sleeve',
+    title: 'Coffee Sleeves',
     metaTitle: 'Custom Coffee Sleeves | Branded Cup Sleeves USA | The Wax Papers',
     metaDescription: 'Custom printed coffee sleeves for cafes, coffee shops, and restaurants across the USA. Food-safe, eco-friendly, full-color branding. Get a free quote.',
     h1: 'Custom Coffee Sleeves for Cafes and Coffee Shops',
@@ -972,10 +972,10 @@ export const products: Product[] = [
   },
   {
     slug: 'custom-pizza-liners',
-    title: 'Custom Pizza Liner',
-    metaTitle: 'Custom Pizza Liner | Printed Pizza Box Liner Papers USA',
+    title: 'Custom Pizza Liners',
+    metaTitle: 'Custom Pizza Liners | Printed Pizza Box Liner Papers USA',
     metaDescription: 'Custom printed pizza box liners for pizza restaurants across the USA. Grease-resistant, food-safe, branded. Low minimum orders. Get a free quote today.',
-    h1: 'Custom Pizza Liner for Pizza Restaurants and Delivery',
+    h1: 'Custom Pizza Liners for Pizza Restaurants and Delivery',
     intro: 'Our custom pizza liners go inside every pizza box, turning a practical insert into branded marketing space. Grease-resistant and food-safe, they keep the pizza box dry while your logo reaches the customer at every delivery and dine-in order.',
     heroImage: '/images/products/custom-pizza-liner/Pizza Liner-PBEE-1.png',
     images: [
