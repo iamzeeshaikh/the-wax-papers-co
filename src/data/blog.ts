@@ -19,7 +19,7 @@ export const blogPosts: BlogPost[] = [
     h1: 'What Is Custom Wax Paper Used For?',
     date: '2025-03-12',
     excerpt: 'Custom wax paper has dozens of practical applications in food service. From wrapping burgers to lining baskets, here is how US food businesses use it every day.',
-    relatedProducts: ['custom-burger-paper', 'custom-deli-paper', 'custom-food-basket-liners'],
+    relatedProducts: ['custom-burger-papers', 'custom-deli-papers', 'custom-food-basket-liners'],
     content: `
 ## The Basics of Wax Paper in Food Service
 
@@ -33,13 +33,13 @@ Today, wax paper is used far beyond simple moisture control. With custom printin
 
 One of the most common uses of custom wax paper in US restaurants is wrapping burgers, sandwiches, and subs. The wax coating helps keep moisture in and prevents grease from soaking through to the wrapper exterior, making it clean for the customer to handle.
 
-Our [custom burger paper](/products/custom-burger-paper) is purpose-built for this use, with a heavy-duty grease barrier and full-color printing that puts your brand on every order.
+Our [custom burger paper](/products/custom-burger-papers) is purpose-built for this use, with a heavy-duty grease barrier and full-color printing that puts your brand on every order.
 
 ### 2. Deli Counter Lining and Wrapping
 
 Delis across the USA rely on wax paper daily for wrapping cold cuts, cheeses, and prepared sandwiches. It keeps food fresh and prevents cross-contamination between products on the counter.
 
-Our [custom deli paper](/products/custom-deli-paper) works for both counter lining and full wrapping of deli items.
+Our [custom deli paper](/products/custom-deli-papers) works for both counter lining and full wrapping of deli items.
 
 ### 3. Food Basket and Tray Lining
 
@@ -55,7 +55,7 @@ Bakeries use wax paper to wrap pastries, croissants, muffins, and other baked go
 
 Wax paper wraps are popular in taco shops and Mexican restaurants across the USA. The paper handles sauces, oils, and heat without breaking down, making it practical for busy service environments.
 
-Our [taco wrapping paper](/products/taco-wrapping-paper) is a popular choice for food trucks and taco restaurants.
+Our [taco wrapping paper](/products/taco-wrapping-papers) is a popular choice for food trucks and taco restaurants.
 
 ### 6. Food Truck Packaging
 
@@ -105,7 +105,7 @@ A: Minimum order starts at 500 sheets. Contact us for volume pricing on larger q
     h1: 'Custom Wax Paper vs Greaseproof Paper: What Is the Difference?',
     date: '2025-04-03',
     excerpt: 'Both wax paper and greaseproof paper are popular in food service, but they work differently. Here is what you need to know before choosing for your business.',
-    relatedProducts: ['custom-greaseproof-paper', 'custom-burger-paper', 'parchment-paper'],
+    relatedProducts: ['custom-greaseproof-papers', 'custom-burger-papers', 'parchment-papers'],
     content: `
 ## Understanding the Two Most Common Food Papers
 
@@ -137,7 +137,7 @@ Greaseproof paper achieves its barrier properties through a manufacturing proces
 - Can be used at moderate oven temperatures
 - Available in standard and silicone-coated versions
 
-Our [custom greaseproof paper](/products/custom-greaseproof-paper) is used by restaurants, bakeries, and delis that handle oily or fatty foods including fried items, burgers, and pastries.
+Our [custom greaseproof paper](/products/custom-greaseproof-papers) is used by restaurants, bakeries, and delis that handle oily or fatty foods including fried items, burgers, and pastries.
 
 ## Head-to-Head Comparison
 
@@ -167,13 +167,13 @@ Our [custom greaseproof paper](/products/custom-greaseproof-paper) is used by re
 - You need baking sheet lining
 - High oven temperatures (above 350°F) are involved
 
-Our [parchment paper](/products/parchment-paper) is the preferred choice for professional bakers and commercial kitchens that use convection ovens.
+Our [parchment paper](/products/parchment-papers) is the preferred choice for professional bakers and commercial kitchens that use convection ovens.
 
 ## Can You Print on Both?
 
 Yes. Both wax paper and greaseproof paper accept custom printing using food-safe inks. Our full-color and logo-only print options are available for both paper types.
 
-For burger restaurants, our [custom burger paper](/products/custom-burger-paper) is available in both wax and greaseproof grades depending on your preferred material.
+For burger restaurants, our [custom burger paper](/products/custom-burger-papers) is available in both wax and greaseproof grades depending on your preferred material.
 
 ## FAQs
 
@@ -198,7 +198,7 @@ A: Uncoated greaseproof paper is recyclable and compostable. Wax paper is neithe
     h1: 'Best Food Wrapping Paper for Restaurants in the USA',
     date: '2025-05-14',
     excerpt: 'Choosing the right wrapping paper for your restaurant affects both food quality and brand presentation. Here is a breakdown of the best options by food type.',
-    relatedProducts: ['custom-burger-paper', 'custom-deli-paper', 'custom-food-basket-liners', 'custom-greaseproof-paper'],
+    relatedProducts: ['custom-burger-papers', 'custom-deli-papers', 'custom-food-basket-liners', 'custom-greaseproof-papers'],
     content: `
 ## Why Wrapping Paper Matters for Restaurants
 
@@ -213,45 +213,45 @@ Burgers are juicy, greasy, and hot. The wrapping paper needs to:
 - Stay intact while the customer holds the burger
 - Look professional even after wrapping
 
-**Best choice:** Our [custom burger paper](/products/custom-burger-paper) uses a heavy-duty grease barrier coating and is available in wax, greaseproof, and foil-lined options. For premium branding, choose full-color printing with your logo on every sheet.
+**Best choice:** Our [custom burger paper](/products/custom-burger-papers) uses a heavy-duty grease barrier coating and is available in wax, greaseproof, and foil-lined options. For premium branding, choose full-color printing with your logo on every sheet.
 
 ## For Deli Counters and Sandwich Shops
 
 Delis deal with a wide range of foods — cold cuts, cheeses, hoagies, subs — each with different wrapping needs.
 
-**Best choice:** [Custom deli paper](/products/custom-deli-paper) is the industry standard for good reason. It is lightweight, grease-resistant, and versatile enough to wrap, line trays, or cover counter surfaces. Our [custom sandwich paper](/products/custom-sandwich-paper) is also popular for sub shops and quick service operations.
+**Best choice:** [Custom deli paper](/products/custom-deli-papers) is the industry standard for good reason. It is lightweight, grease-resistant, and versatile enough to wrap, line trays, or cover counter surfaces. Our [custom sandwich paper](/products/custom-sandwich-papers) is also popular for sub shops and quick service operations.
 
 ## For Pizza Restaurants
 
 Pizza needs a liner that absorbs grease from the base while keeping the box dry and structural during delivery.
 
-**Best choice:** Custom pizza liners sit inside the box and protect it from the pizza's oils. They also provide valuable print space for your brand. Our [custom pizza liner](/products/custom-pizza-liner) is available in sizes from 8" to 16" for all standard box formats.
+**Best choice:** Custom pizza liners sit inside the box and protect it from the pizza's oils. They also provide valuable print space for your brand. Our [custom pizza liner](/products/custom-pizza-liners) is available in sizes from 8" to 16" for all standard box formats.
 
 ## For Taco Shops and Mexican Restaurants
 
 Tacos are notoriously messy. Hot sauces, salsas, and oily meats require paper that can handle both moisture and grease without falling apart.
 
-**Best choice:** Our [taco wrapping paper](/products/taco-wrapping-paper) is grease and sauce-resistant, handles heat, and is available in full-color printing for vibrant branded presentation.
+**Best choice:** Our [taco wrapping paper](/products/taco-wrapping-papers) is grease and sauce-resistant, handles heat, and is available in full-color printing for vibrant branded presentation.
 
 ## For Fish and Chip Shops
 
 Fish and chips are among the highest-grease food items in any food service setting. The paper must provide a heavy barrier without the grease bleeding through.
 
-**Best choice:** Our [custom fish and chip paper](/products/custom-fish-and-chip-paper) uses a heavy-duty greaseproof coating. A newsprint-style custom design is a popular choice for giving your shop a classic look.
+**Best choice:** Our [custom fish and chip paper](/products/custom-fish-and-chip-papers) uses a heavy-duty greaseproof coating. A newsprint-style custom design is a popular choice for giving your shop a classic look.
 
 ## For Food Trucks
 
 Food trucks need versatile paper that works for multiple food types without keeping a large inventory.
 
-**Best choice:** [Custom food paper](/products/custom-food-paper) is the most flexible option for food trucks. One printed design can work for wrapping burgers, lining baskets, and serving other items — keeping packaging simple and branded.
+**Best choice:** [Custom food paper](/products/custom-food-papers) is the most flexible option for food trucks. One printed design can work for wrapping burgers, lining baskets, and serving other items — keeping packaging simple and branded.
 
 ## For Bakeries
 
 Bakeries have different needs — non-stick baking paper for the oven, and presentation paper for display and customer wrapping.
 
 **Best choice:**
-- **Oven use:** [Parchment paper](/products/parchment-paper) is oven-safe up to 450°F and non-stick
-- **Counter display and takeout:** [Custom butter paper](/products/custom-butter-paper) or greaseproof paper works well for wrapping pastries
+- **Oven use:** [Parchment paper](/products/parchment-papers) is oven-safe up to 450°F and non-stick
+- **Counter display and takeout:** [Custom butter paper](/products/custom-butter-papers) or greaseproof paper works well for wrapping pastries
 
 ## Key Factors When Choosing Restaurant Wrapping Paper
 
@@ -281,7 +281,7 @@ A: Yes. Our minimum order starts at 500 sheets, which is accessible for new rest
     h1: 'How Custom Burger Paper Helps Food Brands Grow',
     date: '2025-06-19',
     excerpt: 'Custom burger paper is more than packaging — it is a branding tool that puts your identity in front of customers at the most important moment of their meal.',
-    relatedProducts: ['custom-burger-paper', 'custom-deli-paper', 'custom-food-basket-liners'],
+    relatedProducts: ['custom-burger-papers', 'custom-deli-papers', 'custom-food-basket-liners'],
     content: `
 ## Packaging Is Part of the Product
 
@@ -301,7 +301,7 @@ Consistency builds trust. Trust builds repeat business.
 
 Consider how many burgers a busy restaurant serves in a week. Each one wrapped in custom paper is a brand impression — at the table, at the counter, in the delivery bag, and when a customer photographs their meal.
 
-Our [custom burger paper](/products/custom-burger-paper) uses full-color printing to make your brand look as sharp on the paper as it does on your signage.
+Our [custom burger paper](/products/custom-burger-papers) uses full-color printing to make your brand look as sharp on the paper as it does on your signage.
 
 ### Encourages Social Media Sharing
 
@@ -338,8 +338,8 @@ Our design team can provide templates and guidance if you do not have artwork re
 Many burger restaurants order multiple products for a complete branded experience:
 
 - [Custom food basket liners](/products/custom-food-basket-liners) for serving baskets
-- [Custom deli paper](/products/custom-deli-paper) for counter use and wrapping side items
-- [Custom greaseproof paper](/products/custom-greaseproof-paper) for high-grease food items
+- [Custom deli paper](/products/custom-deli-papers) for counter use and wrapping side items
+- [Custom greaseproof paper](/products/custom-greaseproof-papers) for high-grease food items
 
 Keeping a consistent design across all packaging formats creates a cohesive visual identity.
 
@@ -366,7 +366,7 @@ A: Research consistently shows that branded packaging improves brand perception 
     h1: 'Deli Paper vs Parchment Paper: Which Is Right for Your Business?',
     date: '2025-08-07',
     excerpt: 'Deli paper and parchment paper are often confused. Here is a clear breakdown of what makes them different and when to use each one.',
-    relatedProducts: ['custom-deli-paper', 'parchment-paper', 'custom-greaseproof-paper'],
+    relatedProducts: ['custom-deli-papers', 'parchment-papers', 'custom-greaseproof-papers'],
     content: `
 ## Two Different Papers for Two Different Jobs
 
@@ -386,7 +386,7 @@ Deli paper is a light, flexible paper used for wrapping, lining, and serving foo
 - Available in white and kraft
 - Printable with full-color custom branding
 
-Our [custom deli paper](/products/custom-deli-paper) is used by thousands of delis, sandwich shops, and food service operations across the USA.
+Our [custom deli paper](/products/custom-deli-papers) is used by thousands of delis, sandwich shops, and food service operations across the USA.
 
 ## What Is Parchment Paper?
 
@@ -400,7 +400,7 @@ Parchment paper is a heavier, silicone-coated paper designed primarily for bakin
 - Available in bleached white and unbleached natural
 - Used in bakeries, commercial kitchens, and food presentation
 
-Our [parchment paper](/products/parchment-paper) is available in custom-printed versions for bakeries that want branding on their baking sheets and service paper.
+Our [parchment paper](/products/parchment-papers) is available in custom-printed versions for bakeries that want branding on their baking sheets and service paper.
 
 ## Key Differences at a Glance
 
@@ -438,7 +438,7 @@ For bakeries, printed parchment paper carries your brand into the oven and onto 
 
 ## What About Greaseproof Paper?
 
-[Custom greaseproof paper](/products/custom-greaseproof-paper) sits between the two in terms of grease resistance. It is heavier than standard deli paper and handles higher grease levels, but it is not silicone-coated like parchment. It is a popular choice for burger restaurants and fried food service.
+[Custom greaseproof paper](/products/custom-greaseproof-papers) sits between the two in terms of grease resistance. It is heavier than standard deli paper and handles higher grease levels, but it is not silicone-coated like parchment. It is a popular choice for burger restaurants and fried food service.
 
 ## FAQs
 
@@ -463,7 +463,7 @@ A: Custom deli paper is the most widely used paper type in US sandwich shops and
     h1: 'Best Food Basket Liners for Takeout Restaurants and Food Trucks',
     date: '2025-09-25',
     excerpt: 'Food basket liners keep orders clean, protect baskets, and brand every service. Here is how to choose the best liner for your takeout operation.',
-    relatedProducts: ['custom-food-basket-liners', 'custom-fry-paper', 'custom-greaseproof-paper'],
+    relatedProducts: ['custom-food-basket-liners', 'custom-fry-papers', 'custom-greaseproof-papers'],
     content: `
 ## Why Food Basket Liners Matter for Takeout
 
@@ -489,7 +489,7 @@ Used for lighter food items and premium presentation. Tissue liners have less gr
 
 ### Parchment Paper Liners
 
-[Parchment paper](/products/parchment-paper) liners offer a premium non-stick surface and are popular in artisan burger restaurants and farm-to-table casual dining.
+[Parchment paper](/products/parchment-papers) liners offer a premium non-stick surface and are popular in artisan burger restaurants and farm-to-table casual dining.
 
 ## Choosing the Right Size
 
@@ -516,7 +516,7 @@ Full-color [custom food basket liners](/products/custom-food-basket-liners) are 
 
 Food trucks operate with limited space and inventory. A single style of custom basket liner that handles multiple food types is the most efficient solution.
 
-Our [custom fry paper](/products/custom-fry-paper) also doubles as a basket liner for food trucks serving primarily fried food items.
+Our [custom fry paper](/products/custom-fry-papers) also doubles as a basket liner for food trucks serving primarily fried food items.
 
 ## For Fast Casual Restaurants
 
@@ -552,7 +552,7 @@ A: Greaseproof and wax-coated liners are generally not recyclable due to the coa
     h1: 'How to Choose Custom Printed Food Paper for Your Business',
     date: '2025-11-18',
     excerpt: 'Choosing the right custom food paper involves more than picking a design. Here is a practical guide to material, size, print method, and ordering for US food businesses.',
-    relatedProducts: ['custom-food-paper', 'custom-deli-paper', 'custom-greaseproof-paper', 'custom-burger-paper'],
+    relatedProducts: ['custom-food-papers', 'custom-deli-papers', 'custom-greaseproof-papers', 'custom-burger-papers'],
     content: `
 ## The Decision Starts With Your Food
 
@@ -572,7 +572,7 @@ The food type dictates the paper type, which dictates the coating, which dictate
 | Cold cuts and cheese | Deli paper or cheese paper |
 | Freezer storage | Poly-coated freezer paper |
 
-For a general-purpose solution that covers most food types, our [custom food paper](/products/custom-food-paper) in greaseproof grade handles the widest range of applications.
+For a general-purpose solution that covers most food types, our [custom food paper](/products/custom-food-papers) in greaseproof grade handles the widest range of applications.
 
 ## Step 2: Choose Your Paper Material
 
@@ -591,7 +591,7 @@ Custom food paper can carry anything from a simple one-color logo to a full-colo
 **Full-color CMYK** — maximum visual impact, recommended for competitive markets
 **All-over pattern** — high brand recognition, particularly effective for delivery and social media
 
-Our [custom deli paper](/products/custom-deli-paper) and [custom greaseproof paper](/products/custom-greaseproof-paper) are both available in all print options.
+Our [custom deli paper](/products/custom-deli-papers) and [custom greaseproof paper](/products/custom-greaseproof-papers) are both available in all print options.
 
 ## Step 4: Select the Right Size
 
@@ -651,7 +651,7 @@ A: Contact us with your food type and application. We will recommend the most su
     h1: 'Wholesale Custom Wax Paper Buying Guide for US Businesses',
     date: '2026-01-22',
     excerpt: 'Buying custom wax paper wholesale in the USA can save your restaurant or food business significant money. Here is everything you need to know before you order.',
-    relatedProducts: ['custom-food-paper', 'custom-burger-paper', 'custom-deli-paper', 'custom-greaseproof-paper'],
+    relatedProducts: ['custom-food-papers', 'custom-burger-papers', 'custom-deli-papers', 'custom-greaseproof-papers'],
     content: `
 ## Why Buy Custom Wax Paper Wholesale?
 

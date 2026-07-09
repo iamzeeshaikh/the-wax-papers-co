@@ -21,7 +21,7 @@ export interface Product {
 
 export const products: Product[] = [
   {
-    slug: 'bagel-paper',
+    slug: 'bagel-papers',
     title: 'Bagel Papers',
     metaTitle: 'Custom Bagel Papers | Printed Bagel Wrapping Papers USA',
     metaDescription: 'Order custom bagel papers for your bakery or deli. Food-safe, grease-resistant, fully branded with your logo. Wholesale pricing across the USA.',
@@ -60,7 +60,7 @@ export const products: Product[] = [
       { label: 'Food Safety', value: 'FDA compliant, food-safe inks' },
       { label: 'Shipping', value: 'Nationwide USA' },
     ],
-    relatedProducts: ['custom-deli-paper', 'custom-food-paper', 'custom-sandwich-paper'],
+    relatedProducts: ['custom-deli-papers', 'custom-food-papers', 'custom-sandwich-papers'],
     faqs: [
       { q: 'Is bagel paper food safe?', a: 'Yes. All our bagel paper uses FDA-compliant materials and food-safe inks that are safe for direct contact with food.' },
       { q: 'What sizes are available?', a: 'Standard sizes include 10x10", 12x12", and 14x14". Custom cut sizes are available on request.' },
@@ -77,7 +77,7 @@ export const products: Product[] = [
     category: 'Bakery & Deli',
   },
   {
-    slug: 'christmas-wrapping-paper',
+    slug: 'christmas-wrapping-papers',
     title: 'Christmas Wrapping Papers',
     metaTitle: 'Custom Christmas Wrapping Papers | Branded Holiday Papers USA',
     metaDescription: 'Custom printed Christmas wrapping papers for retail, food brands, and restaurants. Festive designs with your logo. Order wholesale across the USA.',
@@ -114,7 +114,7 @@ export const products: Product[] = [
       { label: 'Food Safety', value: 'Food-safe inks available' },
       { label: 'Shipping', value: 'Nationwide USA' },
     ],
-    relatedProducts: ['custom-wrapping-paper', 'custom-printed-tissue-paper', 'custom-kraft-paper'],
+    relatedProducts: ['custom-wrapping-papers', 'custom-printed-tissue-papers', 'custom-kraft-papers'],
     faqs: [
       { q: 'Can I use this for wrapping food items?', a: 'Yes, we offer food-safe versions of our Christmas wrapping paper suitable for direct food contact.' },
       { q: 'When should I order for the Christmas season?', a: 'We recommend ordering at least 6–8 weeks before the holiday season to allow for production and shipping.' },
@@ -131,7 +131,7 @@ export const products: Product[] = [
     category: 'Seasonal & Specialty',
   },
   {
-    slug: 'coffee-sleeve',
+    slug: 'coffee-sleeves',
     title: 'Coffee Sleeve',
     metaTitle: 'Custom Coffee Sleeves | Branded Cup Sleeves USA | The Wax Papers',
     metaDescription: 'Custom printed coffee sleeves for cafes, coffee shops, and restaurants across the USA. Food-safe, eco-friendly, full-color branding. Get a free quote.',
@@ -170,7 +170,7 @@ export const products: Product[] = [
       { label: 'Food Safety', value: 'FDA compliant, BPA-free' },
       { label: 'Shipping', value: 'Nationwide USA' },
     ],
-    relatedProducts: ['custom-hot-paper', 'custom-food-paper', 'custom-printed-tissue-paper'],
+    relatedProducts: ['custom-hot-papers', 'custom-food-papers', 'custom-printed-tissue-papers'],
     faqs: [
       { q: 'What cup sizes do the sleeves fit?', a: 'Our sleeves are available in sizes to fit 8oz, 12oz, 16oz, and 20oz cups. Custom sizes can be accommodated.' },
       { q: 'Are the sleeves heat resistant?', a: 'Yes. Our coffee sleeves use insulating board that protects hands from hot beverages.' },
@@ -187,7 +187,7 @@ export const products: Product[] = [
     category: 'Beverage & Cafe',
   },
   {
-    slug: 'custom-burger-paper',
+    slug: 'custom-burger-papers',
     title: 'Custom Burger Papers',
     metaTitle: 'Custom Burger Papers | Branded Burger Wrapping Papers USA',
     metaDescription: 'Custom printed burger papers for restaurants, burger joints, and food trucks across the USA. Grease-resistant, food-safe, fully branded. Get a free quote.',
@@ -226,7 +226,7 @@ export const products: Product[] = [
       { label: 'Food Safety', value: 'FDA compliant, grease-resistant' },
       { label: 'Shipping', value: 'Nationwide USA' },
     ],
-    relatedProducts: ['custom-deli-paper', 'custom-food-paper', 'custom-greaseproof-paper'],
+    relatedProducts: ['custom-deli-papers', 'custom-food-papers', 'custom-greaseproof-papers'],
     faqs: [
       { q: 'Is the burger paper grease-proof?', a: 'Yes. Our burger paper uses a grease-resistant coating that prevents oil and moisture from soaking through.' },
       { q: 'Can I wrap both burgers and sandwiches in this paper?', a: 'Absolutely. The paper works well for burgers, sandwiches, wraps, and any hand-held food item.' },
@@ -243,7 +243,7 @@ export const products: Product[] = [
     category: 'Restaurant & Fast Food',
   },
   {
-    slug: 'custom-butcher-paper',
+    slug: 'custom-butcher-papers',
     title: 'Custom Butcher Papers',
     metaTitle: 'Custom Butcher Papers | Printed Butcher Papers for Meat USA',
     metaDescription: 'Custom printed butcher papers for delis, butcher shops, and BBQ restaurants across the USA. Food-safe, grease-resistant, branded. Get wholesale pricing.',
@@ -282,7 +282,7 @@ export const products: Product[] = [
       { label: 'Food Safety', value: 'FDA compliant for direct meat contact' },
       { label: 'Shipping', value: 'Nationwide USA' },
     ],
-    relatedProducts: ['custom-freezer-paper', 'parchment-paper', 'custom-deli-paper'],
+    relatedProducts: ['custom-freezer-papers', 'parchment-papers', 'custom-deli-papers'],
     faqs: [
       { q: 'Can butcher paper be used for raw meat?', a: 'Yes. Our butcher paper is FDA-compliant and safe for direct contact with raw and cooked meats.' },
       { q: 'What is the difference between pink and white butcher paper?', a: 'Pink butcher paper is breathable and commonly used for smoking meats. White is more versatile for general wrapping.' },
@@ -299,7 +299,7 @@ export const products: Product[] = [
     category: 'Butcher & Deli',
   },
   {
-    slug: 'custom-butter-paper',
+    slug: 'custom-butter-papers',
     title: 'Custom Butter Papers',
     metaTitle: 'Custom Butter Papers | Printed Butter Wrapping Papers USA',
     metaDescription: 'Custom printed butter papers for bakeries, dairies, and food businesses in the USA. Food-safe, grease-resistant, fully branded. Get a free quote today.',
@@ -338,7 +338,7 @@ export const products: Product[] = [
       { label: 'Food Safety', value: 'FDA compliant, non-stick' },
       { label: 'Shipping', value: 'Nationwide USA' },
     ],
-    relatedProducts: ['custom-greaseproof-paper', 'parchment-paper', 'custom-deli-paper'],
+    relatedProducts: ['custom-greaseproof-papers', 'parchment-papers', 'custom-deli-papers'],
     faqs: [
       { q: 'Is butter paper the same as greaseproof paper?', a: 'They are similar but not identical. Butter paper has a non-stick coating specifically suited for butter and dairy, while greaseproof paper is treated against grease penetration generally.' },
       { q: 'Can butter paper go in the fridge or freezer?', a: 'Yes. Our butter paper is designed for cold storage and maintains its properties in refrigerator and freezer conditions.' },
@@ -355,7 +355,7 @@ export const products: Product[] = [
     category: 'Bakery & Deli',
   },
   {
-    slug: 'custom-cheese-paper',
+    slug: 'custom-cheese-papers',
     title: 'Custom Cheese Papers',
     metaTitle: 'Custom Cheese Papers | Branded Cheese Wrapping Papers USA',
     metaDescription: 'Custom printed cheese papers for cheese shops, delis, and food retailers in the USA. Breathable, food-safe, branded. Wholesale pricing available.',
@@ -394,7 +394,7 @@ export const products: Product[] = [
       { label: 'Food Safety', value: 'FDA compliant, breathable' },
       { label: 'Shipping', value: 'Nationwide USA' },
     ],
-    relatedProducts: ['custom-deli-paper', 'glassine-paper', 'custom-wrapping-paper'],
+    relatedProducts: ['custom-deli-papers', 'glassine-papers', 'custom-wrapping-papers'],
     faqs: [
       { q: 'Why does cheese need special wrapping paper?', a: 'Cheese needs to breathe to stay fresh. Standard plastic wrap traps moisture and causes mold. Two-ply cheese paper controls humidity while allowing air circulation.' },
       { q: 'How does custom cheese paper differ from regular wax paper?', a: 'Custom cheese paper is specifically engineered for dairy freshness with a breathable two-layer construction, whereas wax paper creates a moisture barrier.' },
@@ -411,7 +411,7 @@ export const products: Product[] = [
     category: 'Cheese & Specialty',
   },
   {
-    slug: 'custom-deli-paper',
+    slug: 'custom-deli-papers',
     title: 'Custom Deli Papers',
     metaTitle: 'Custom Deli Papers | Printed Deli Wrapping Papers USA',
     metaDescription: 'Custom printed deli papers for delis, sandwich shops, and food service across the USA. Grease-resistant, food-safe, fully branded. Get wholesale pricing.',
@@ -450,7 +450,7 @@ export const products: Product[] = [
       { label: 'Food Safety', value: 'FDA compliant' },
       { label: 'Shipping', value: 'Nationwide USA' },
     ],
-    relatedProducts: ['custom-sandwich-paper', 'custom-food-paper', 'custom-kraft-paper'],
+    relatedProducts: ['custom-sandwich-papers', 'custom-food-papers', 'custom-kraft-papers'],
     faqs: [
       { q: 'What is deli paper used for?', a: 'Deli paper is used for wrapping sandwiches, meats, and cheeses at deli counters. It also lines trays, baskets, and serving boards.' },
       { q: 'Is deli paper grease-proof?', a: 'Our deli paper is grease-resistant, meaning it handles typical deli food oils without soaking through.' },
@@ -467,7 +467,7 @@ export const products: Product[] = [
     category: 'Deli & Sandwich',
   },
   {
-    slug: 'custom-fish-and-chip-paper',
+    slug: 'custom-fish-and-chip-papers',
     title: 'Custom Fish and Chip Papers',
     metaTitle: 'Custom Fish and Chip Papers | Printed Food Papers USA',
     metaDescription: 'Custom printed fish and chip papers for restaurants, food trucks, and takeout shops in the USA. Grease-resistant, food-safe, branded. Free quote available.',
@@ -506,7 +506,7 @@ export const products: Product[] = [
       { label: 'Food Safety', value: 'FDA compliant, grease-resistant' },
       { label: 'Shipping', value: 'Nationwide USA' },
     ],
-    relatedProducts: ['custom-fry-paper', 'custom-food-basket-liners', 'custom-greaseproof-paper'],
+    relatedProducts: ['custom-fry-papers', 'custom-food-basket-liners', 'custom-greaseproof-papers'],
     faqs: [
       { q: 'Can this paper handle very greasy fried food?', a: 'Yes. Our fish and chip paper has a heavy-duty grease barrier coating specifically for high-fat fried foods.' },
       { q: 'Is it safe for direct food contact?', a: 'Yes. All materials are FDA-compliant and food-safe for direct wrapping of fried food items.' },
@@ -562,7 +562,7 @@ export const products: Product[] = [
       { label: 'Food Safety', value: 'FDA compliant, grease-resistant' },
       { label: 'Shipping', value: 'Nationwide USA' },
     ],
-    relatedProducts: ['custom-pizza-liner', 'parchment-paper', 'custom-fry-paper'],
+    relatedProducts: ['custom-pizza-liners', 'parchment-papers', 'custom-fry-papers'],
     faqs: [
       { q: 'What basket sizes do the liners fit?', a: 'Our liners are available in 8x12", 10x14", and 12x16". Custom sizes can be cut to fit any basket.' },
       { q: 'Can I print my restaurant name and logo?', a: 'Yes. Full-color printing is available for basket liners, including logos, brand colors, and patterns.' },
@@ -579,7 +579,7 @@ export const products: Product[] = [
     category: 'Restaurant & Fast Food',
   },
   {
-    slug: 'custom-food-paper',
+    slug: 'custom-food-papers',
     title: 'Custom Food Papers',
     metaTitle: 'Custom Food Papers | Branded Food Wrapping Papers USA',
     metaDescription: 'Custom printed food papers for all types of food service businesses in the USA. Grease-resistant, food-safe, fully branded. Wholesale pricing available.',
@@ -618,7 +618,7 @@ export const products: Product[] = [
       { label: 'Food Safety', value: 'FDA compliant' },
       { label: 'Shipping', value: 'Nationwide USA' },
     ],
-    relatedProducts: ['custom-burger-paper', 'custom-deli-paper', 'custom-greaseproof-paper'],
+    relatedProducts: ['custom-burger-papers', 'custom-deli-papers', 'custom-greaseproof-papers'],
     faqs: [
       { q: 'What types of food can this paper wrap?', a: 'Our custom food paper wraps sandwiches, burgers, tacos, burritos, wraps, fried food, and most other hand-held food items.' },
       { q: 'Is custom food paper grease-proof?', a: 'We offer both grease-resistant and standard options depending on your food type and application.' },
@@ -635,7 +635,7 @@ export const products: Product[] = [
     category: 'Restaurant & Fast Food',
   },
   {
-    slug: 'custom-freezer-paper',
+    slug: 'custom-freezer-papers',
     title: 'Custom Freezer Papers',
     metaTitle: 'Custom Freezer Papers | Printed Freezer Wrap Papers USA',
     metaDescription: 'Custom printed freezer papers for meat shops, butchers, and food producers in the USA. Poly-coated, food-safe, branded. Get wholesale pricing.',
@@ -674,7 +674,7 @@ export const products: Product[] = [
       { label: 'Food Safety', value: 'FDA compliant, poly-coated' },
       { label: 'Shipping', value: 'Nationwide USA' },
     ],
-    relatedProducts: ['custom-butcher-paper', 'parchment-paper', 'custom-heat-seal-paper'],
+    relatedProducts: ['custom-butcher-papers', 'parchment-papers', 'custom-heat-seal-papers'],
     faqs: [
       { q: 'What makes freezer paper different from regular paper?', a: 'Freezer paper has a poly or wax coating on one side that creates a moisture barrier, preventing freezer burn during long-term storage.' },
       { q: 'How long can food stay wrapped in freezer paper?', a: 'Properly wrapped food in poly-coated freezer paper can stay fresh for up to 12 months in a standard freezer.' },
@@ -691,7 +691,7 @@ export const products: Product[] = [
     category: 'Butcher & Deli',
   },
   {
-    slug: 'custom-fry-paper',
+    slug: 'custom-fry-papers',
     title: 'Custom Fry Papers',
     metaTitle: 'Custom Fry Papers | Printed Fry Wrapping Papers USA',
     metaDescription: 'Custom printed fry papers for restaurants, food trucks, and fast food operators in the USA. Grease-resistant, food-safe, fully branded. Get a free quote.',
@@ -730,7 +730,7 @@ export const products: Product[] = [
       { label: 'Food Safety', value: 'FDA compliant, grease-resistant' },
       { label: 'Shipping', value: 'Nationwide USA' },
     ],
-    relatedProducts: ['custom-food-basket-liners', 'custom-fish-and-chip-paper', 'custom-greaseproof-paper'],
+    relatedProducts: ['custom-food-basket-liners', 'custom-fish-and-chip-papers', 'custom-greaseproof-papers'],
     faqs: [
       { q: 'Is fry paper different from regular greaseproof paper?', a: 'Fry paper is a specific application of greaseproof paper optimized for high-oil fried food items. Both share a grease-resistant coating.' },
       { q: 'Can fry paper be used as a basket liner?', a: 'Yes. Our fry paper doubles as a basket liner for serving fries, burgers, and other food in restaurant-style baskets.' },
@@ -747,7 +747,7 @@ export const products: Product[] = [
     category: 'Restaurant & Fast Food',
   },
   {
-    slug: 'custom-greaseproof-paper',
+    slug: 'custom-greaseproof-papers',
     title: 'Custom Greaseproof Papers',
     metaTitle: 'Custom Greaseproof Papers | Printed Greaseproof Wrap USA',
     metaDescription: 'Custom printed greaseproof papers for restaurants, bakeries, and food service in the USA. FDA-compliant, fully branded. Get wholesale pricing today.',
@@ -786,7 +786,7 @@ export const products: Product[] = [
       { label: 'Food Safety', value: 'FDA compliant, genuine greaseproof' },
       { label: 'Shipping', value: 'Nationwide USA' },
     ],
-    relatedProducts: ['custom-burger-paper', 'parchment-paper', 'custom-deli-paper'],
+    relatedProducts: ['custom-burger-papers', 'parchment-papers', 'custom-deli-papers'],
     faqs: [
       { q: 'What makes paper greaseproof?', a: 'Greaseproof paper is produced through a process called super-calendering that closes the paper fibers, creating a dense sheet that resists grease and fat penetration.' },
       { q: 'Is greaseproof paper the same as wax paper?', a: 'No. Greaseproof paper achieves its barrier through manufacturing, while wax paper has a wax coating applied afterward. Both are food-safe but behave differently.' },
@@ -803,7 +803,7 @@ export const products: Product[] = [
     category: 'Restaurant & Fast Food',
   },
   {
-    slug: 'custom-heat-seal-paper',
+    slug: 'custom-heat-seal-papers',
     title: 'Custom Heat Seal Papers',
     metaTitle: 'Custom Heat Seal Papers | Printed Heat Seal Packaging USA',
     metaDescription: 'Custom printed heat seal papers for food packaging and sealing in the USA. Food-safe, tamper-evident, fully branded. Get wholesale pricing today.',
@@ -842,7 +842,7 @@ export const products: Product[] = [
       { label: 'Food Safety', value: 'FDA compliant heat-seal coating' },
       { label: 'Shipping', value: 'Nationwide USA' },
     ],
-    relatedProducts: ['custom-freezer-paper', 'custom-butcher-paper', 'custom-food-paper'],
+    relatedProducts: ['custom-freezer-papers', 'custom-butcher-papers', 'custom-food-papers'],
     faqs: [
       { q: 'What temperature does heat seal paper require?', a: 'Sealing temperature typically ranges from 120–180°C depending on the coating type. Our team will advise the correct temperature for your equipment.' },
       { q: 'Is heat seal paper tamper-evident?', a: 'Yes. Once sealed, heat seal paper creates a bond that shows visible damage if opened, making it tamper-evident for retail use.' },
@@ -859,7 +859,7 @@ export const products: Product[] = [
     category: 'Specialty Packaging',
   },
   {
-    slug: 'custom-hot-paper',
+    slug: 'custom-hot-papers',
     title: 'Custom Hot Papers',
     metaTitle: 'Custom Hot Papers | Printed Hot Food Wrapping Papers USA',
     metaDescription: 'Custom printed hot food papers for restaurants and food service in the USA. Heat-resistant, grease-resistant, food-safe, branded. Get a free quote today.',
@@ -898,7 +898,7 @@ export const products: Product[] = [
       { label: 'Food Safety', value: 'FDA compliant, heat-resistant' },
       { label: 'Shipping', value: 'Nationwide USA' },
     ],
-    relatedProducts: ['custom-food-paper', 'custom-burger-paper', 'custom-greaseproof-paper'],
+    relatedProducts: ['custom-food-papers', 'custom-burger-papers', 'custom-greaseproof-papers'],
     faqs: [
       { q: 'What temperature can hot paper withstand?', a: 'Depending on the coating, our hot paper handles temperatures up to 400°F, suitable for freshly grilled and fried food.' },
       { q: 'Is it suitable for wrapping burritos and hot wraps?', a: 'Yes. Hot paper is ideal for wrapping burritos, paninis, hot dogs, and any steam-emitting food item.' },
@@ -915,7 +915,7 @@ export const products: Product[] = [
     category: 'Restaurant & Fast Food',
   },
   {
-    slug: 'custom-kraft-paper',
+    slug: 'custom-kraft-papers',
     title: 'Custom Kraft Papers',
     metaTitle: 'Custom Kraft Papers | Printed Kraft Wrapping Papers USA',
     metaDescription: 'Custom printed kraft papers for food businesses, retailers, and restaurants in the USA. Eco-friendly, durable, fully branded. Get wholesale pricing.',
@@ -954,7 +954,7 @@ export const products: Product[] = [
       { label: 'Food Safety', value: 'Food-grade options available' },
       { label: 'Shipping', value: 'Nationwide USA' },
     ],
-    relatedProducts: ['custom-sandwich-paper', 'custom-deli-paper', 'custom-butcher-paper'],
+    relatedProducts: ['custom-sandwich-papers', 'custom-deli-papers', 'custom-butcher-papers'],
     faqs: [
       { q: 'Is kraft paper food safe?', a: 'Our food-grade kraft paper is FDA-compliant and safe for direct contact with food items.' },
       { q: 'Can I print my logo on kraft paper?', a: 'Yes. We offer soy-based and food-safe ink printing on kraft paper in single and full-color options.' },
@@ -971,7 +971,7 @@ export const products: Product[] = [
     category: 'General Purpose',
   },
   {
-    slug: 'custom-pizza-liner',
+    slug: 'custom-pizza-liners',
     title: 'Custom Pizza Liner',
     metaTitle: 'Custom Pizza Liner | Printed Pizza Box Liner Papers USA',
     metaDescription: 'Custom printed pizza box liners for pizza restaurants across the USA. Grease-resistant, food-safe, branded. Low minimum orders. Get a free quote today.',
@@ -1008,7 +1008,7 @@ export const products: Product[] = [
       { label: 'Food Safety', value: 'FDA compliant, grease-resistant' },
       { label: 'Shipping', value: 'Nationwide USA' },
     ],
-    relatedProducts: ['custom-food-basket-liners', 'parchment-paper', 'custom-greaseproof-paper'],
+    relatedProducts: ['custom-food-basket-liners', 'parchment-papers', 'custom-greaseproof-papers'],
     faqs: [
       { q: 'What sizes do pizza liners come in?', a: 'Standard round sizes are 8", 10", 12", 14", and 16". Square and custom sizes are also available.' },
       { q: 'Does the liner prevent the box from getting soggy?', a: 'Yes. The grease-resistant coating absorbs excess oil from the pizza, keeping the box dry and structural.' },
@@ -1025,7 +1025,7 @@ export const products: Product[] = [
     category: 'Pizza & Italian',
   },
   {
-    slug: 'custom-printed-tissue-paper',
+    slug: 'custom-printed-tissue-papers',
     title: 'Custom Printed Tissue Papers',
     metaTitle: 'Custom Printed Tissue Papers | Branded Tissue Papers USA',
     metaDescription: 'Custom printed tissue papers for retail, food brands, and gift packaging in the USA. Full-color printing, branded, premium quality. Get a free quote.',
@@ -1064,7 +1064,7 @@ export const products: Product[] = [
       { label: 'Food Safety', value: 'Food-safe ink options available' },
       { label: 'Shipping', value: 'Nationwide USA' },
     ],
-    relatedProducts: ['custom-wrapping-paper', 'custom-kraft-paper', 'christmas-wrapping-paper'],
+    relatedProducts: ['custom-wrapping-papers', 'custom-kraft-papers', 'christmas-wrapping-papers'],
     faqs: [
       { q: 'Is custom tissue paper food safe?', a: 'Food-safe ink options are available for tissue paper used in direct contact with food items.' },
       { q: 'What is the paper weight for tissue paper?', a: 'Standard tissue paper weight ranges from 17–20 gsm, giving it the characteristic lightweight feel.' },
@@ -1081,7 +1081,7 @@ export const products: Product[] = [
     category: 'Retail & Gifting',
   },
   {
-    slug: 'custom-sandwich-paper',
+    slug: 'custom-sandwich-papers',
     title: 'Custom Sandwich Papers',
     metaTitle: 'Custom Sandwich Papers | Printed Sandwich Wrap Papers USA',
     metaDescription: 'Custom printed sandwich papers for delis, sandwich shops, and restaurants in the USA. Grease-resistant, food-safe, branded. Get wholesale pricing.',
@@ -1120,7 +1120,7 @@ export const products: Product[] = [
       { label: 'Food Safety', value: 'FDA compliant' },
       { label: 'Shipping', value: 'Nationwide USA' },
     ],
-    relatedProducts: ['custom-deli-paper', 'custom-kraft-paper', 'custom-food-paper'],
+    relatedProducts: ['custom-deli-papers', 'custom-kraft-papers', 'custom-food-papers'],
     faqs: [
       { q: 'Can I use sandwich paper for hot sandwiches?', a: 'Yes. Our sandwich paper handles both hot and cold fillings and maintains its integrity for typical service durations.' },
       { q: 'What size is best for wrapping a sub or hoagie?', a: 'For long subs, we recommend 14x14" or 18x24" sheets. Smaller sandwiches work well with 12x12" sheets.' },
@@ -1137,7 +1137,7 @@ export const products: Product[] = [
     category: 'Deli & Sandwich',
   },
   {
-    slug: 'custom-wrapping-paper',
+    slug: 'custom-wrapping-papers',
     title: 'Custom Wrapping Papers',
     metaTitle: 'Custom Wrapping Papers | Branded Food Wrapping Papers USA',
     metaDescription: 'Custom printed wrapping papers for food businesses and retail in the USA. Food-safe options available. Fully branded, premium quality. Get a free quote.',
@@ -1174,7 +1174,7 @@ export const products: Product[] = [
       { label: 'Food Safety', value: 'Food-safe grade available' },
       { label: 'Shipping', value: 'Nationwide USA' },
     ],
-    relatedProducts: ['custom-kraft-paper', 'custom-printed-tissue-paper', 'christmas-wrapping-paper'],
+    relatedProducts: ['custom-kraft-papers', 'custom-printed-tissue-papers', 'christmas-wrapping-papers'],
     faqs: [
       { q: 'Is custom wrapping paper food safe?', a: 'We offer food-safe grade wrapping paper with FDA-compliant inks for direct food contact applications.' },
       { q: 'Can I order all-over pattern wrapping paper?', a: 'Yes. All-over repeat pattern printing is available and is one of the most popular choices for branded wrapping paper.' },
@@ -1191,7 +1191,7 @@ export const products: Product[] = [
     category: 'General Purpose',
   },
   {
-    slug: 'glassine-paper',
+    slug: 'glassine-papers',
     title: 'Glassine Papers',
     metaTitle: 'Custom Glassine Papers | Printed Glassine Wrapping Papers USA',
     metaDescription: 'Custom printed glassine papers for bakeries, confectionery, and specialty food in the USA. Translucent, food-safe, grease-resistant. Get a free quote.',
@@ -1230,7 +1230,7 @@ export const products: Product[] = [
       { label: 'Food Safety', value: 'FDA compliant, odor and taste neutral' },
       { label: 'Shipping', value: 'Nationwide USA' },
     ],
-    relatedProducts: ['custom-cheese-paper', 'parchment-paper', 'custom-butter-paper'],
+    relatedProducts: ['custom-cheese-papers', 'parchment-papers', 'custom-butter-papers'],
     faqs: [
       { q: 'What is glassine paper made from?', a: 'Glassine is made from super-calendered paper that creates a smooth, dense, semi-transparent sheet with natural grease resistance.' },
       { q: 'Is glassine paper food safe?', a: 'Yes. Our glassine paper is FDA-compliant and neutral in taste and odor, making it ideal for direct food contact.' },
@@ -1247,7 +1247,7 @@ export const products: Product[] = [
     category: 'Specialty Packaging',
   },
   {
-    slug: 'parchment-paper',
+    slug: 'parchment-papers',
     title: 'Parchment Papers',
     metaTitle: 'Custom Parchment Papers | Printed Parchment Papers USA',
     metaDescription: 'Custom printed parchment papers for bakeries, restaurants, and food service in the USA. Silicone-coated, oven-safe, food-safe. Get wholesale pricing.',
@@ -1284,7 +1284,7 @@ export const products: Product[] = [
       { label: 'Food Safety', value: 'FDA compliant, silicone-coated' },
       { label: 'Shipping', value: 'Nationwide USA' },
     ],
-    relatedProducts: ['custom-greaseproof-paper', 'custom-pizza-liner', 'custom-butcher-paper'],
+    relatedProducts: ['custom-greaseproof-papers', 'custom-pizza-liners', 'custom-butcher-papers'],
     faqs: [
       { q: 'What temperature can parchment paper handle?', a: 'Our silicone-coated parchment paper is oven-safe up to 450°F, suitable for most baking applications.' },
       { q: 'Is parchment paper non-stick?', a: 'Yes. The silicone coating provides a non-stick surface that releases baked goods cleanly without greasing.' },
@@ -1338,7 +1338,7 @@ export const products: Product[] = [
       { label: 'Finish', value: 'Gloss, matte, or uncoated' },
       { label: 'Shipping', value: 'Nationwide USA' },
     ],
-    relatedProducts: ['custom-food-paper', 'custom-printed-tissue-paper', 'custom-wrapping-paper'],
+    relatedProducts: ['custom-food-papers', 'custom-printed-tissue-papers', 'custom-wrapping-papers'],
     faqs: [
       { q: 'What sizes do table tents come in?', a: 'Standard sizes include A5 folded, A4 folded, and DL tent. Custom sizes are available to fit your table settings.' },
       { q: 'Can I print on both sides of a table tent?', a: 'Yes. Double-sided full-color printing is standard for our table tents.' },
@@ -1355,7 +1355,7 @@ export const products: Product[] = [
     category: 'Restaurant Marketing',
   },
   {
-    slug: 'taco-wrapping-paper',
+    slug: 'taco-wrapping-papers',
     title: 'Taco Wrapping Papers',
     metaTitle: 'Custom Taco Wrapping Papers | Printed Taco Papers USA',
     metaDescription: 'Custom printed taco wrapping papers for taco shops, Mexican restaurants, and food trucks in the USA. Grease-resistant, food-safe, branded. Get a free quote.',
@@ -1393,7 +1393,7 @@ export const products: Product[] = [
       { label: 'Food Safety', value: 'FDA compliant, grease-resistant' },
       { label: 'Shipping', value: 'Nationwide USA' },
     ],
-    relatedProducts: ['custom-food-paper', 'custom-burger-paper', 'custom-greaseproof-paper'],
+    relatedProducts: ['custom-food-papers', 'custom-burger-papers', 'custom-greaseproof-papers'],
     faqs: [
       { q: 'Can taco paper handle sauces and wet fillings?', a: 'Yes. Our grease and moisture-resistant coating handles sauces, salsas, guacamole, and other wet taco fillings.' },
       { q: 'What sizes are best for wrapping tacos?', a: 'For street-style tacos, 12x12" works well. For larger burritos or wraps, 14x14" or 16x18" sheets are better suited.' },
