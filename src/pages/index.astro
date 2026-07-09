@@ -161,7 +161,7 @@ const faqs = [
       <!-- Magazine grid: first 2 cards large, rest small -->
       <div class="magazine-grid">
         {featured.map((p, i) => (
-          <a href={`/products/${p.slug}`}
+          <a href={`/products/${p.slug}/`}
              class:list={['mag-card', { 'mag-card-large': i < 2, 'mag-card-small': i >= 2 }]}>
             <div class="mag-img">
               <img src={p.heroImage} alt={`${p.title}`} loading={i < 2 ? 'eager' : 'lazy'}
@@ -321,12 +321,12 @@ const faqs = [
       </div>
       <div class="mat-scroll">
         {[
-          { name: "Wax Papers", icon: "📄", desc: "Moisture barrier for cold wrapping and deli use", href: "/products/custom-food-papers" },
-          { name: "Greaseproof Papers", icon: "🛡️", desc: "Heavy grease barrier for burgers and fried food", href: "/products/custom-greaseproof-papers" },
-          { name: "Kraft Papers", icon: "📦", desc: "Natural artisan look for wrapping and retail", href: "/products/custom-kraft-papers" },
-          { name: "Parchment Papers", icon: "🔥", desc: "Non-stick, oven-safe up to 450°F for baking", href: "/products/parchment-papers" },
-          { name: "Freezer Papers", icon: "❄️", desc: "Poly-coated for long-term meat and fish storage", href: "/products/custom-freezer-papers" },
-          { name: "Tissue Papers", icon: "🎁", desc: "Lightweight premium wrap for retail and gifting", href: "/products/custom-printed-tissue-papers" },
+          { name: "Wax Papers", icon: "📄", desc: "Moisture barrier for cold wrapping and deli use", href: "/products/custom-food-papers/" },
+          { name: "Greaseproof Papers", icon: "🛡️", desc: "Heavy grease barrier for burgers and fried food", href: "/products/custom-greaseproof-papers/" },
+          { name: "Kraft Papers", icon: "📦", desc: "Natural artisan look for wrapping and retail", href: "/products/custom-kraft-papers/" },
+          { name: "Parchment Papers", icon: "🔥", desc: "Non-stick, oven-safe up to 450°F for baking", href: "/products/parchment-papers/" },
+          { name: "Freezer Papers", icon: "❄️", desc: "Poly-coated for long-term meat and fish storage", href: "/products/custom-freezer-papers/" },
+          { name: "Tissue Papers", icon: "🎁", desc: "Lightweight premium wrap for retail and gifting", href: "/products/custom-printed-tissue-papers/" },
         ].map(m => (
           <a href={m.href} class="mat-card reveal">
             <span class="mat-icon" aria-hidden="true">{m.icon}</span>

@@ -20,7 +20,11 @@ const {
 } = Astro.props;
 
 const siteUrl = 'https://thewaxpapers.co';
-const canonicalUrl = canonical.startsWith('http') ? canonical : `${siteUrl}${canonical}`;
+const rawCanonical = canonical.startsWith('http') ? canonical : `${siteUrl}${canonical}`;
+// Normalize to a trailing slash so every canonical matches the site's
+// trailingSlash: true URLs (and the sitemap). Astro.url.href omits the slash on
+// some static pages, which would otherwise disagree with the sitemap.
+const canonicalUrl = rawCanonical.endsWith('/') ? rawCanonical : `${rawCanonical}/`;
 const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 
 const schemaArray = schema

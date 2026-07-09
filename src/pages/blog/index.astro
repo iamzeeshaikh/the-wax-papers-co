@@ -46,7 +46,7 @@ const breadcrumbSchema = {
     <div class="container">
       <div class="blog-grid">
         {blogPosts.map((post, i) => (
-          <a href={`/blog/${post.slug}`} class="blog-card card">
+          <a href={`/blog/${post.slug}/`} class="blog-card card">
             <div class="blog-card-body">
               <span class="blog-date">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
               <h2 class="blog-card-title">{post.title}</h2>

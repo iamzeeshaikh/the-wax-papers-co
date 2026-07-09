@@ -4,19 +4,19 @@ import { blogPosts } from '../data/blog';
 
 const site = 'https://thewaxpapers.co';
 
-// URLs use no trailing slash to match the site's canonical URLs (Vercel
-// cleanUrls: true, trailingSlash: false). Keep these consistent with the
-// <link rel="canonical"> tags so crawlers see one canonical form per page.
+// URLs use a trailing slash to match the site's canonical URLs (Vercel
+// trailingSlash: true). Keep these consistent with the <link rel="canonical">
+// tags so crawlers see one canonical form per page.
 const staticPages = [
-  { url: '/',                     priority: '1.0', changefreq: 'weekly',  lastmod: '2026-01-22' },
-  { url: '/products',            priority: '0.9', changefreq: 'weekly',  lastmod: '2026-01-22' },
-  { url: '/get-quote',           priority: '0.9', changefreq: 'monthly', lastmod: '2026-01-22' },
-  { url: '/blog',                priority: '0.8', changefreq: 'weekly',  lastmod: '2026-01-22' },
-  { url: '/about',              priority: '0.7', changefreq: 'monthly', lastmod: '2025-11-01' },
-  { url: '/contact',            priority: '0.7', changefreq: 'monthly', lastmod: '2025-11-01' },
-  { url: '/sitemap',            priority: '0.3', changefreq: 'monthly', lastmod: '2025-11-01' },
-  { url: '/privacy-policy',     priority: '0.2', changefreq: 'yearly',  lastmod: '2025-01-01' },
-  { url: '/terms-and-conditions', priority: '0.2', changefreq: 'yearly', lastmod: '2025-01-01' },
+  { url: '/',                    priority: '1.0', changefreq: 'weekly',  lastmod: '2026-01-22' },
+  { url: '/products/',           priority: '0.9', changefreq: 'weekly',  lastmod: '2026-01-22' },
+  { url: '/get-quote/',          priority: '0.9', changefreq: 'monthly', lastmod: '2026-01-22' },
+  { url: '/blog/',               priority: '0.8', changefreq: 'weekly',  lastmod: '2026-01-22' },
+  { url: '/about/',              priority: '0.7', changefreq: 'monthly', lastmod: '2025-11-01' },
+  { url: '/contact/',            priority: '0.7', changefreq: 'monthly', lastmod: '2025-11-01' },
+  { url: '/sitemap/',            priority: '0.3', changefreq: 'monthly', lastmod: '2025-11-01' },
+  { url: '/privacy-policy/',     priority: '0.2', changefreq: 'yearly',  lastmod: '2025-01-01' },
+  { url: '/terms-and-conditions/', priority: '0.2', changefreq: 'yearly', lastmod: '2025-01-01' },
 ];
 
 export const GET: APIRoute = () => {
@@ -29,7 +29,7 @@ export const GET: APIRoute = () => {
   </url>`),
 
     ...products.map(p => `  <url>
-    <loc>${site}/products/${p.slug}</loc>
+    <loc>${site}/products/${p.slug}/</loc>
     <lastmod>2026-01-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -41,7 +41,7 @@ export const GET: APIRoute = () => {
   </url>`),
 
     ...blogPosts.map(p => `  <url>
-    <loc>${site}/blog/${p.slug}</loc>
+    <loc>${site}/blog/${p.slug}/</loc>
     <lastmod>${p.date}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>

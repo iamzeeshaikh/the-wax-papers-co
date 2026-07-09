@@ -14,7 +14,7 @@ const post = getBlogPostBySlug(slug as string);
 if (!post) return Astro.redirect('/blog');
 
 const related = getRelatedProducts(post.relatedProducts).slice(0, 3);
-const canonicalUrl = `https://thewaxpapers.co/blog/${post.slug}`;
+const canonicalUrl = `https://thewaxpapers.co/blog/${post.slug}/`;
 
 const articleSchema = {
   "@context": "https://schema.org",
@@ -123,7 +123,7 @@ function processContent(content: string): string {
               <h2>Related Products</h2>
               <div class="blog-related-grid">
                 {related.map(rp => (
-                  <a href={`/products/${rp.slug}`} class="blog-related-card card">
+                  <a href={`/products/${rp.slug}/`} class="blog-related-card card">
                     <img src={rp.heroImage} alt={rp.title} loading="lazy" width="200" height="130" />
                     <div class="blog-related-body">
                       <strong>{rp.title}</strong>
@@ -148,12 +148,12 @@ function processContent(content: string): string {
             <h3>Popular Products</h3>
             <ul class="sidebar-product-list">
               {related.map(rp => (
-                <li><a href={`/products/${rp.slug}`}>{rp.title}</a></li>
+                <li><a href={`/products/${rp.slug}/`}>{rp.title}</a></li>
               ))}
-              <li><a href="/products/custom-burger-papers">Custom Burger Paper</a></li>
-              <li><a href="/products/custom-deli-papers">Custom Deli Paper</a></li>
-              <li><a href="/products/custom-greaseproof-papers">Custom Greaseproof Paper</a></li>
-              <li><a href="/products/parchment-papers">Parchment Paper</a></li>
+              <li><a href="/products/custom-burger-papers/">Custom Burger Paper</a></li>
+              <li><a href="/products/custom-deli-papers/">Custom Deli Paper</a></li>
+              <li><a href="/products/custom-greaseproof-papers/">Custom Greaseproof Paper</a></li>
+              <li><a href="/products/parchment-papers/">Parchment Paper</a></li>
             </ul>
           </div>
 

@@ -15,7 +15,7 @@ if (!product) return Astro.redirect('/products');
 
 const related = getRelatedProducts(product.relatedProducts).slice(0, 3);
 const relatedPosts = blogPosts.filter(p => p.relatedProducts.includes(product.slug)).slice(0, 3);
-const canonicalUrl = `https://thewaxpapers.co/products/${product.slug}`;
+const canonicalUrl = `https://thewaxpapers.co/products/${product.slug}/`;
 
 const productSchema = {
   "@context": "https://schema.org",
