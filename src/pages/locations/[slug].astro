@@ -48,11 +48,15 @@ const deliveryHeading = pick([
 const firstFaqQ = `Do you deliver custom food papers to ${loc.city}?`;
 const faqs = [
   { q: firstFaqQ, a: loc.faqCityAnswer },
-  { q: `What’s the minimum order for ${loc.city} businesses?`, a: `Our minimum order starts at 500 sheets, which keeps custom printing accessible for independent ${loc.city} traders and small kitchens — not just large groups. There are no hidden setup fees on standard orders.` },
-  { q: `Can I print my logo and brand colours on the paper?`, a: `Absolutely. Every order is printed to your artwork — logo, brand colours, or a full-sheet design — using food-safe inks. We send a free digital proof for approval before anything goes to print.` },
-  { q: `Are your food papers safe for direct food contact?`, a: `Yes. All our papers are made from food-safe, grease-resistant materials and printed with food-grade inks suitable for direct contact with hot and cold food.` },
-  { q: `How long does production and delivery take?`, a: `Standard production runs 8–12 business days after artwork approval, then your order is dispatched to ${loc.city}. If you have an event or opening deadline, tell us and we’ll confirm timings up front.` },
-  { q: `Do you supply both single sites and multi-site groups in ${loc.city}?`, a: `Both. We print to order and store your design for consistent reorders, so whether you run one ${loc.city} pitch or several sites, your branding stays identical across every location.` },
+  { q: `What's the minimum order for ${loc.city} businesses?`, a: `Our minimum order starts at 500 sheets, which keeps custom printing accessible for independent ${loc.city} spots and small kitchens — not just large groups. There are no hidden setup fees on standard orders.` },
+  { q: `Can I print my logo and brand colors on the paper?`, a: `Absolutely. Every order is printed to your artwork — logo, brand colors, or a full-sheet design — using food-safe inks. We send a free digital proof for approval before anything goes to print.` },
+  { q: `Are your food papers safe for direct food contact?`, a: `Yes. All our papers are FDA-compliant and made from food-safe, grease-resistant materials, printed with food-grade inks suitable for direct contact with hot and cold food.` },
+  { q: `What paper types can ${loc.city} kitchens choose from?`, a: `You can choose greaseproof, kraft, deli, burger, sandwich, and butcher papers, plus tissue and liners — matched to your food and format. Browse the full range on our <a href="/products/">products page</a> or ask us to recommend the right stock.` },
+  { q: `Are the papers grease-resistant enough for hot and oily food?`, a: `Yes. Our papers are engineered to resist grease and moisture, so they hold up under burgers, fried food, and saucy dishes without soaking through or bleeding the print — ideal for busy ${loc.city} service.` },
+  { q: `Do you offer both sheets and rolls?`, a: `We supply pre-cut sheets in standard and custom sizes, plus rolls for wrapping and lining. Tell us your format and we'll quote the option that fits your ${loc.city} operation.` },
+  { q: `How long does production and delivery take?`, a: `Standard production runs 8–12 business days after artwork approval, then your order ships to ${loc.city}. If you have an event or opening deadline, tell us and we'll confirm timing up front.` },
+  { q: `Do you supply both single sites and multi-site groups in ${loc.city}?`, a: `Both. We print to order and store your design for consistent reorders, so whether you run one ${loc.city} location or several, your branding stays identical across every site.` },
+  { q: `Can you deliver to ${loc.city} for events, pop-ups, and festivals?`, a: `Yes. Many ${loc.city} operators stock up ahead of events and pop-ups. Share your dates and volume and we'll make sure your branded papers arrive in time.` },
 ];
 
 const serviceSchema = {
@@ -201,8 +205,43 @@ const breadcrumbSchema = {
     </div>
   </section>
 
+  <!-- What kitchens wrap -->
+  <section class="section loc-wrap">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Everyday Uses</span>
+        <h2 class="section-title">What {loc.city} Kitchens Wrap in Our Paper</h2>
+        <p class="section-subtitle">From the pass to the customer's hands, our papers handle the full range of {loc.city} service. That includes grease-tight liners like our <a href="/products/custom-greaseproof-papers/" class="prose-link">custom greaseproof papers</a>.</p>
+      </div>
+      <div class="loc-wrap-grid">
+        <div class="loc-wrap-item">Burgers, wraps, and handhelds</div>
+        <div class="loc-wrap-item">Fries, baskets, and fried food</div>
+        <div class="loc-wrap-item">Deli meats, cheese, and charcuterie</div>
+        <div class="loc-wrap-item">Sandwiches, subs, and toasties</div>
+        <div class="loc-wrap-item">Bakery, pastries, and baked goods</div>
+        <div class="loc-wrap-item">Takeout liners and tray sheets</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Food-safe trust -->
+  <section class="section loc-safety alt-bg">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Food-Safe</span>
+        <h2 class="section-title">Papers Built for Real {loc.city} Service</h2>
+      </div>
+      <div class="loc-safety-grid">
+        <div class="loc-safety-tile"><strong>FDA-compliant</strong><p>Food-safe materials and food-grade inks, safe for direct contact with hot and cold food.</p></div>
+        <div class="loc-safety-tile"><strong>Grease &amp; moisture resistant</strong><p>Holds up under oily, saucy, and juicy food without soaking through or falling apart.</p></div>
+        <div class="loc-safety-tile"><strong>Print that stays sharp</strong><p>Food-safe inks keep your logo crisp and vivid, even against grease and heat.</p></div>
+        <div class="loc-safety-tile"><strong>Consistent reorders</strong><p>We store your artwork so every {loc.city} reorder matches the last, batch after batch.</p></div>
+      </div>
+    </div>
+  </section>
+
   <!-- Featured products grid (navigational) -->
-  <section class="section loc-products alt-bg">
+  <section class="section loc-products">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Popular in {loc.city}</span>
@@ -377,6 +416,23 @@ const breadcrumbSchema = {
 
   .prose-link { color: var(--color-copper); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
   .prose-link:hover { color: var(--color-brown); }
+
+  .loc-wrap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+  @media (max-width: 768px) { .loc-wrap-grid { grid-template-columns: 1fr; } }
+  .loc-wrap-item {
+    display: flex; align-items: center; gap: 0.6rem;
+    background: var(--color-white); border: 1px solid var(--color-kraft-light);
+    border-radius: var(--radius-sm); padding: 0.9rem 1.1rem;
+    font-size: 0.92rem; color: var(--color-gray-700);
+  }
+  .loc-wrap-item::before { content: '✓'; color: var(--color-copper); font-weight: 700; }
+
+  .loc-safety-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  @media (max-width: 900px) { .loc-safety-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .loc-safety-grid { grid-template-columns: 1fr; } }
+  .loc-safety-tile { background: var(--color-white); border: 1px solid var(--color-kraft-light); border-radius: var(--radius); padding: 1.25rem; }
+  .loc-safety-tile strong { display: block; color: var(--color-brown); font-family: var(--font-display); margin-bottom: 0.4rem; }
+  .loc-safety-tile p { font-size: 0.86rem; color: var(--color-gray-600); line-height: 1.6; }
 
   .loc-why-inner { display: grid; grid-template-columns: 1.3fr 1fr; gap: 3.5rem; align-items: start; }
   @media (max-width: 900px) { .loc-why-inner { grid-template-columns: 1fr; gap: 2rem; } }
