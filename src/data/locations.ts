@@ -477,6 +477,50 @@ export const locations: LocationCity[] = [
   },
 ];
 
+// ── Varied internal linking: unique product target + anchor per city page ──
+export const WAX_LINK_POOL = [
+  'custom-greaseproof-papers', 'custom-burger-papers', 'custom-deli-papers',
+  'custom-food-papers', 'custom-hot-papers', 'custom-food-basket-liners',
+  'custom-sandwich-papers', 'custom-fry-papers', 'custom-kraft-papers',
+  'custom-pizza-liners', 'custom-butcher-papers', 'taco-wrapping-papers',
+  'custom-printed-tissue-papers', 'custom-fish-and-chip-papers',
+];
+export const WAX_ANCHORS: Record<string, string[]> = {
+  'custom-greaseproof-papers': ['greaseproof paper', 'grease-tight greaseproof sheets', 'greaseproof liners'],
+  'custom-burger-papers': ['burger wrap', 'branded burger wrapping paper', 'burger wraps'],
+  'custom-deli-papers': ['deli paper', 'deli counter sheets', 'printed deli paper'],
+  'custom-food-papers': ['custom food paper', 'printed food paper', 'branded food sheets'],
+  'custom-hot-papers': ['hot food paper', 'heat-friendly wraps'],
+  'custom-food-basket-liners': ['food basket liners', 'printed basket liners'],
+  'custom-sandwich-papers': ['sandwich wrap', 'sandwich wrapping paper'],
+  'custom-fry-papers': ['fry paper', 'fried-food liners'],
+  'custom-kraft-papers': ['kraft paper', 'natural kraft wraps'],
+  'custom-pizza-liners': ['pizza liners', 'pizza box liners'],
+  'custom-butcher-papers': ['butcher paper', 'butcher wrap'],
+  'taco-wrapping-papers': ['taco paper', 'taco wrapping paper'],
+  'custom-printed-tissue-papers': ['printed tissue paper', 'branded tissue'],
+  'custom-fish-and-chip-papers': ['fish and chip paper', 'chip shop paper'],
+};
+export function waxSeed(text: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < text.length; i++) { h ^= text.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return Math.abs(h | 0);
+}
+export function waxLinkTargets(seedText: string, n: number): string[] {
+  const arr = [...WAX_LINK_POOL];
+  let a = waxSeed(seedText) || 1;
+  const rand = () => { a = (a + 0x6d2b79f5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(rand() * (i + 1));[arr[i], arr[j]] = [arr[j], arr[i]]; }
+  return arr.slice(0, n);
+}
+export function waxAnchor(slug: string, seedText: string, off = 0): string {
+  const list = WAX_ANCHORS[slug] ?? [slug.replace(/custom-|-papers|-/g, ' ').trim()];
+  return list[(waxSeed(seedText) + off) % list.length];
+}
+export function waxPick<T>(arr: T[], seedText: string, off = 0): T {
+  return arr[(waxSeed(seedText) + off) % arr.length];
+}
+
 export function getLocationBySlug(slug: string): LocationCity | undefined {
   return locations.find(l => l.slug === slug);
 }
