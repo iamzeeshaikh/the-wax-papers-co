@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { products } from '../data/products';
 import { blogPosts } from '../data/blog';
+import { locations } from '../data/locations';
 
 const categories = [...new Set(products.map(p => p.category))];
 ---
@@ -45,6 +46,7 @@ const categories = [...new Set(products.map(p => p.category))];
           <li><a href="/products/">All Custom Food Packaging Products</a></li>
           <li><a href="/get-quote/">Get a Free Quote</a></li>
           <li><a href="/contact/">Contact Us</a></li>
+          <li><a href="/locations/">UK Delivery Locations</a></li>
           <li><a href="/blog/">Food Packaging Blog</a></li>
           <li><a href="/privacy-policy/">Privacy Policy</a></li>
           <li><a href="/terms-and-conditions/">Terms &amp; Conditions</a></li>
@@ -68,6 +70,19 @@ const categories = [...new Set(products.map(p => p.category))];
           </div>
         );
       })}
+
+      <!-- UK Delivery Locations -->
+      <div class="sitemap-block">
+        <h2 class="sitemap-cat-heading">UK Delivery Locations</h2>
+        <ul class="sitemap-list sitemap-list--grid">
+          {locations.map(loc => (
+            <li>
+              <a href={`/locations/${loc.slug}/`}>Custom Food Papers in {loc.city}</a>
+              <span class="sitemap-desc">{loc.county} · {loc.nation}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
 
       <!-- Blog Posts -->
       <div class="sitemap-block">

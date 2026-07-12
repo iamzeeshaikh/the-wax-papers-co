@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { products } from '../data/products';
 import { blogPosts } from '../data/blog';
+import { locations } from '../data/locations';
 
 const site = 'https://thewaxpapers.co';
 
@@ -12,6 +13,7 @@ const staticPages = [
   { url: '/products/',           priority: '0.9', changefreq: 'weekly',  lastmod: '2026-01-22' },
   { url: '/get-quote/',          priority: '0.9', changefreq: 'monthly', lastmod: '2026-01-22' },
   { url: '/blog/',               priority: '0.8', changefreq: 'weekly',  lastmod: '2026-01-22' },
+  { url: '/locations/',          priority: '0.8', changefreq: 'monthly', lastmod: '2026-07-12' },
   { url: '/about/',              priority: '0.7', changefreq: 'monthly', lastmod: '2025-11-01' },
   { url: '/contact/',            priority: '0.7', changefreq: 'monthly', lastmod: '2025-11-01' },
   { url: '/sitemap/',            priority: '0.3', changefreq: 'monthly', lastmod: '2025-11-01' },
@@ -45,6 +47,13 @@ export const GET: APIRoute = () => {
     <lastmod>${p.date}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
+  </url>`),
+
+    ...locations.map(l => `  <url>
+    <loc>${site}/locations/${l.slug}/</loc>
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
   </url>`),
   ];
 
