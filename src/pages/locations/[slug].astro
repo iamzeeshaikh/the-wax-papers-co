@@ -66,7 +66,7 @@ const serviceSchema = {
   "areaServed": {
     "@type": "City",
     "name": loc.city,
-    "containedInPlace": { "@type": "AdministrativeArea", "name": `${loc.county}, ${loc.nation}` }
+    "containedInPlace": { "@type": "State", "name": `${loc.state}, USA` }
   },
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
@@ -124,7 +124,7 @@ const breadcrumbSchema = {
   <section class="loc-hero">
     <div class="container loc-hero-inner">
       <div class="loc-hero-text">
-        <span class="section-tag">{loc.county} · {loc.nation}</span>
+        <span class="section-tag">{loc.state} · {loc.region}</span>
         <h1 class="loc-h1">{loc.h1}</h1>
         <p class="loc-intro">{loc.intro}</p>
         <div class="loc-hero-ctas">
@@ -152,7 +152,7 @@ const breadcrumbSchema = {
     <div class="container">
       <h2 class="loc-answer-h2">{answerHeading}</h2>
       <p>
-        The Wax Papers prints custom, food-safe wrapping papers for restaurants, takeaways, cafes and street-food traders across {loc.city} and {loc.county}. Every sheet is produced to your artwork with food-grade inks, so your branding travels with the food from the counter to the customer. Popular choices for {loc.city} kitchens include our <a href={`/products/${featured[0].slug}/`} class="prose-link">{featured[0].title.toLowerCase()}</a>, printed to order and dispatched on a schedule that keeps up with local demand.
+        The Wax Papers prints custom, food-safe wrapping papers for restaurants, takeaways, cafes and street-food traders across {loc.city} and {loc.state}. Every sheet is produced to your artwork with food-grade inks, so your branding travels with the food from the counter to the customer. Popular choices for {loc.city} kitchens include our <a href={`/products/${featured[0].slug}/`} class="prose-link">{featured[0].title.toLowerCase()}</a>, printed to order and dispatched on a schedule that keeps up with local demand.
       </p>
       <p class="loc-keyfacts">
         <strong>Key facts:</strong> Minimum order 500 sheets · Printed to your design · Free digital proof · No setup fees on standard orders · Delivered throughout {loc.city}.
@@ -264,13 +264,13 @@ const breadcrumbSchema = {
           {nearby.map(n => (
             <a href={`/locations/${n.slug}/`} class="card loc-nearby-card">
               <h3>{n.city}</h3>
-              <span class="loc-nearby-county">{n.county} · {n.nation}</span>
+              <span class="loc-nearby-county">{n.state} · {n.region}</span>
               <span class="related-link">Food papers in {n.city} →</span>
             </a>
           ))}
         </div>
         <div class="related-all-link">
-          <a href="/locations/">View All UK Delivery Locations →</a>
+          <a href="/locations/">View All US Delivery Locations →</a>
         </div>
       </div>
     </section>

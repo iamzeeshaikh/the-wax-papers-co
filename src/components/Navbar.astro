@@ -1,14 +1,19 @@
 ---
 import { products } from '../data/products';
+import { locations } from '../data/locations';
 const currentPath = Astro.url.pathname;
 
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
-  { href: '/locations', label: 'Locations' },
   { href: '/blog', label: 'Blog' },
   { href: '/contact', label: 'Contact' },
 ];
+
+const navRegions = ['Northeast', 'Midwest', 'South', 'West'] as const;
+const locationsByRegion = navRegions
+  .map(region => ({ region, cities: locations.filter(l => l.region === region) }))
+  .filter(group => group.cities.length > 0);
 ---
 
 <header class="site-header" id="siteHeader">
@@ -91,6 +96,41 @@ const navLinks = [
                   </li>
                 ))}
               </ul>
+            </div>
+          </div>
+        </li>
+
+        <!-- Locations dropdown -->
+        <li class="has-dropdown">
+          <button
+            class:list={['nav-link nav-link-btn', { active: currentPath.startsWith('/locations') }]}
+            aria-haspopup="true"
+            aria-expanded="false"
+            id="locationsBtn"
+          >
+            Locations
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="mega-menu mega-menu-loc" id="locationsMenu" role="region" aria-label="Locations menu">
+            <div class="mega-inner">
+              <div class="mega-header">
+                <strong>Custom Food Papers by City — USA</strong>
+                <a href="/locations" class="mega-view-all">View All Locations →</a>
+              </div>
+              <div class="mega-loc-grid">
+                {locationsByRegion.map(group => (
+                  <div class="mega-loc-col">
+                    <span class="mega-loc-region">{group.region}</span>
+                    <ul>
+                      {group.cities.map(city => (
+                        <li>
+                          <a href={`/locations/${city.slug}/`} class="mega-loc-link">{city.city}<span class="mega-loc-state">{city.stateAbbr}</span></a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </li>
@@ -248,6 +288,24 @@ const navLinks = [
   .mega-item:hover { background: rgba(74,124,89,0.07); color: var(--color-copper); }
   .mega-item img { width: 48px; height: 48px; object-fit: cover; border-radius: var(--radius-sm); }
 
+  /* Locations dropdown */
+  .mega-menu-loc { width: 620px; }
+  .mega-loc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+  .mega-loc-region {
+    display: block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--color-copper); margin-bottom: 0.6rem;
+    padding-bottom: 0.4rem; border-bottom: 1px solid var(--color-gray-100);
+  }
+  .mega-loc-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.1rem; }
+  .mega-loc-link {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 0.4rem;
+    padding: 0.35rem 0.5rem; border-radius: var(--radius-sm);
+    font-size: 0.83rem; color: var(--color-gray-700); font-weight: 500;
+    transition: background 0.15s, color 0.15s; text-decoration: none;
+  }
+  .mega-loc-link:hover { background: rgba(74,124,89,0.07); color: var(--color-copper); }
+  .mega-loc-state { font-size: 0.68rem; color: var(--color-gray-600); font-weight: 600; }
+
   /* Right side */
   .nav-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
   .nav-cta { font-size: 0.875rem; padding: 0.55rem 1.25rem; }
@@ -331,6 +389,8 @@ const navLinks = [
     .mega-menu.open { display: block; }
     .mega-grid { grid-template-columns: repeat(2, 1fr); }
     .mega-item { flex-direction: row; text-align: left; justify-content: flex-start; }
+    .mega-menu-loc { width: 100%; }
+    .mega-loc-grid { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
 
@@ -339,6 +399,8 @@ const navLinks = [
   const menu = document.getElementById('navMenu');
   const productsBtn = document.getElementById('productsBtn');
   const megaMenu = document.getElementById('megaMenu');
+  const locationsBtn = document.getElementById('locationsBtn');
+  const locationsMenu = document.getElementById('locationsMenu');
 
   // Hamburger toggle
   toggle?.addEventListener('click', () => {
@@ -352,6 +414,15 @@ const navLinks = [
       megaMenu?.classList.toggle('open');
       const isExp = megaMenu?.classList.contains('open');
       productsBtn.setAttribute('aria-expanded', String(isExp));
+    }
+  });
+
+  // Locations dropdown (mobile: toggle; desktop: hover handled by CSS)
+  locationsBtn?.addEventListener('click', () => {
+    if (window.innerWidth < 960) {
+      locationsMenu?.classList.toggle('open');
+      const isExp = locationsMenu?.classList.contains('open');
+      locationsBtn.setAttribute('aria-expanded', String(isExp));
     }
   });
 

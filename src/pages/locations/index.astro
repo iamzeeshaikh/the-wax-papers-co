@@ -6,15 +6,15 @@ import { locations } from '../../data/locations';
 
 const canonicalUrl = 'https://thewaxpapers.co/locations/';
 
-const nations = ['England', 'Scotland', 'Wales', 'Northern Ireland'] as const;
-const byNation = nations
-  .map(nation => ({ nation, cities: locations.filter(l => l.nation === nation) }))
+const regions = ['Northeast', 'Midwest', 'South', 'West'] as const;
+const byRegion = regions
+  .map(region => ({ region, cities: locations.filter(l => l.region === region) }))
   .filter(group => group.cities.length > 0);
 
 const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  "name": "UK Delivery Locations — The Wax Papers",
+  "name": "US Delivery Locations — The Wax Papers",
   "itemListElement": locations.map((l, i) => ({
     "@type": "ListItem",
     "position": i + 1,
@@ -34,8 +34,8 @@ const breadcrumbSchema = {
 ---
 
 <BaseLayout
-  title="UK Delivery Locations | Custom Food Papers Across the UK | The Wax Papers"
-  description="We deliver custom printed food papers to food businesses across the UK — London, Manchester, Birmingham, Glasgow, Cardiff, Belfast and more. Find your city."
+  title="US Delivery Locations | Custom Food Papers Across the USA | The Wax Papers"
+  description="We deliver custom printed food papers to food businesses across the USA — New York, Los Angeles, Chicago, Houston, Dallas, Miami and more. Find your city."
   canonical={canonicalUrl}
   schema={[itemListSchema, breadcrumbSchema]}
 >
@@ -55,22 +55,22 @@ const breadcrumbSchema = {
   <!-- Hero -->
   <section class="loc-index-hero">
     <div class="container">
-      <span class="section-tag">UK Delivery</span>
-      <h1 class="loc-index-h1">Custom Food Papers Delivered Across the UK</h1>
+      <span class="section-tag">US Delivery</span>
+      <h1 class="loc-index-h1">Custom Food Papers Delivered Across the USA</h1>
       <p class="loc-index-sub">
-        From London street-food markets to Glasgow’s late-night counters, we print branded, food-safe
-        wrapping papers for food businesses in every corner of the UK. Choose your city to see how we
-        supply your area — or <a href="/get-quote" class="prose-link">get a free quote</a> to get started.
+        From New York delis to LA taco trucks, we print branded, food-safe wrapping papers for food
+        businesses in every corner of the country. Choose your city to see how we supply your area —
+        or <a href="/get-quote" class="prose-link">get a free quote</a> to get started.
       </p>
     </div>
   </section>
 
-  <!-- Cities by nation -->
+  <!-- Cities by region -->
   <section class="section loc-index-list">
     <div class="container">
-      {byNation.map(group => (
+      {byRegion.map(group => (
         <div class="loc-nation-block">
-          <h2 class="loc-nation-title">{group.nation}</h2>
+          <h2 class="loc-nation-title">{group.region}</h2>
           <div class="loc-index-grid">
             {group.cities.map(city => (
               <a href={`/locations/${city.slug}/`} class="card loc-index-card">
@@ -78,7 +78,7 @@ const breadcrumbSchema = {
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                   <h3>{city.city}</h3>
                 </div>
-                <p>{city.county}</p>
+                <p>{city.state}</p>
                 <span class="related-link">Food papers in {city.city} →</span>
               </a>
             ))}
@@ -94,7 +94,7 @@ const breadcrumbSchema = {
       <div class="product-cta-inner">
         <h2>Don’t See Your City?</h2>
         <p>
-          We deliver custom food papers right across the UK — not just the cities listed here.
+          We deliver custom food papers right across the USA — not just the cities listed here.
           Tell us where you’re based and what you serve, and we’ll get you a free quote.
         </p>
         <div class="product-cta-btns">
