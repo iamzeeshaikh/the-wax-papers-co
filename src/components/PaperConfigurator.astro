@@ -1,0 +1,801 @@
+---
+/**
+ * Step-by-step spec builder for food paper orders.
+ *
+ * Selections are priced live and posted to the site's existing `/api/quote`
+ * endpoint as a normal multipart submission, so no new server route is needed.
+ */
+export interface Props {
+  /** Product being configured — sent with the enquiry. */
+  productName: string;
+  id?: string;
+}
+
+const { productName, id = 'configurator' } = Astro.props;
+
+/** price is the indicative per-sheet adjustment in USD. */
+const sizes = [
+  { id: 'small', label: 'Small sheet', hint: '8 × 8 in' },
+  { id: 'medium', label: 'Medium sheet', hint: '12 × 12 in' },
+  { id: 'large', label: 'Large sheet', hint: '15 × 15 in' },
+  { id: 'xl', label: 'Extra large', hint: '18 × 18 in' },
+  { id: 'roll', label: 'Roll format', hint: 'Continuous roll' },
+  { id: 'custom', label: 'Custom size', hint: 'Enter below' },
+];
+
+const materials = [
+  { id: 'greaseproof', label: 'Greaseproof', hint: 'Grease-resistant sheet', price: 0.032 },
+  { id: 'wax', label: 'Wax coated', hint: 'Classic waxed paper', price: 0.036 },
+  { id: 'kraft', label: 'Kraft paper', hint: 'Natural brown', price: 0.038 },
+  { id: 'pe', label: 'PE coated', hint: 'Moisture barrier', price: 0.046 },
+  { id: 'butcher', label: 'Butcher paper', hint: 'Heavy-duty meat wrap', price: 0.05 },
+  { id: 'eco', label: 'Compostable', hint: 'Plastic-free coating', price: 0.055 },
+];
+
+const printing = [
+  { id: 'none', label: 'Unprinted', hint: 'Plain sheets', price: -0.008 },
+  { id: 'one', label: '1 colour', hint: 'Single ink logo', price: 0.008 },
+  { id: 'two', label: '2 colours', hint: 'Two-ink brand print', price: 0.014 },
+  { id: 'cmyk', label: 'Full colour CMYK', hint: 'Photographic print', price: 0.022 },
+  { id: 'pms', label: 'PMS match', hint: 'Pantone matched', price: 0.018 },
+  { id: 'both', label: 'Both sides', hint: 'Printed front & back', price: 0.024 },
+];
+
+const treatments = [
+  { id: 'foodsafe', label: 'Food-safe ink', hint: 'Direct food contact', price: 0.004 },
+  { id: 'grease', label: 'Extra grease barrier', hint: 'Heavier coating', price: 0.008 },
+  { id: 'microwave', label: 'Microwave safe', hint: 'Reheat friendly', price: 0.006 },
+  { id: 'compostable', label: 'Compostable certified', hint: 'Home compostable', price: 0.012 },
+  { id: 'perforated', label: 'Perforated', hint: 'Tear-off sheets', price: 0.008 },
+  { id: 'diecut', label: 'Die-cut shape', hint: 'Custom outline', price: 0.02 },
+];
+
+const addOns = [
+  { id: 'precut', label: 'Pre-cut sheets', hint: 'Ready-to-use stacks', price: 0.006 },
+  { id: 'interleaved', label: 'Interleaved packs', hint: 'Dispenser ready', price: 0.008 },
+  { id: 'dispenser', label: 'Dispenser box', hint: 'Branded counter box', price: 0.016 },
+  { id: 'sample', label: 'Pre-production sample', hint: 'Physical proof', price: 0.004 },
+  { id: 'banded', label: 'Banded bundles', hint: 'Counted bundles', price: 0.005 },
+  { id: 'express', label: 'Express production', hint: 'Priority queue', price: 0.012 },
+];
+
+const quantities = [1000, 2500, 5000, 10000, 25000, 50000, 100000];
+
+const assurances = [
+  'Free artwork & print setup',
+  'Food-safe, FDA-compliant stock',
+  'Low minimums from 1,000 sheets',
+  'Nationwide delivery',
+];
+---
+
+<section class="cfg" id={id} aria-labelledby={`${id}-heading`}>
+  <div class="container">
+    <div class="cfg-head">
+      <span class="cfg-eyebrow">Interactive configurator</span>
+      <h2 id={`${id}-heading`}>Build your {productName.toLowerCase()} spec</h2>
+      <p>
+        Pick your size, material, printing and quantity to see an instant price estimate, then send
+        the spec straight to our production team.
+      </p>
+    </div>
+
+    <form class="cfg-form" id={`${id}-form`} data-configurator enctype="multipart/form-data" novalidate>
+      <input type="hidden" name="product" value={`${productName} (configurator)`} />
+      <div style="display:none" aria-hidden="true">
+        <input type="text" name="website" tabindex="-1" autocomplete="off" />
+      </div>
+
+      <div class="cfg-steps">
+        <fieldset class="cfg-step" data-group="size" data-mode="single">
+          <legend><span class="cfg-num">1</span> Sheet size</legend>
+          <div class="cfg-options">
+            {sizes.map((option) => (
+              <button type="button" class="cfg-option" data-value={option.id} data-label={option.label} aria-pressed="false">
+                <span class="cfg-option-label">{option.label}</span>
+                <span class="cfg-option-hint">{option.hint}</span>
+              </button>
+            ))}
+          </div>
+          <div class="cfg-custom" data-custom-size hidden>
+            <label for={`${id}-dims`}>Sheet dimensions</label>
+            <input type="text" id={`${id}-dims`} data-dims placeholder='e.g. 14 × 16 in' maxlength="60" />
+          </div>
+        </fieldset>
+
+        <fieldset class="cfg-step" data-group="material" data-mode="single">
+          <legend><span class="cfg-num">2</span> Material</legend>
+          <div class="cfg-options">
+            {materials.map((option) => (
+              <button type="button" class="cfg-option" data-value={option.id} data-label={option.label} data-price={option.price} aria-pressed="false">
+                <span class="cfg-option-label">{option.label}</span>
+                <span class="cfg-option-hint">{option.hint}</span>
+              </button>
+            ))}
+          </div>
+        </fieldset>
+
+        <fieldset class="cfg-step" data-group="printing" data-mode="multi">
+          <legend><span class="cfg-num">3</span> Printing <span class="cfg-note">Select all that apply</span></legend>
+          <div class="cfg-options">
+            {printing.map((option) => (
+              <button type="button" class="cfg-option" data-value={option.id} data-label={option.label} data-price={option.price} aria-pressed="false">
+                <span class="cfg-option-label">{option.label}</span>
+                <span class="cfg-option-hint">{option.hint}</span>
+              </button>
+            ))}
+          </div>
+        </fieldset>
+
+        <fieldset class="cfg-step" data-group="treatment" data-mode="multi">
+          <legend><span class="cfg-num">4</span> Finishes &amp; treatments <span class="cfg-note">Select all that apply</span></legend>
+          <div class="cfg-options">
+            {treatments.map((option) => (
+              <button type="button" class="cfg-option" data-value={option.id} data-label={option.label} data-price={option.price} aria-pressed="false">
+                <span class="cfg-option-label">{option.label}</span>
+                <span class="cfg-option-hint">{option.hint}</span>
+              </button>
+            ))}
+          </div>
+        </fieldset>
+
+        <fieldset class="cfg-step" data-group="quantity" data-mode="single">
+          <legend><span class="cfg-num">5</span> Quantity</legend>
+          <div class="cfg-pills">
+            {quantities.map((value) => (
+              <button type="button" class="cfg-pill" data-value={String(value)} data-label={`${value.toLocaleString('en-US')} sheets`} aria-pressed="false">
+                {value.toLocaleString('en-US')}
+              </button>
+            ))}
+          </div>
+          <div class="cfg-custom">
+            <label for={`${id}-qty`}>Or enter your own quantity</label>
+            <input type="text" inputmode="numeric" id={`${id}-qty`} data-custom-qty placeholder="e.g. 7,500" maxlength="9" />
+          </div>
+        </fieldset>
+
+        <fieldset class="cfg-step" data-group="addOn" data-mode="multi">
+          <legend><span class="cfg-num">6</span> Add-ons <span class="cfg-note">Optional</span></legend>
+          <div class="cfg-options">
+            {addOns.map((option) => (
+              <button type="button" class="cfg-option" data-value={option.id} data-label={option.label} data-price={option.price} aria-pressed="false">
+                <span class="cfg-option-label">{option.label}</span>
+                <span class="cfg-option-hint">{option.hint}</span>
+              </button>
+            ))}
+          </div>
+        </fieldset>
+
+        <fieldset class="cfg-step">
+          <legend><span class="cfg-num">7</span> Artwork &amp; design</legend>
+          <label class="cfg-upload" for={`${id}-artwork`}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" />
+            </svg>
+            <span data-upload-label>Upload artwork (optional) — AI, EPS, PDF, PNG, JPG, SVG</span>
+          </label>
+          <input type="file" id={`${id}-artwork`} name="artwork" accept=".ai,.eps,.pdf,.png,.jpg,.jpeg,.svg" class="cfg-file" />
+
+          <button type="button" class="cfg-toggle" data-design-toggle aria-pressed="false">
+            <span class="cfg-switch" aria-hidden="true"><span></span></span>
+            <span>
+              <strong>I need free design support</strong>
+              <em>Our studio sets up print-ready artwork at no charge, with unlimited revisions.</em>
+            </span>
+          </button>
+        </fieldset>
+
+        <fieldset class="cfg-step">
+          <legend><span class="cfg-num">8</span> Your details</legend>
+          <div class="cfg-grid">
+            <div class="cfg-field">
+              <label for={`${id}-name`}>Full name *</label>
+              <input type="text" id={`${id}-name`} name="name" required autocomplete="name" placeholder="Your name" />
+            </div>
+            <div class="cfg-field">
+              <label for={`${id}-email`}>Email *</label>
+              <input type="email" id={`${id}-email`} name="email" required autocomplete="email" placeholder="you@business.com" />
+            </div>
+            <div class="cfg-field">
+              <label for={`${id}-phone`}>Phone</label>
+              <input type="tel" id={`${id}-phone`} name="phone" autocomplete="tel" placeholder="(555) 000-0000" />
+            </div>
+            <div class="cfg-field">
+              <label for={`${id}-company`}>Business name</label>
+              <input type="text" id={`${id}-company`} name="company" autocomplete="organization" placeholder="Your restaurant or brand" />
+            </div>
+          </div>
+          <div class="cfg-field">
+            <label for={`${id}-notes`}>Message / instructions</label>
+            <textarea id={`${id}-notes`} data-notes rows="3" maxlength="1200" placeholder="Deadline, delivery city, or anything else we should know…"></textarea>
+          </div>
+        </fieldset>
+      </div>
+
+      <aside class="cfg-summary" aria-label="Your specification">
+        <div class="cfg-summary-inner">
+          <p class="cfg-summary-title">Your specification</p>
+          <dl class="cfg-rows">
+            <div><dt>Size</dt><dd data-summary="size">Not selected</dd></div>
+            <div><dt>Material</dt><dd data-summary="material">Not selected</dd></div>
+            <div><dt>Printing</dt><dd data-summary="printing">Not selected</dd></div>
+            <div><dt>Finishes</dt><dd data-summary="treatment">None</dd></div>
+            <div><dt>Quantity</dt><dd data-summary="quantity">Not selected</dd></div>
+            <div><dt>Add-ons</dt><dd data-summary="addOn">None</dd></div>
+            <div><dt>Artwork</dt><dd data-summary="artwork">Not attached</dd></div>
+            <div><dt>Design support</dt><dd data-summary="design">Not requested</dd></div>
+          </dl>
+
+          <div class="cfg-estimate">
+            <p class="cfg-estimate-label">Estimated price range</p>
+            <p class="cfg-estimate-value" data-estimate>Select material &amp; quantity</p>
+            <p class="cfg-estimate-note">
+              Indicative only — final pricing is confirmed once our team reviews your artwork and
+              specification.
+            </p>
+          </div>
+
+          <ul class="cfg-assurances">
+            {assurances.map((point) => (
+              <li>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 13l4 4L19 7" /></svg>
+                {point}
+              </li>
+            ))}
+          </ul>
+
+          <div class="cfg-status" role="status" aria-live="polite" data-status hidden></div>
+
+          <button type="submit" class="cfg-submit" data-submit>Send my spec for pricing</button>
+          <a class="cfg-call" href="tel:+15033580443">Talk to a packaging expert</a>
+        </div>
+      </aside>
+    </form>
+  </div>
+</section>
+
+<style>
+  .cfg {
+    padding: clamp(2.5rem, 5vw, 4rem) 0;
+    background: var(--color-bg-alt);
+  }
+  .cfg-head {
+    max-width: 44rem;
+    margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
+  }
+  .cfg-eyebrow {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-copper);
+    margin-bottom: 0.6rem;
+  }
+  .cfg-head h2 {
+    font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.3rem);
+    margin-bottom: 0.6rem;
+  }
+  .cfg-head p {
+    color: var(--color-text-muted, #5b5b52);
+    line-height: 1.7;
+  }
+
+  .cfg-form {
+    display: grid;
+    gap: 1.25rem;
+    align-items: start;
+  }
+  @media (min-width: 62rem) {
+    .cfg-form {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 21rem);
+    }
+  }
+
+  .cfg-steps {
+    display: grid;
+    gap: 1rem;
+    min-width: 0;
+  }
+  .cfg-step {
+    background: var(--color-white);
+    border: 1px solid rgba(26, 51, 34, 0.12);
+    border-radius: 12px;
+    padding: 1.1rem 1.15rem 1.25rem;
+    min-width: 0;
+  }
+  .cfg-step legend {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--color-brown);
+    margin-bottom: 0.9rem;
+  }
+  .cfg-num {
+    display: inline-grid;
+    place-items: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 999px;
+    background: var(--color-brown);
+    color: var(--color-white);
+    font-size: 0.78rem;
+  }
+  .cfg-note {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6b7a6f;
+    background: var(--color-bg-alt);
+    border-radius: 999px;
+    padding: 0.2rem 0.6rem;
+  }
+
+  .cfg-options {
+    display: grid;
+    gap: 0.6rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+  }
+  .cfg-option {
+    display: grid;
+    gap: 0.2rem;
+    text-align: left;
+    min-height: 3.4rem;
+    padding: 0.65rem 0.8rem;
+    background: var(--color-white);
+    border: 1px solid rgba(26, 51, 34, 0.14);
+    border-radius: 10px;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    transition: border-color 0.15s, background-color 0.15s;
+  }
+  .cfg-option:hover { border-color: var(--color-copper); }
+  .cfg-option[aria-pressed='true'] {
+    border-color: var(--color-copper);
+    background: rgba(74, 124, 89, 0.08);
+    box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.12);
+  }
+  .cfg-option-label { font-weight: 700; font-size: 0.87rem; color: var(--color-brown); }
+  .cfg-option-hint { font-size: 0.75rem; color: #6b7a6f; line-height: 1.4; }
+
+  .cfg-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .cfg-pill {
+    min-height: 2.75rem;
+    padding: 0 1.05rem;
+    border: 1px solid rgba(26, 51, 34, 0.14);
+    border-radius: 999px;
+    background: var(--color-white);
+    font: inherit;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--color-brown);
+    cursor: pointer;
+    transition: border-color 0.15s, background-color 0.15s, color 0.15s;
+  }
+  .cfg-pill:hover { border-color: var(--color-copper); }
+  .cfg-pill[aria-pressed='true'] {
+    background: var(--color-brown);
+    border-color: var(--color-brown);
+    color: var(--color-white);
+  }
+
+  .cfg-custom { margin-top: 0.9rem; }
+  .cfg-custom input { max-width: 16rem; }
+
+  .cfg-grid { display: grid; gap: 0.85rem; }
+  @media (min-width: 40rem) {
+    .cfg-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  .cfg-field { min-width: 0; margin-bottom: 0.35rem; }
+  .cfg-field label,
+  .cfg-custom label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-brown);
+    margin-bottom: 0.3rem;
+  }
+  .cfg input[type='text'],
+  .cfg input[type='email'],
+  .cfg input[type='tel'],
+  .cfg textarea {
+    width: 100%;
+    min-width: 0;
+    font: inherit;
+    font-size: 16px;
+    color: var(--color-charcoal);
+    background: var(--color-white);
+    border: 1px solid rgba(26, 51, 34, 0.16);
+    border-radius: 8px;
+    padding: 0.6rem 0.7rem;
+  }
+  .cfg input:focus-visible,
+  .cfg textarea:focus-visible,
+  .cfg-option:focus-visible,
+  .cfg-pill:focus-visible,
+  .cfg-toggle:focus-visible,
+  .cfg-upload:focus-within {
+    outline: 2px solid var(--color-copper);
+    outline-offset: 2px;
+  }
+
+  .cfg-file { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+  .cfg-upload {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.85rem 1rem;
+    border: 1.5px dashed rgba(26, 51, 34, 0.25);
+    border-radius: 10px;
+    background: var(--color-white);
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: #5b6b5f;
+    transition: border-color 0.15s;
+  }
+  .cfg-upload:hover { border-color: var(--color-copper); }
+  .cfg-upload svg { color: var(--color-copper); flex: none; }
+
+  .cfg-toggle {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    width: 100%;
+    margin-top: 0.9rem;
+    padding: 0.85rem 1rem;
+    text-align: left;
+    background: var(--color-white);
+    border: 1px solid rgba(26, 51, 34, 0.14);
+    border-radius: 10px;
+    cursor: pointer;
+    font: inherit;
+  }
+  .cfg-toggle[aria-pressed='true'] {
+    border-color: var(--color-copper);
+    background: rgba(74, 124, 89, 0.07);
+  }
+  .cfg-toggle strong { display: block; font-size: 0.87rem; color: var(--color-brown); }
+  .cfg-toggle em { display: block; margin-top: 0.2rem; font-style: normal; font-size: 0.78rem; color: #6b7a6f; line-height: 1.5; }
+  .cfg-switch {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    width: 2.6rem;
+    height: 1.45rem;
+    padding: 0.18rem;
+    border-radius: 999px;
+    background: rgba(26, 51, 34, 0.18);
+    transition: background-color 0.15s;
+  }
+  .cfg-switch > span {
+    width: 1.05rem;
+    height: 1.05rem;
+    border-radius: 999px;
+    background: var(--color-white);
+    transition: transform 0.15s;
+  }
+  .cfg-toggle[aria-pressed='true'] .cfg-switch { background: var(--color-copper); }
+  .cfg-toggle[aria-pressed='true'] .cfg-switch > span { transform: translateX(1.15rem); }
+
+  .cfg-summary { min-width: 0; }
+  @media (min-width: 62rem) {
+    .cfg-summary-inner { position: sticky; top: 1.5rem; }
+  }
+  .cfg-summary-inner {
+    background: var(--color-white);
+    border: 1px solid rgba(26, 51, 34, 0.12);
+    border-radius: 12px;
+    padding: 1.1rem 1.15rem 1.25rem;
+  }
+  .cfg-summary-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #6b7a6f;
+    margin-bottom: 0.75rem;
+  }
+  .cfg-rows > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.45rem 0;
+    border-bottom: 1px solid rgba(26, 51, 34, 0.08);
+  }
+  .cfg-rows dt { font-size: 0.8rem; color: #6b7a6f; }
+  .cfg-rows dd {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-brown);
+    text-align: right;
+    max-width: 60%;
+  }
+  .cfg-rows dd[data-empty='true'] { font-weight: 500; font-style: italic; color: #6b7a6f; }
+
+  .cfg-estimate {
+    margin-top: 1rem;
+    padding: 0.9rem 1rem 1rem;
+    border-radius: 10px;
+    background: var(--color-brown);
+    color: var(--color-white);
+    text-align: center;
+  }
+  .cfg-estimate-label {
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.66);
+  }
+  .cfg-estimate-value { font-size: 1.25rem; font-weight: 700; margin: 0.35rem 0 0.4rem; }
+  .cfg-estimate-note { font-size: 0.7rem; line-height: 1.5; color: rgba(255, 255, 255, 0.66); }
+
+  .cfg-assurances { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: 0.4rem; }
+  .cfg-assurances li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--color-charcoal);
+  }
+  .cfg-assurances svg { color: var(--color-copper); margin-top: 0.2rem; flex: none; }
+
+  .cfg-status {
+    margin-top: 0.9rem;
+    padding: 0.65rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    border: 1px solid rgba(26, 51, 34, 0.14);
+  }
+  .cfg-status[data-tone='error'] { border-color: #e6b4b0; background: #fdf3f2; color: #8a2a22; }
+  .cfg-status[data-tone='ok'] { border-color: var(--color-copper); background: rgba(74, 124, 89, 0.1); }
+
+  .cfg-submit {
+    width: 100%;
+    min-height: 3rem;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 999px;
+    background: var(--color-copper);
+    color: var(--color-white);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.15s;
+  }
+  .cfg-submit:hover { background: var(--color-copper-light); }
+  .cfg-submit[disabled] { opacity: 0.7; cursor: progress; }
+  .cfg-call {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.85rem;
+    margin-top: 0.6rem;
+    border: 1px solid rgba(26, 51, 34, 0.16);
+    border-radius: 999px;
+    font-size: 0.87rem;
+    font-weight: 700;
+    color: var(--color-brown);
+    text-decoration: none;
+  }
+  .cfg-call:hover { border-color: var(--color-copper); }
+</style>
+
+<script>
+  /**
+   * Keeps the summary and the price estimate in step with the buttons, and
+   * posts the finished spec to /api/quote as a normal multipart submission.
+   */
+  const QTY_SCALE: Array<[number, number]> = [
+    [100000, 0.7],
+    [50000, 0.78],
+    [25000, 0.86],
+    [10000, 1],
+    [5000, 1.18],
+    [2500, 1.42],
+    [1000, 1.75],
+    [1, 2.4],
+  ];
+
+  const LABELS: Record<string, string> = {
+    size: 'Size',
+    material: 'Material',
+    printing: 'Printing',
+    treatment: 'Finishes',
+    quantity: 'Quantity',
+    addOn: 'Add-ons',
+  };
+
+  function money(value: number): string {
+    return value.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+  }
+
+  document.querySelectorAll<HTMLFormElement>('[data-configurator]').forEach((form) => {
+    const estimate = form.querySelector<HTMLElement>('[data-estimate]');
+    const status = form.querySelector<HTMLElement>('[data-status]');
+    const submit = form.querySelector<HTMLButtonElement>('[data-submit]');
+    const notes = form.querySelector<HTMLTextAreaElement>('[data-notes]');
+    const customQty = form.querySelector<HTMLInputElement>('[data-custom-qty]');
+    const dims = form.querySelector<HTMLInputElement>('[data-dims]');
+    const dimsWrap = form.querySelector<HTMLElement>('[data-custom-size]');
+    const fileInput = form.querySelector<HTMLInputElement>('input[type="file"]');
+    const uploadLabel = form.querySelector<HTMLElement>('[data-upload-label]');
+    const designToggle = form.querySelector<HTMLButtonElement>('[data-design-toggle]');
+
+    const chosen = new Map<string, HTMLButtonElement[]>();
+    const picks = (group: string) => chosen.get(group) ?? [];
+
+    function quantity(): number {
+      const typed = Number((customQty?.value ?? '').replace(/[^0-9]/g, ''));
+      if (typed > 0) return typed;
+      const picked = picks('quantity')[0];
+      return picked ? Number(picked.dataset.value) : 0;
+    }
+
+    function priceOf(group: string): number {
+      return picks(group).reduce((total, node) => total + Number(node.dataset.price ?? 0), 0);
+    }
+
+    function labelFor(group: string): string {
+      if (group === 'quantity') {
+        const count = quantity();
+        return count > 0 ? `${count.toLocaleString('en-US')} sheets` : '';
+      }
+      const labels = picks(group).map((node) => node.dataset.label ?? '');
+      if (group === 'size' && labels[0] && dims?.value.trim()) return `${labels[0]} (${dims.value.trim()})`;
+      return labels.join(', ');
+    }
+
+    function currentRange(): string {
+      const count = quantity();
+      const material = priceOf('material');
+      if (!material || !count) return '';
+      const scale = QTY_SCALE.find(([threshold]) => count >= threshold)?.[1] ?? 2.4;
+      const unit = (material + priceOf('printing') + priceOf('treatment') + priceOf('addOn')) * scale;
+      const total = unit * count;
+      return `${money(total * 0.88)} – ${money(total * 1.14)}`;
+    }
+
+    function refresh(): void {
+      for (const group of Object.keys(LABELS)) {
+        const target = form.querySelector<HTMLElement>(`[data-summary="${group}"]`);
+        if (!target) continue;
+        const value = labelFor(group);
+        target.textContent = value || (group === 'treatment' || group === 'addOn' ? 'None' : 'Not selected');
+        target.dataset.empty = value ? 'false' : 'true';
+      }
+
+      const artworkCell = form.querySelector<HTMLElement>('[data-summary="artwork"]');
+      const file = fileInput?.files?.[0];
+      if (artworkCell) {
+        artworkCell.textContent = file ? file.name : 'Not attached';
+        artworkCell.dataset.empty = file ? 'false' : 'true';
+      }
+
+      const designCell = form.querySelector<HTMLElement>('[data-summary="design"]');
+      const wantsDesign = designToggle?.getAttribute('aria-pressed') === 'true';
+      if (designCell) {
+        designCell.textContent = wantsDesign ? 'Requested' : 'Not requested';
+        designCell.dataset.empty = wantsDesign ? 'false' : 'true';
+      }
+
+      const range = currentRange();
+      if (estimate) estimate.textContent = range || 'Select material & quantity';
+    }
+
+    form.querySelectorAll<HTMLFieldSetElement>('[data-group]').forEach((group) => {
+      const name = group.dataset.group!;
+      const multi = group.dataset.mode === 'multi';
+
+      group.querySelectorAll<HTMLButtonElement>('.cfg-option, .cfg-pill').forEach((button) => {
+        button.addEventListener('click', () => {
+          const isOn = button.getAttribute('aria-pressed') === 'true';
+          if (!multi) {
+            group.querySelectorAll<HTMLButtonElement>('.cfg-option, .cfg-pill').forEach((sibling) => {
+              sibling.setAttribute('aria-pressed', 'false');
+            });
+          }
+          button.setAttribute('aria-pressed', isOn ? 'false' : 'true');
+          chosen.set(name, [...group.querySelectorAll<HTMLButtonElement>('[aria-pressed="true"]')]);
+
+          if (name === 'quantity' && customQty) customQty.value = '';
+          if (name === 'size' && dimsWrap) {
+            dimsWrap.hidden = !(button.dataset.value === 'custom' && !isOn);
+          }
+          refresh();
+        });
+      });
+    });
+
+    customQty?.addEventListener('input', () => {
+      if (customQty.value.trim()) {
+        form.querySelectorAll<HTMLButtonElement>('.cfg-pill[aria-pressed="true"]').forEach((pill) => {
+          pill.setAttribute('aria-pressed', 'false');
+        });
+        chosen.set('quantity', []);
+      }
+      refresh();
+    });
+
+    dims?.addEventListener('input', refresh);
+    designToggle?.addEventListener('click', () => {
+      const on = designToggle.getAttribute('aria-pressed') === 'true';
+      designToggle.setAttribute('aria-pressed', on ? 'false' : 'true');
+      refresh();
+    });
+    fileInput?.addEventListener('change', () => {
+      const file = fileInput.files?.[0];
+      if (uploadLabel) {
+        uploadLabel.textContent = file
+          ? file.name
+          : 'Upload artwork (optional) — AI, EPS, PDF, PNG, JPG, SVG';
+      }
+      refresh();
+    });
+
+    function say(message: string, tone: 'ok' | 'error'): void {
+      if (!status) return;
+      status.textContent = message;
+      status.dataset.tone = tone;
+      status.hidden = false;
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const data = new FormData(form);
+      const name = String(data.get('name') ?? '').trim();
+      const email = String(data.get('email') ?? '').trim();
+      if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+        say('Please add your name and a valid email address so we can send the quote.', 'error');
+        return;
+      }
+
+      const spec = Object.keys(LABELS)
+        .map((group) => `${LABELS[group]}: ${labelFor(group) || 'Not selected'}`)
+        .concat(
+          `Design support: ${designToggle?.getAttribute('aria-pressed') === 'true' ? 'Yes' : 'No'}`,
+          `Estimated budget: ${currentRange() || 'pending review'}`,
+        );
+      const extra = notes?.value.trim();
+      if (extra) spec.push('', `Notes: ${extra}`);
+
+      data.set('message', spec.join('\n'));
+      data.set('quantity', labelFor('quantity') || 'Not selected');
+      data.set('size', labelFor('size') || 'Not selected');
+      data.delete('website');
+
+      if (submit) {
+        submit.disabled = true;
+        submit.textContent = 'Sending…';
+      }
+
+      try {
+        const res = await fetch('/api/quote', { method: 'POST', body: data });
+        if (res.ok) {
+          say('Thank you — your specification is with our team. We reply within one business day.', 'ok');
+          form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input, textarea').forEach((field) => {
+            if (field.type !== 'hidden') field.value = '';
+          });
+          if (submit) submit.textContent = 'Specification sent';
+          return;
+        }
+        const payload = await res.json().catch(() => ({}) as { error?: string });
+        say(payload.error ?? 'Something went wrong. Please try again or email info@thewaxpapers.co.', 'error');
+      } catch {
+        say('Could not send. Please email info@thewaxpapers.co and we will pick it up.', 'error');
+      } finally {
+        if (submit && submit.textContent === 'Sending…') {
+          submit.disabled = false;
+          submit.textContent = 'Send my spec for pricing';
+        }
+      }
+    });
+
+    refresh();
+  });
+</script>

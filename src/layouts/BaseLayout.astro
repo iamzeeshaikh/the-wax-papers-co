@@ -13,7 +13,7 @@ const {
   title,
   description,
   canonical = Astro.url.href,
-  ogImage = '/images/og-default.png',
+  ogImage = '/images/og-default.webp',
   schema,
   preloadImage,
   noindex = false,
@@ -172,19 +172,10 @@ const allSchemas = [orgSchema, websiteSchema, ...schemaArray];
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg" />
   <link rel="shortcut icon" href="/favicon.svg" />
 
-  <!-- DNS Prefetch -->
-  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-
-  <!-- Preconnect -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-  <!-- Preload critical fonts -->
-  <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin />
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <!-- Fonts are self-hosted variable files: no third-party round trip before
+       the first paint, and one request per family instead of eight. -->
+  <link rel="preload" href="/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/playfair-display-var-latin.woff2" as="font" type="font/woff2" crossorigin />
 
   <!-- Preload LCP image if provided -->
   {preloadImage && (
@@ -195,6 +186,23 @@ const allSchemas = [orgSchema, websiteSchema, ...schemaArray];
   <script type="application/ld+json" set:html={JSON.stringify(allSchemas)} />
 
   <style is:global>
+    @font-face {
+      font-family: 'Inter';
+      font-style: normal;
+      font-weight: 400 800;
+      font-display: swap;
+      src: url('/fonts/inter-var-latin.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: 'Playfair Display';
+      font-style: normal;
+      font-weight: 400 700;
+      font-display: swap;
+      src: url('/fonts/playfair-display-var-latin.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -563,16 +571,27 @@ const allSchemas = [orgSchema, websiteSchema, ...schemaArray];
     }
   </style>
 
-  <!--Start of Zendesk Chat Script-->
+  <!-- ZeeOps live chat — replaced Zendesk/Zopim. Conversations land in the
+       dashboard at chat.zeeops.dev under the `thewaxpapers` site. -->
   <script is:inline>
-  window.$zopim||(function(d,s){var z=$zopim=function(c){
-  z._.push(c)},$=z.s=
-  d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
-  _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
-  $.src='https://v2.zopim.com/?4h3lbyJihoT1mCOqDA0VoQOaVQE9qTOP';z.t=+new Date;$.
-  type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
+    // The chat widget waits for the first interaction (or 6s of idle) so it
+    // never competes with the page's own render.
+    (function () {
+      var loaded = false;
+      function load() {
+        if (loaded) return;
+        loaded = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://chat.zeeops.dev/widget.js?siteId=thewaxpapers';
+        document.head.appendChild(s);
+      }
+      ['pointerdown', 'keydown', 'touchstart', 'scroll'].forEach(function (evt) {
+        window.addEventListener(evt, load, { once: true, passive: true });
+      });
+      window.addEventListener('load', function () { setTimeout(load, 6000); });
+    })();
   </script>
-  <!--End of Zendesk Chat Script-->
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -782,6 +801,25 @@ const allSchemas = [orgSchema, websiteSchema, ...schemaArray];
     @media (max-width: 400px) {
       .wa-popup { width: calc(100vw - 32px); }
       .wa-widget { left: 16px; bottom: 16px; }
+    }
+
+    /* --- Mobile safety net --------------------------------------------- */
+    img, svg, video, iframe, table { max-width: 100%; }
+    input, select, textarea, button { max-width: 100%; box-sizing: border-box; }
+
+    @media (max-width: 640px) {
+      /* Fields under 16px make iOS zoom the page on focus. */
+      input, select, textarea { font-size: 16px; }
+
+      footer a, .breadcrumb a, .footer-contact-item, .quote-contact-item,
+      .topbar a, .nav-links a, .prose-link {
+        display: inline-block;
+        padding-block: 0.3rem;
+      }
+
+      .nav-toggle { min-width: 44px; min-height: 44px; }
+
+      table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
     }
   </style>
 

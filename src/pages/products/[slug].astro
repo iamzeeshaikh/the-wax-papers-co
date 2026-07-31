@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { imgThumb, imgSrcset } from '../../lib/img';
+import PaperConfigurator from '../../components/PaperConfigurator.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import { products, getProductBySlug, getRelatedProducts } from '../../data/products';
@@ -142,8 +144,12 @@ const foodSafeHeading = pickVariant([
         <div class="product-gallery-main">
           <img
             src={product.heroImage}
+            srcset={imgSrcset(product.heroImage)}
+            sizes="(max-width: 900px) 92vw, 600px"
             alt={`${product.title} — custom printed food papers`}
             loading="eager"
+            fetchpriority="high"
+            decoding="async"
             width="600"
             height="400"
             id="mainProductImg"
@@ -160,7 +166,7 @@ const foodSafeHeading = pickVariant([
                 data-src={img}
                 aria-label={`View ${product.title} image ${i + 1}`}
               >
-                <img src={img} alt="" loading="lazy" width="80" height="70" />
+                <img src={imgThumb(img)} alt="" loading="lazy" decoding="async" width="80" height="70" />
               </button>
             ))}
           </div>
@@ -329,6 +335,8 @@ const foodSafeHeading = pickVariant([
   </section>
 
   <!-- Instant Quote Form -->
+  <PaperConfigurator productName={product.title} id="product-configurator" />
+
   <section class="section instant-quote-section" id="instant-quote">
     <div class="container">
       <div class="iq-layout">
