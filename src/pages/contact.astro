@@ -134,6 +134,7 @@ const breadcrumbSchema = {
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
               Send Message
             </button>
+            <p class="form-status" id="contactStatus" role="status" aria-live="polite"></p>
             <p class="form-privacy-note">Your information is kept private and never shared with third parties.</p>
           </form>
         </div>
@@ -334,3 +335,59 @@ const breadcrumbSchema = {
   .contact-response-list li span { color: var(--color-gray-600); }
   .contact-response-list li strong { color: var(--color-copper-dark); font-weight: 600; }
 </style>
+
+<script>
+  // The contact form posts to the same endpoint as the quote forms and lands
+  // on the thank-you page, so no enquiry is silently lost.
+  const contactForm = document.querySelector('.contact-form') as HTMLFormElement | null;
+  const contactStatus = document.getElementById('contactStatus');
+
+  contactForm?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!contactForm.reportValidity()) return;
+
+    const button = contactForm.querySelector('.contact-submit') as HTMLButtonElement | null;
+    const data = new FormData(contactForm);
+    const payload: Record<string, string> = { product: 'Contact form' };
+    data.forEach((value, key) => {
+      if (typeof value === 'string') payload[key] = value;
+    });
+    // Honeypot: the field is hidden from real visitors.
+    if (payload.url) return;
+    payload.website = '';
+    payload.message = [payload.subject ? `Subject: ${payload.subject}` : '', payload.message]
+      .filter(Boolean)
+      .join('\n');
+
+    if (button) {
+      button.disabled = true;
+      button.textContent = 'Sending…';
+    }
+
+    try {
+      const res = await fetch('/api/quote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (res.ok) {
+        window.location.href = '/thank-you/';
+        return;
+      }
+      const problem = await res.json().catch(() => ({}) as { error?: string });
+      if (contactStatus) {
+        contactStatus.textContent =
+          problem.error ?? 'That did not send. Please email info@thewaxpapers.co.';
+      }
+    } catch {
+      if (contactStatus) {
+        contactStatus.textContent = 'Could not send. Please email info@thewaxpapers.co.';
+      }
+    } finally {
+      if (button) {
+        button.disabled = false;
+        button.textContent = 'Send Message';
+      }
+    }
+  });
+</script>
