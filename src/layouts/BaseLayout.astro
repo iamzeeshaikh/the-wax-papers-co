@@ -616,18 +616,9 @@ const allSchemas = [orgSchema, websiteSchema, ...schemaArray];
       reveals.forEach(el => observer.observe(el));
     }
 
-    // Product image gallery
-    const thumbs = document.querySelectorAll('.product-gallery-thumb');
-    const mainImg = document.querySelector('.product-gallery-main img');
-    thumbs.forEach(thumb => {
-      thumb.addEventListener('click', () => {
-        const src = thumb.querySelector('img')?.src;
-        if (mainImg && src) { (mainImg as HTMLImageElement).src = src; }
-        thumbs.forEach(t => t.classList.remove('active'));
-        thumb.classList.add('active');
-      });
-    });
-    if (thumbs[0]) thumbs[0].classList.add('active');
+    /* The product gallery is wired on the product page itself, which swaps the
+       full-size srcset as well. A second handler here used to copy the
+       thumbnail's own 400px image into the main slot, leaving it blurry. */
 
     // Honeypot validation — block form submissions where HP field is filled
     document.querySelectorAll('form').forEach(form => {
