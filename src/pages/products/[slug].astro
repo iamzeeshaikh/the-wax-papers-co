@@ -858,6 +858,32 @@ const foodSafeHeading = pickVariant([
   // Thumb gallery switcher
   const thumbs = document.querySelectorAll('.product-gallery-thumb');
   const mainImg = document.getElementById('mainProductImg') as HTMLImageElement;
+
+  /* Warm the other gallery images so a thumbnail click swaps instantly instead
+     of waiting on the network. Low priority, at idle, so the first paint is
+     never held up. */
+  function warm(thumb: Element) {
+    const el = thumb as HTMLElement;
+    if (!el.dataset.src || el.dataset.warmed) return;
+    el.dataset.warmed = '1';
+    const image = new Image();
+    image.fetchPriority = 'low';
+    image.sizes = mainImg?.sizes || '';
+    if (el.dataset.srcset) image.srcset = el.dataset.srcset;
+    image.src = el.dataset.src;
+  }
+
+  const warmAll = () => thumbs.forEach(warm);
+  if ('requestIdleCallback' in window) {
+    (window as any).requestIdleCallback(warmAll, { timeout: 2500 });
+  } else {
+    window.addEventListener('load', () => setTimeout(warmAll, 1200), { once: true });
+  }
+  thumbs.forEach(thumb => {
+    thumb.addEventListener('pointerenter', () => warm(thumb), { once: true });
+    thumb.addEventListener('touchstart', () => warm(thumb), { once: true, passive: true });
+  });
+
   thumbs.forEach(thumb => {
     thumb.addEventListener('click', () => {
       const src = (thumb as HTMLButtonElement).dataset.src;
