@@ -164,6 +164,7 @@ const foodSafeHeading = pickVariant([
               <button
                 class={`product-gallery-thumb${i === 0 ? ' active' : ''}`}
                 data-src={img}
+                data-srcset={imgSrcset(img)}
                 aria-label={`View ${product.title} image ${i + 1}`}
               >
                 <img src={imgThumb(img)} alt="" loading="lazy" decoding="async" width="80" height="70" />
@@ -860,7 +861,12 @@ const foodSafeHeading = pickVariant([
   thumbs.forEach(thumb => {
     thumb.addEventListener('click', () => {
       const src = (thumb as HTMLButtonElement).dataset.src;
-      if (mainImg && src) mainImg.src = src;
+      // The main image carries a srcset, which wins over src — swap both or the
+      // picture never changes.
+      if (mainImg && src) {
+        mainImg.srcset = (thumb as HTMLButtonElement).dataset.srcset || '';
+        mainImg.src = src;
+      }
       thumbs.forEach(t => t.classList.remove('active'));
       thumb.classList.add('active');
     });
