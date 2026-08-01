@@ -837,6 +837,13 @@ const assurances = [
         return;
       }
 
+      // The endpoint takes JSON with base64 artwork, the same shape the other
+      // forms on the site post.
+      const payload: Record<string, string> = {};
+      data.forEach((value, key) => {
+        if (typeof value === 'string') payload[key] = value;
+      });
+
       const spec = Object.keys(LABELS)
         .map((group) => `${LABELS[group]}: ${labelFor(group) || 'Not selected'}`)
         .concat(
@@ -846,10 +853,27 @@ const assurances = [
       const extra = notes?.value.trim();
       if (extra) spec.push('', `Notes: ${extra}`);
 
-      data.set('message', spec.join('\n'));
-      data.set('quantity', labelFor('quantity') || 'Not selected');
-      data.set('size', labelFor('size') || 'Not selected');
-      data.delete('website');
+      payload.message = spec.join('\n');
+      payload.quantity = labelFor('quantity') || 'Not selected';
+      payload.size = labelFor('size') || 'Not selected';
+      payload.printing = labelFor('printing') || 'Not selected';
+
+      const artwork = fileInput?.files?.[0];
+      if (artwork) {
+        try {
+          payload.artwork = await new Promise<string>((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(String(reader.result).split(',')[1] ?? '');
+            reader.onerror = reject;
+            reader.readAsDataURL(artwork);
+          });
+          payload.artworkName = artwork.name;
+          payload.artworkType = artwork.type;
+        } catch {
+          say('That file could not be read. Please try a different file.', 'error');
+          return;
+        }
+      }
 
       if (submit) {
         submit.disabled = true;
@@ -857,13 +881,17 @@ const assurances = [
       }
 
       try {
-        const res = await fetch('/api/quote', { method: 'POST', body: data });
+        const res = await fetch('/api/quote', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
         if (res.ok) {
           window.location.href = '/thank-you/';
           return;
         }
-        const payload = await res.json().catch(() => ({}) as { error?: string });
-        say(payload.error ?? 'Something went wrong. Please try again or email info@thewaxpapers.co.', 'error');
+        const problem = await res.json().catch(() => ({}) as { error?: string });
+        say(problem.error ?? 'Something went wrong. Please try again or email info@thewaxpapers.co.', 'error');
       } catch {
         say('Could not send. Please email info@thewaxpapers.co and we will pick it up.', 'error');
       } finally {
