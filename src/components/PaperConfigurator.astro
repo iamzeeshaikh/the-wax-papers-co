@@ -496,14 +496,28 @@ const assurances = [
   /* Phones: the specification stays pinned to the bottom as a compact bar that
      expands to the full list, so the choices are always visible. */
   @media (max-width: 61.99rem) {
+    /* A grid item cannot travel far enough to stay stuck in a single-column
+       layout, so on phones the specification becomes a fixed bar that shows
+       while the configurator is on screen. */
     .cfg-summary {
-      position: sticky;
+      position: fixed;
+      left: 0;
+      right: 0;
       bottom: 0;
-      z-index: 20;
+      z-index: 40;
+      transform: translateY(110%);
+      transition: transform 0.25s ease;
+      pointer-events: none;
+    }
+    .cfg-summary.is-visible {
+      transform: translateY(0);
+      pointer-events: auto;
     }
     .cfg-summary-inner {
       border-radius: 12px 12px 0 0;
-      box-shadow: 0 -10px 30px rgba(26, 51, 34, 0.18);
+      box-shadow: 0 -10px 30px rgba(26, 51, 34, 0.2);
+      max-height: 80vh;
+      overflow-y: auto;
     }
     .cfg-summary-toggle { display: flex; }
     .cfg-rows { display: none; }
@@ -740,6 +754,13 @@ const assurances = [
     }
 
     const summaryPanel = form.querySelector<HTMLElement>('.cfg-summary');
+    const section = form.closest('section');
+    if (summaryPanel && section && window.matchMedia('(max-width: 61.99rem)').matches) {
+      new IntersectionObserver(
+        ([entry]) => summaryPanel.classList.toggle('is-visible', entry.isIntersecting),
+        { rootMargin: '-10% 0px -20% 0px' },
+      ).observe(section);
+    }
     const summaryToggle = form.querySelector<HTMLButtonElement>('[data-summary-toggle]');
     summaryToggle?.addEventListener('click', () => {
       const open = summaryPanel?.classList.toggle('is-open') ?? false;
