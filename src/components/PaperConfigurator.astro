@@ -215,6 +215,10 @@ const assurances = [
       <aside class="cfg-summary" aria-label="Your specification">
         <div class="cfg-summary-inner">
           <p class="cfg-summary-title">Your specification</p>
+          <button type="button" class="cfg-summary-toggle" data-summary-toggle aria-expanded="false">
+            <span data-summary-count>No options selected yet</span>
+            <span data-summary-hint>Show</span>
+          </button>
           <dl class="cfg-rows">
             <div><dt>Size</dt><dd data-summary="size">Not selected</dd></div>
             <div><dt>Material</dt><dd data-summary="material">Not selected</dd></div>
@@ -484,8 +488,48 @@ const assurances = [
 
   .cfg-summary { min-width: 0; }
   @media (min-width: 62rem) {
-    .cfg-summary-inner { position: sticky; top: 1.5rem; }
+    .cfg-summary { position: sticky; top: 1.5rem; }
+    /* A tall summary would otherwise scroll past the top of the screen. */
+    .cfg-summary-inner { max-height: calc(100vh - 3rem); overflow-y: auto; }
   }
+
+  /* Phones: the specification stays pinned to the bottom as a compact bar that
+     expands to the full list, so the choices are always visible. */
+  @media (max-width: 61.99rem) {
+    .cfg-summary {
+      position: sticky;
+      bottom: 0;
+      z-index: 20;
+    }
+    .cfg-summary-inner {
+      border-radius: 12px 12px 0 0;
+      box-shadow: 0 -10px 30px rgba(26, 51, 34, 0.18);
+    }
+    .cfg-summary-toggle { display: flex; }
+    .cfg-rows { display: none; }
+    .cfg-summary.is-open .cfg-rows { display: block; max-height: 40vh; overflow-y: auto; }
+    .cfg-assurances { display: none; }
+    .cfg-estimate { margin-top: 0.5rem; padding: 0.7rem 0.9rem 0.75rem; }
+    .cfg-estimate-note { display: none; }
+    .cfg-summary.is-open .cfg-estimate-note { display: block; }
+  }
+
+  .cfg-summary-toggle {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.35rem 0;
+    background: none;
+    border: 0;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-brown);
+    cursor: pointer;
+  }
+  .cfg-summary-toggle span:last-child { font-size: 0.78rem; font-weight: 500; color: #6b7a6f; }
   .cfg-summary-inner {
     background: var(--color-white);
     border: 1px solid rgba(26, 51, 34, 0.12);
@@ -685,7 +729,24 @@ const assurances = [
 
       const range = currentRange();
       if (estimate) estimate.textContent = range || 'Select material & quantity';
+
+      const chosenCount = Object.keys(LABELS).filter((group) => labelFor(group)).length;
+      const countLabel = form.querySelector<HTMLElement>('[data-summary-count]');
+      if (countLabel) {
+        countLabel.textContent = chosenCount
+          ? `${chosenCount} option${chosenCount === 1 ? '' : 's'} selected`
+          : 'No options selected yet';
+      }
     }
+
+    const summaryPanel = form.querySelector<HTMLElement>('.cfg-summary');
+    const summaryToggle = form.querySelector<HTMLButtonElement>('[data-summary-toggle]');
+    summaryToggle?.addEventListener('click', () => {
+      const open = summaryPanel?.classList.toggle('is-open') ?? false;
+      summaryToggle.setAttribute('aria-expanded', String(open));
+      const hint = summaryToggle.querySelector('[data-summary-hint]');
+      if (hint) hint.textContent = open ? 'Hide' : 'Show';
+    });
 
     form.querySelectorAll<HTMLFieldSetElement>('[data-group]').forEach((group) => {
       const name = group.dataset.group!;
@@ -777,11 +838,7 @@ const assurances = [
       try {
         const res = await fetch('/api/quote', { method: 'POST', body: data });
         if (res.ok) {
-          say('Thank you — your specification is with our team. We reply within one business day.', 'ok');
-          form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input, textarea').forEach((field) => {
-            if (field.type !== 'hidden') field.value = '';
-          });
-          if (submit) submit.textContent = 'Specification sent';
+          window.location.href = '/thank-you/';
           return;
         }
         const payload = await res.json().catch(() => ({}) as { error?: string });

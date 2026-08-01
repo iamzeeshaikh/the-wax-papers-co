@@ -243,7 +243,8 @@ import { products } from '../data/products';
       const json = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(json.detail || json.error || 'server error');
       form.reset();
-      if (msg) msg.textContent = '✓ Quote request sent! We\'ll respond within 1 business day.';
+      window.location.href = '/thank-you/';
+      return;
     } catch (err: any) {
       if (msg) { msg.textContent = 'Error: ' + (err.message || 'Please email info@thewaxpapers.co'); msg.style.color = '#c0392b'; }
     } finally {

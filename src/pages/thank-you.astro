@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Thank you — your request is with us | The Wax Papers';
+const description =
+  'Your custom food paper request has been received. Our team replies with pricing and options within one business day.';
+---
+
+<BaseLayout title={title} description={description} noindex={true}>
+  <section class="ty">
+    <div class="container ty-inner">
+      <div class="ty-mark" aria-hidden="true">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+
+      <h1>Thank you — we have your request</h1>
+      <p class="ty-lede">
+        Your details are with our production team. We reply with pricing, material options and
+        lead time within one business day, and sooner during US business hours.
+      </p>
+
+      <ol class="ty-next">
+        <li><span>1</span> We review your size, material and quantity.</li>
+        <li><span>2</span> You get a written price with printing and finishing options.</li>
+        <li><span>3</span> We send a free digital proof before anything prints.</li>
+      </ol>
+
+      <div class="ty-actions">
+        <a class="btn btn-primary" href="/">Back to home</a>
+        <a class="btn btn-secondary" href="/products/">Browse all products</a>
+      </div>
+
+      <p class="ty-contact">
+        Need it sooner? Call <a href="tel:+15033580443">(503) 358-0443</a> or email
+        <a href="mailto:info@thewaxpapers.co">info@thewaxpapers.co</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .ty {
+    padding: clamp(3rem, 8vw, 6rem) 0;
+    background: var(--color-bg-alt);
+  }
+  .ty-inner {
+    max-width: 40rem;
+    text-align: center;
+  }
+  .ty-mark {
+    display: grid;
+    place-items: center;
+    width: 68px;
+    height: 68px;
+    margin: 0 auto 1.5rem;
+    border-radius: 999px;
+    background: rgba(74, 124, 89, 0.12);
+    color: var(--color-copper);
+  }
+  .ty h1 {
+    font-size: clamp(1.7rem, 1.2rem + 2vw, 2.5rem);
+    margin-bottom: 1rem;
+  }
+  .ty-lede {
+    color: var(--color-text-muted, #5b6b5f);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+  .ty-next {
+    display: grid;
+    gap: 0.85rem;
+    max-width: 34rem;
+    margin: 0 auto 2rem;
+    padding: 1.25rem;
+    text-align: left;
+    list-style: none;
+    background: var(--color-white);
+    border: 1px solid rgba(26, 51, 34, 0.12);
+    border-radius: 12px;
+  }
+  .ty-next li {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 0.95rem;
+    color: var(--color-charcoal);
+  }
+  .ty-next span {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 999px;
+    background: var(--color-brown);
+    color: var(--color-white);
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+  .ty-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  .ty-contact {
+    font-size: 0.9rem;
+    color: var(--color-text-muted, #5b6b5f);
+  }
+  .ty-contact a {
+    color: var(--color-copper);
+    font-weight: 700;
+  }
+</style>

@@ -232,6 +232,8 @@ const locationsByRegion = navRegions
   .mega-menu {
     position: absolute;
     top: calc(100% + 8px);
+    /* Bridges the gap between trigger and panel so the cursor can cross it. */
+    margin-top: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 780px;
@@ -245,6 +247,15 @@ const locationsByRegion = navRegions
     transition: opacity 0.2s, transform 0.2s;
     z-index: 300;
   }
+  .mega-menu::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -12px;
+    height: 12px;
+  }
+
   .has-dropdown:hover .mega-menu,
   .has-dropdown:focus-within .mega-menu,
   .mega-menu.open {
@@ -290,7 +301,7 @@ const locationsByRegion = navRegions
 
   /* Locations dropdown */
   .mega-menu-loc { width: 620px; }
-  .mega-loc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+  .mega-loc-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.25rem; }
   .mega-loc-region {
     display: block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
     letter-spacing: 0.08em; color: var(--color-copper); margin-bottom: 0.6rem;
@@ -302,9 +313,11 @@ const locationsByRegion = navRegions
     padding: 0.35rem 0.5rem; border-radius: var(--radius-sm);
     font-size: 0.83rem; color: var(--color-gray-700); font-weight: 500;
     transition: background 0.15s, color 0.15s; text-decoration: none;
+    min-width: 0;
   }
+  .mega-loc-col, .mega-loc-col ul, .mega-loc-col li { min-width: 0; }
   .mega-loc-link:hover { background: rgba(74,124,89,0.07); color: var(--color-copper); }
-  .mega-loc-state { font-size: 0.68rem; color: var(--color-gray-600); font-weight: 600; }
+  .mega-loc-state { font-size: 0.68rem; color: var(--color-gray-600); font-weight: 600; flex: none; }
 
   /* Right side */
   .nav-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }

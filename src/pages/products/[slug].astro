@@ -229,6 +229,86 @@ const foodSafeHeading = pickVariant([
     </div>
   </section>
 
+  <section class="section instant-quote-section" id="instant-quote">
+    <div class="container">
+      <div class="iq-layout">
+        <div class="iq-left reveal">
+          <span class="section-tag">Instant Quote</span>
+          <h2 class="iq-heading">Get a Quote for {product.title}</h2>
+          <p class="iq-sub">Fill in the short form and we'll get back to you within 1 business day with pricing and lead times.</p>
+          <ul class="iq-bullets">
+            <li><span aria-hidden="true">✓</span> Free, no-obligation quote</li>
+            <li><span aria-hidden="true">✓</span> Response within 1 business day</li>
+            <li><span aria-hidden="true">✓</span> Wholesale pricing available</li>
+            <li><span aria-hidden="true">✓</span> Free digital proof included</li>
+          </ul>
+          <div class="iq-contact">
+            <a href="tel:+15033580443">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 10.18a19.79 19.79 0 01-3.07-8.67A2 2 0 011.9 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              (503) 358-0443
+            </a>
+            <a href="mailto:info@thewaxpapers.co">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              info@thewaxpapers.co
+            </a>
+          </div>
+        </div>
+        <div class="iq-right reveal">
+          <form
+            name="instant-quote"
+            method="POST"
+            enctype="multipart/form-data"
+            class="iq-form"
+            aria-label="Instant quote form"
+            id="iqForm"
+          >
+            <input type="hidden" name="product" value={product.title} />
+            <!-- Honeypot -->
+            <div style="display:none" aria-hidden="true">
+              <input type="text" name="website" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <div class="iq-row">
+              <div class="iq-group">
+                <label class="iq-label" for="iq-name">Full Name <span aria-hidden="true">*</span></label>
+                <input class="iq-input" type="text" id="iq-name" name="name" required autocomplete="name" placeholder="Your name" />
+              </div>
+              <div class="iq-group">
+                <label class="iq-label" for="iq-email">Email <span aria-hidden="true">*</span></label>
+                <input class="iq-input" type="email" id="iq-email" name="email" required autocomplete="email" placeholder="your@email.com" />
+              </div>
+            </div>
+
+            <div class="iq-group">
+              <label class="iq-label" for="iq-phone">Phone Number</label>
+              <input class="iq-input" type="tel" id="iq-phone" name="phone" autocomplete="tel" placeholder="(555) 000-0000" />
+            </div>
+
+            <div class="iq-group">
+              <label class="iq-label" for="iq-message">Message / Requirements</label>
+              <textarea class="iq-input iq-textarea" id="iq-message" name="message" rows="3" placeholder="Quantity, size, print details, deadline..."></textarea>
+            </div>
+
+            <div class="iq-group">
+              <label class="iq-label" for="iq-artwork">Upload Artwork <span class="iq-optional">(optional)</span></label>
+              <div class="iq-file-wrap">
+                <input class="iq-file-input" type="file" id="iq-artwork" name="artwork" accept=".ai,.eps,.pdf,.png,.jpg,.svg" aria-describedby="iq-artwork-hint" />
+                <p id="iq-artwork-hint" class="iq-hint">AI, EPS, PDF, PNG, JPG · Max 20MB · You can also email artwork after submitting</p>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary iq-submit">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+              Request Instant Quote
+            </button>
+            <p class="iq-privacy">Your information is kept private and never shared.</p>
+            <p class="iq-success" id="iqSuccess" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Answer-first summary for AEO/GEO -->
   <section class="product-answer-section">
     <div class="container">
@@ -337,85 +417,6 @@ const foodSafeHeading = pickVariant([
   <!-- Instant Quote Form -->
   <PaperConfigurator productName={product.title} id="product-configurator" />
 
-  <section class="section instant-quote-section" id="instant-quote">
-    <div class="container">
-      <div class="iq-layout">
-        <div class="iq-left reveal">
-          <span class="section-tag">Instant Quote</span>
-          <h2 class="iq-heading">Get a Quote for {product.title}</h2>
-          <p class="iq-sub">Fill in the short form and we'll get back to you within 1 business day with pricing and lead times.</p>
-          <ul class="iq-bullets">
-            <li><span aria-hidden="true">✓</span> Free, no-obligation quote</li>
-            <li><span aria-hidden="true">✓</span> Response within 1 business day</li>
-            <li><span aria-hidden="true">✓</span> Wholesale pricing available</li>
-            <li><span aria-hidden="true">✓</span> Free digital proof included</li>
-          </ul>
-          <div class="iq-contact">
-            <a href="tel:+15033580443">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 10.18a19.79 19.79 0 01-3.07-8.67A2 2 0 011.9 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-              (503) 358-0443
-            </a>
-            <a href="mailto:info@thewaxpapers.co">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-              info@thewaxpapers.co
-            </a>
-          </div>
-        </div>
-        <div class="iq-right reveal">
-          <form
-            name="instant-quote"
-            method="POST"
-            enctype="multipart/form-data"
-            class="iq-form"
-            aria-label="Instant quote form"
-            id="iqForm"
-          >
-            <input type="hidden" name="product" value={product.title} />
-            <!-- Honeypot -->
-            <div style="display:none" aria-hidden="true">
-              <input type="text" name="website" tabindex="-1" autocomplete="off" />
-            </div>
-
-            <div class="iq-row">
-              <div class="iq-group">
-                <label class="iq-label" for="iq-name">Full Name <span aria-hidden="true">*</span></label>
-                <input class="iq-input" type="text" id="iq-name" name="name" required autocomplete="name" placeholder="Your name" />
-              </div>
-              <div class="iq-group">
-                <label class="iq-label" for="iq-email">Email <span aria-hidden="true">*</span></label>
-                <input class="iq-input" type="email" id="iq-email" name="email" required autocomplete="email" placeholder="your@email.com" />
-              </div>
-            </div>
-
-            <div class="iq-group">
-              <label class="iq-label" for="iq-phone">Phone Number</label>
-              <input class="iq-input" type="tel" id="iq-phone" name="phone" autocomplete="tel" placeholder="(555) 000-0000" />
-            </div>
-
-            <div class="iq-group">
-              <label class="iq-label" for="iq-message">Message / Requirements</label>
-              <textarea class="iq-input iq-textarea" id="iq-message" name="message" rows="3" placeholder="Quantity, size, print details, deadline..."></textarea>
-            </div>
-
-            <div class="iq-group">
-              <label class="iq-label" for="iq-artwork">Upload Artwork <span class="iq-optional">(optional)</span></label>
-              <div class="iq-file-wrap">
-                <input class="iq-file-input" type="file" id="iq-artwork" name="artwork" accept=".ai,.eps,.pdf,.png,.jpg,.svg" aria-describedby="iq-artwork-hint" />
-                <p id="iq-artwork-hint" class="iq-hint">AI, EPS, PDF, PNG, JPG · Max 20MB · You can also email artwork after submitting</p>
-              </div>
-            </div>
-
-            <button type="submit" class="btn btn-primary iq-submit">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
-              Request Instant Quote
-            </button>
-            <p class="iq-privacy">Your information is kept private and never shared.</p>
-            <p class="iq-success" id="iqSuccess" aria-live="polite"></p>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Split Section 1: Content left, Image right -->
   <section class="section split-section-wrap">
@@ -900,7 +901,8 @@ const foodSafeHeading = pickVariant([
       const json = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(json.detail || json.error || 'server error');
       iqForm.reset();
-      if (iqSuccess) iqSuccess.textContent = '✓ Quote request sent! We\'ll respond within 1 business day.';
+      window.location.href = '/thank-you/';
+      return;
     } catch (err: any) {
       if (iqSuccess) iqSuccess.textContent = 'Error: ' + (err.message || 'Something went wrong. Please email info@thewaxpapers.co');
       iqSuccess!.style.color = '#c0392b';
