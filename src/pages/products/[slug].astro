@@ -19,16 +19,61 @@ const related = getRelatedProducts(product.relatedProducts).slice(0, 3);
 const relatedPosts = blogPosts.filter(p => p.relatedProducts.includes(product.slug)).slice(0, 3);
 const canonicalUrl = `https://thewaxpapers.co/products/${product.slug}/`;
 
+// Absolute, URI-encoded image URLs (hero first, deduped).
+const schemaImages = [product.heroImage, ...product.images]
+  .filter((img, i, arr) => img && arr.indexOf(img) === i)
+  .map(img => encodeURI(`https://thewaxpapers.co${img}`));
+
+/*
+ * Wholesale price range derived from the on-site PaperConfigurator's live
+ * per-sheet pricing: cheapest run (greaseproof, unprinted) is $0.024/sheet
+ * at the 1,000-sheet minimum = $24; a fully-optioned large run prices out
+ * around $0.19/sheet on a 10,000-sheet order = $1,900.
+ */
 const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
   "name": product.title,
   "description": product.metaDescription,
-  "image": `https://thewaxpapers.co${product.heroImage}`,
+  "image": schemaImages,
+  "sku": product.slug,
+  "mpn": product.slug,
+  "category": product.category,
   "url": canonicalUrl,
   "brand": {
     "@type": "Brand",
     "name": "The Wax Papers"
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "url": canonicalUrl,
+    "priceCurrency": "USD",
+    "lowPrice": "24.00",
+    "highPrice": "1900.00",
+    "offerCount": 6,
+    "priceValidUntil": "2027-08-04",
+    "availability": "https://schema.org/InStock",
+    "itemCondition": "https://schema.org/NewCondition",
+    "seller": { "@id": "https://thewaxpapers.co/#organization" },
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": "US"
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": { "@type": "QuantitativeValue", "minValue": 8, "maxValue": 12, "unitCode": "DAY" },
+        "transitTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 5, "unitCode": "DAY" }
+      }
+    },
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "US",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+      "merchantReturnLink": "https://thewaxpapers.co/terms-and-conditions/",
+      "description": "Custom-printed products are not returnable; defective or misprinted orders are replaced or credited when reported within 5 business days of delivery."
+    }
   },
   "aggregateRating": {
     "@type": "AggregateRating",
