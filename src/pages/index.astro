@@ -98,19 +98,19 @@ const faqs = [
       <!-- Right: floating image mosaic -->
       <div class="hero-mosaic" aria-hidden="true">
         <div class="mosaic-card mosaic-1">
-          <img src="/images/products/custom-burger-paper/custom burger paper-TCB-1.webp" alt="" loading="eager" />
+          <img src="/images/products/custom-burger-paper/custom burger paper-TCB-1.webp" alt="Custom printed burger paper with brand logo" loading="eager" fetchpriority="high" decoding="async" width="440" height="330" />
           <div class="mosaic-label">Custom Burger Paper</div>
         </div>
         <div class="mosaic-card mosaic-2">
-          <img src="/images/products/custom-deli-paper/Deli paper-PBEE-1.webp" alt="" loading="eager" />
+          <img src="/images/products/custom-deli-paper/Deli paper-PBEE-1.webp" alt="Custom deli paper sheets for sandwich wrapping" loading="eager" decoding="async" width="360" height="300" />
           <div class="mosaic-label">Custom Deli Paper</div>
         </div>
         <div class="mosaic-card mosaic-3">
-          <img src="/images/products/parchment-paper/parchment paper-PBEE-1.webp" alt="" loading="lazy" />
+          <img src="/images/products/parchment-paper/parchment paper-PBEE-1.webp" alt="Parchment paper for baking and food prep" loading="lazy" decoding="async" width="340" height="280" />
           <div class="mosaic-label">Parchment Paper</div>
         </div>
         <div class="mosaic-card mosaic-4">
-          <img src="/images/products/custom-pizza-liner/Pizza Liner-PBEE-1.webp" alt="" loading="lazy" />
+          <img src="/images/products/custom-pizza-liner/Pizza Liner-PBEE-1.webp" alt="Custom pizza box liner with printed design" loading="lazy" decoding="async" width="340" height="280" />
           <div class="mosaic-label">Pizza Liner</div>
         </div>
         <!-- Floating stats chips -->
@@ -164,7 +164,7 @@ const faqs = [
           <a href={`/products/${p.slug}/`}
              class:list={['mag-card', { 'mag-card-large': i < 2, 'mag-card-small': i >= 2 }]}>
             <div class="mag-img">
-              <img src={p.heroImage} alt={`${p.title}`} loading={i < 2 ? 'eager' : 'lazy'}
+              <img src={p.heroImage} alt={`${p.title} — custom printed food packaging`} loading={i < 2 ? 'eager' : 'lazy'} decoding="async"
                    width={i < 2 ? 600 : 320} height={i < 2 ? 400 : 240} />
               <div class="mag-overlay">
                 <span class="btn btn-white mag-btn">Get a Quote →</span>
@@ -204,9 +204,9 @@ const faqs = [
           </p>
           <div class="why-img-stack">
             <img src="/images/products/custom-greaseproof-paper/Custom Greaseproof Paper -TCB-1.webp"
-                 alt="Custom greaseproof paper" loading="lazy" class="why-img-a" />
+                 alt="Custom greaseproof paper printed with brand design" loading="lazy" decoding="async" width="390" height="200" class="why-img-a" />
             <img src="/images/products/custom-food-paper/custom food paper-PBEE-2.webp"
-                 alt="Custom food paper" loading="lazy" class="why-img-b" />
+                 alt="Custom food paper sheets for restaurants" loading="lazy" decoding="async" width="330" height="170" class="why-img-b" />
           </div>
         </div>
         <div class="why-right">
@@ -277,11 +277,11 @@ const faqs = [
         <div class="sf-images reveal">
           <div class="sf-img-main">
             <img src="/images/products/custom-sandwich-paper/Custom Sandwich Paper-PBEE-1.webp"
-                 alt="Custom sandwich paper printing" loading="lazy" />
+                 alt="Custom sandwich paper with full-color printing" loading="lazy" decoding="async" width="600" height="440" />
           </div>
           <div class="sf-img-float">
             <img src="/images/products/custom-kraft-paper/Custom kraft Paper-PBEE-2.webp"
-                 alt="Custom kraft paper" loading="lazy" />
+                 alt="Custom kraft paper wrapping for food packaging" loading="lazy" decoding="async" width="290" height="230" />
           </div>
         </div>
         <div class="sf-content reveal">
@@ -361,7 +361,7 @@ const faqs = [
       </div>
       <div class="usa-band-img reveal">
         <img src="/images/products/custom-food-basket-liners/Custom Food Basket liners-TCB-1.webp"
-             alt="Custom food packaging shipped across the USA" loading="lazy" />
+             alt="Custom food basket liners shipped across the USA" loading="lazy" decoding="async" width="1000" height="380" />
       </div>
     </div>
   </section>

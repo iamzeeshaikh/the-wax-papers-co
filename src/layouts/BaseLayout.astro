@@ -13,7 +13,7 @@ const {
   title,
   description,
   canonical = Astro.url.href,
-  ogImage = '/images/og-default.webp',
+  ogImage = '/images/products/custom-food-paper/custom food paper-PBEE-1.webp',
   schema,
   preloadImage,
   noindex = false,
@@ -25,7 +25,9 @@ const rawCanonical = canonical.startsWith('http') ? canonical : `${siteUrl}${can
 // trailingSlash: true URLs (and the sitemap). Astro.url.href omits the slash on
 // some static pages, which would otherwise disagree with the sitemap.
 const canonicalUrl = rawCanonical.endsWith('/') ? rawCanonical : `${rawCanonical}/`;
-const ogImageUrl = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
+// encodeURI: several product image filenames contain spaces, which are invalid
+// in og:image / schema URLs unless escaped.
+const ogImageUrl = ogImage.startsWith('http') ? encodeURI(ogImage) : encodeURI(`${siteUrl}${ogImage}`);
 
 const schemaArray = schema
   ? Array.isArray(schema) ? schema : [schema]
@@ -44,7 +46,7 @@ const orgSchema = {
     "width": 40,
     "height": 40
   },
-  "image": `${siteUrl}/images/og-default.png`,
+  "image": encodeURI(`${siteUrl}/images/products/custom-food-paper/custom food paper-PBEE-1.webp`),
   "description": "Custom wax paper, greaseproof paper, deli paper, burger paper, and restaurant food packaging supplier serving all 50 US states from Bensalem, Pennsylvania.",
   "telephone": "+15033580443",
   "email": "info@thewaxpapers.co",

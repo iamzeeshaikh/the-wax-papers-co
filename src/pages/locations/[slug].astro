@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import { locations, getLocationBySlug, getNearbyLocations, waxLinkTargets, waxAnchor, waxPick } from '../../data/locations';
 import { getProductBySlug } from '../../data/products';
+import { imgThumb, imgSrcset } from '../../lib/img';
 
 export async function getStaticPaths() {
   return locations.map(l => ({ params: { slug: l.slug } }));
@@ -270,7 +271,7 @@ const breadcrumbSchema = {
         {featured.map(p => (
           <a href={`/products/${p.slug}/`} class="card related-card" aria-label={`View ${p.title}`}>
             <div class="related-card-img">
-              <img src={p.heroImage} alt={`${p.title} for ${loc.city} food businesses`} loading="lazy" width="320" height="200" />
+              <img src={imgThumb(p.heroImage)} srcset={imgSrcset(p.heroImage)} sizes="(max-width: 600px) 92vw, 320px" alt={`${p.title} for ${loc.city} food businesses`} loading="lazy" decoding="async" width="320" height="200" />
             </div>
             <div class="related-card-body">
               <h3>{p.title}</h3>

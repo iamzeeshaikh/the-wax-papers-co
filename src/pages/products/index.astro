@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import { products } from '../../data/products';
+import { imgThumb, imgSrcset } from '../../lib/img';
 
 const categories = [...new Set(products.map(p => p.category))];
 
@@ -71,7 +72,7 @@ const breadcrumbSchema = {
       <div class="products-hero-mosaic">
         {products.slice(0, 4).map((p, i) => (
           <a href={`/products/${p.slug}/`} class={`mosaic-thumb mosaic-${i}`}>
-            <img src={p.heroImage} alt={p.title} loading="eager" width="180" height="140" />
+            <img src={imgThumb(p.heroImage)} alt={`${p.title} — custom printed food paper`} loading="eager" decoding="async" width="180" height="140" />
             <span>{p.title}</span>
           </a>
         ))}
@@ -122,9 +123,12 @@ const breadcrumbSchema = {
                 <a href={`/products/${product.slug}/`} class={`product-card card${idx === 0 ? ' product-card-featured' : ''}`}>
                   <div class="product-card-img">
                     <img
-                      src={product.heroImage}
+                      src={imgThumb(product.heroImage)}
+                      srcset={imgSrcset(product.heroImage)}
+                      sizes="(max-width: 600px) 92vw, 320px"
                       alt={`${product.title} — custom printed`}
                       loading="lazy"
+                      decoding="async"
                       width="320"
                       height="220"
                     />

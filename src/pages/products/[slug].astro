@@ -74,13 +74,6 @@ const productSchema = {
       "merchantReturnLink": "https://thewaxpapers.co/terms-and-conditions/",
       "description": "Custom-printed products are not returnable; defective or misprinted orders are replaced or credited when reported within 5 business days of delivery."
     }
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": product.ratingValue,
-    "reviewCount": product.ratingCount,
-    "bestRating": "5",
-    "worstRating": "1"
   }
 };
 
@@ -212,7 +205,7 @@ const foodSafeHeading = pickVariant([
                 data-srcset={imgSrcset(img)}
                 aria-label={`View ${product.title} image ${i + 1}`}
               >
-                <img src={imgThumb(img)} alt="" loading="lazy" decoding="async" width="80" height="70" />
+                <img src={imgThumb(img)} alt={`${product.title} image ${i + 1}`} loading="lazy" decoding="async" width="80" height="70" />
               </button>
             ))}
           </div>
@@ -482,8 +475,11 @@ const foodSafeHeading = pickVariant([
         <div class="split-section-image">
           <img
             src={product.images[1] || product.heroImage}
+            srcset={imgSrcset(product.images[1] || product.heroImage)}
+            sizes="(max-width: 768px) 92vw, 560px"
             alt={`Custom printed ${product.title} close-up`}
             loading="lazy"
+            decoding="async"
             width="560"
             height="380"
           />
@@ -499,8 +495,11 @@ const foodSafeHeading = pickVariant([
         <div class="split-section-image">
           <img
             src={product.images[2] || product.images[1] || product.heroImage}
+            srcset={imgSrcset(product.images[2] || product.images[1] || product.heroImage)}
+            sizes="(max-width: 768px) 92vw, 560px"
             alt={`${product.title} in use`}
             loading="lazy"
+            decoding="async"
             width="560"
             height="380"
           />
@@ -538,7 +537,7 @@ const foodSafeHeading = pickVariant([
           {related.map(rp => (
             <a href={`/products/${rp.slug}/`} class="card related-card" aria-label={`View ${rp.title} — custom printed food paper`}>
               <div class="related-card-img">
-                <img src={rp.heroImage} alt={`${rp.title} — custom printed for US food businesses`} loading="lazy" width="320" height="200" />
+                <img src={imgThumb(rp.heroImage)} srcset={imgSrcset(rp.heroImage)} sizes="(max-width: 600px) 92vw, 320px" alt={`${rp.title} — custom printed for US food businesses`} loading="lazy" decoding="async" width="320" height="200" />
               </div>
               <div class="related-card-body">
                 <h3>{rp.title}</h3>

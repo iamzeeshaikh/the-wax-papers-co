@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import { blogPosts, getBlogPostBySlug } from '../../data/blog';
 import { getRelatedProducts } from '../../data/products';
+import { imgThumb } from '../../lib/img';
 
 export async function getStaticPaths() {
   return blogPosts.map(p => ({ params: { slug: p.slug } }));
@@ -124,7 +125,7 @@ function processContent(content: string): string {
               <div class="blog-related-grid">
                 {related.map(rp => (
                   <a href={`/products/${rp.slug}/`} class="blog-related-card card">
-                    <img src={rp.heroImage} alt={rp.title} loading="lazy" width="200" height="130" />
+                    <img src={imgThumb(rp.heroImage)} alt={`${rp.title} — custom printed food paper`} loading="lazy" decoding="async" width="200" height="130" />
                     <div class="blog-related-body">
                       <strong>{rp.title}</strong>
                       <span>View {rp.title} →</span>
