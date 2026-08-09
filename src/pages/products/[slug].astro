@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { imgThumb, imgSrcset } from '../../lib/img';
+import { imgFull, imgThumb, imgSrcset } from '../../lib/img';
 import PaperConfigurator from '../../components/PaperConfigurator.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
@@ -181,7 +181,7 @@ const foodSafeHeading = pickVariant([
       <div class="product-gallery">
         <div class="product-gallery-main">
           <img
-            src={product.heroImage}
+            src={imgFull(product.heroImage)}
             srcset={imgSrcset(product.heroImage)}
             sizes="(max-width: 900px) 92vw, 600px"
             alt={`${product.title} — custom printed food papers`}
@@ -201,7 +201,7 @@ const foodSafeHeading = pickVariant([
             {product.images.map((img, i) => (
               <button
                 class={`product-gallery-thumb${i === 0 ? ' active' : ''}`}
-                data-src={img}
+                data-src={imgFull(img)}
                 data-srcset={imgSrcset(img)}
                 aria-label={`View ${product.title} image ${i + 1}`}
               >
@@ -474,7 +474,7 @@ const foodSafeHeading = pickVariant([
         </div>
         <div class="split-section-image">
           <img
-            src={product.images[1] || product.heroImage}
+            src={imgFull(product.images[1] || product.heroImage)}
             srcset={imgSrcset(product.images[1] || product.heroImage)}
             sizes="(max-width: 768px) 92vw, 560px"
             alt={`Custom printed ${product.title} close-up`}
@@ -494,7 +494,7 @@ const foodSafeHeading = pickVariant([
       <div class="split-section reverse">
         <div class="split-section-image">
           <img
-            src={product.images[2] || product.images[1] || product.heroImage}
+            src={imgFull(product.images[2] || product.images[1] || product.heroImage)}
             srcset={imgSrcset(product.images[2] || product.images[1] || product.heroImage)}
             sizes="(max-width: 768px) 92vw, 560px"
             alt={`${product.title} in use`}
