@@ -692,7 +692,7 @@ const allSchemas = [orgSchema, websiteSchema, ...schemaArray];
 
     /* Popup */
     .wa-popup {
-      width: 320px;
+      width: min(320px, calc(100vw - 2rem));
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 8px 32px rgba(0,0,0,0.18);
@@ -839,8 +839,10 @@ const allSchemas = [orgSchema, websiteSchema, ...schemaArray];
     });
     waClose?.addEventListener('click', closePopup);
 
-    // Auto-open after 4 seconds on first visit
-    if (!sessionStorage.getItem('wa-seen')) {
+    // Auto-open after 4 seconds on first visit — but only where the panel sits
+    // beside the page. On a phone it is 320px wide and lands over the hero CTA,
+    // covering roughly half a small screen with something nobody asked for.
+    if (!sessionStorage.getItem('wa-seen') && window.matchMedia('(min-width: 768px)').matches) {
       setTimeout(() => {
         openPopup();
         sessionStorage.setItem('wa-seen', '1');
