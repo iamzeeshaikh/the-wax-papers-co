@@ -72,7 +72,7 @@ const breadcrumbSchema = {
       <div class="products-hero-mosaic">
         {products.slice(0, 4).map((p, i) => (
           <a href={`/products/${p.slug}/`} class={`mosaic-thumb mosaic-${i}`}>
-            <img src={imgThumb(p.heroImage)} alt={`${p.title} — custom printed food paper`} loading="eager" decoding="async" width="180" height="140" />
+            <img src={imgThumb(p.heroImage)} alt={`${p.title} — custom printed food paper`} loading="lazy" decoding="async" width="180" height="140" />
             <span>{p.title}</span>
           </a>
         ))}

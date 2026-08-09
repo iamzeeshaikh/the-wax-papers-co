@@ -98,11 +98,11 @@ const faqs = [
       <!-- Right: floating image mosaic -->
       <div class="hero-mosaic" aria-hidden="true">
         <div class="mosaic-card mosaic-1">
-          <img src="/images/products/custom-burger-paper/custom burger paper-TCB-1.webp" alt="Custom printed burger paper with brand logo" loading="eager" fetchpriority="high" decoding="async" width="440" height="330" />
+          <img src="/images/products/custom-burger-paper/custom burger paper-TCB-1.webp" alt="Custom printed burger paper with brand logo" loading="lazy" decoding="async" width="440" height="330" />
           <div class="mosaic-label">Custom Burger Paper</div>
         </div>
         <div class="mosaic-card mosaic-2">
-          <img src="/images/products/custom-deli-paper/Deli paper-PBEE-1.webp" alt="Custom deli paper sheets for sandwich wrapping" loading="eager" decoding="async" width="360" height="300" />
+          <img src="/images/products/custom-deli-paper/Deli paper-PBEE-1.webp" alt="Custom deli paper sheets for sandwich wrapping" loading="lazy" decoding="async" width="360" height="300" />
           <div class="mosaic-label">Custom Deli Paper</div>
         </div>
         <div class="mosaic-card mosaic-3">
@@ -164,7 +164,7 @@ const faqs = [
           <a href={`/products/${p.slug}/`}
              class:list={['mag-card', { 'mag-card-large': i < 2, 'mag-card-small': i >= 2 }]}>
             <div class="mag-img">
-              <img src={p.heroImage} alt={`${p.title} — custom printed food packaging`} loading={i < 2 ? 'eager' : 'lazy'} decoding="async"
+              <img src={p.heroImage} alt={`${p.title} — custom printed food packaging`} loading="lazy" decoding="async"
                    width={i < 2 ? 600 : 320} height={i < 2 ? 400 : 240} />
               <div class="mag-overlay">
                 <span class="btn btn-white mag-btn">Get a Quote →</span>
