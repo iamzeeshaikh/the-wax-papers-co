@@ -485,21 +485,23 @@ export const WAX_LINK_POOL = [
   'custom-pizza-liners', 'custom-butcher-papers', 'taco-wrapping-papers',
   'custom-printed-tissue-papers', 'custom-fish-and-chip-papers',
 ];
+// Every variant is 3-8 words. This pool feeds each location page, so a
+// two-word variant like "taco paper" repeated across the whole site.
 export const WAX_ANCHORS: Record<string, string[]> = {
-  'custom-greaseproof-papers': ['greaseproof paper', 'grease-tight greaseproof sheets', 'greaseproof liners'],
-  'custom-burger-papers': ['burger wrap', 'branded burger wrapping paper', 'burger wraps'],
-  'custom-deli-papers': ['deli paper', 'deli counter sheets', 'printed deli paper'],
+  'custom-greaseproof-papers': ['greaseproof paper for food service', 'grease-tight greaseproof sheets', 'greaseproof liners for counters'],
+  'custom-burger-papers': ['branded burger wrapping paper', 'custom printed burger wraps', 'burger wraps for takeaways'],
+  'custom-deli-papers': ['deli paper for counter service', 'deli counter sheets', 'printed deli paper'],
   'custom-food-papers': ['custom food paper', 'printed food paper', 'branded food sheets'],
-  'custom-hot-papers': ['hot food paper', 'heat-friendly wraps'],
+  'custom-hot-papers': ['hot food wrapping paper', 'heat-friendly food wraps'],
   'custom-food-basket-liners': ['food basket liners', 'printed basket liners'],
-  'custom-sandwich-papers': ['sandwich wrap', 'sandwich wrapping paper'],
-  'custom-fry-papers': ['fry paper', 'fried-food liners'],
-  'custom-kraft-papers': ['kraft paper', 'natural kraft wraps'],
-  'custom-pizza-liners': ['pizza liners', 'pizza box liners'],
-  'custom-butcher-papers': ['butcher paper', 'butcher wrap'],
-  'taco-wrapping-papers': ['taco paper', 'taco wrapping paper'],
-  'custom-printed-tissue-papers': ['printed tissue paper', 'branded tissue'],
-  'custom-fish-and-chip-papers': ['fish and chip paper', 'chip shop paper'],
+  'custom-sandwich-papers': ['sandwich wrapping paper', 'custom printed sandwich wrap'],
+  'custom-fry-papers': ['fry paper for hot food', 'fried-food liners for hot counters'],
+  'custom-kraft-papers': ['natural kraft wrapping paper', 'natural kraft wraps'],
+  'custom-pizza-liners': ['pizza box liners', 'printed pizza liners'],
+  'custom-butcher-papers': ['butcher paper for meat counters', 'butcher wrap for fresh meat'],
+  'taco-wrapping-papers': ['taco wrapping paper', 'printed taco wraps'],
+  'custom-printed-tissue-papers': ['printed tissue paper', 'branded tissue paper sheets'],
+  'custom-fish-and-chip-papers': ['fish and chip paper', 'chip shop wrapping paper'],
 };
 export function waxSeed(text: string): number {
   let h = 2166136261;

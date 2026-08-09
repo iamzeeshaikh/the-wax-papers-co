@@ -167,7 +167,7 @@ Our [custom greaseproof paper](/products/custom-greaseproof-papers/) is used by 
 - You need baking sheet lining
 - High oven temperatures (above 350°F) are involved
 
-Our [parchment paper](/products/parchment-papers/) is the preferred choice for professional bakers and commercial kitchens that use convection ovens.
+Our [parchment paper for oven use](/products/parchment-papers/) is the preferred choice for professional bakers and commercial kitchens that use convection ovens.
 
 ## Can You Print on Both?
 
@@ -219,7 +219,7 @@ Burgers are juicy, greasy, and hot. The wrapping paper needs to:
 
 Delis deal with a wide range of foods — cold cuts, cheeses, hoagies, subs — each with different wrapping needs.
 
-**Best choice:** [Custom deli paper](/products/custom-deli-papers/) is the industry standard for good reason. It is lightweight, grease-resistant, and versatile enough to wrap, line trays, or cover counter surfaces. Our [custom sandwich paper](/products/custom-sandwich-papers/) is also popular for sub shops and quick service operations.
+**Best choice:** [Custom deli paper](/products/custom-deli-papers/) is the industry standard for good reason. It is lightweight, grease-resistant, and versatile enough to wrap, line trays, or cover counter surfaces. Our custom sandwich paper is also popular for sub shops and quick service operations.
 
 ## For Pizza Restaurants
 
@@ -250,7 +250,7 @@ Food trucks need versatile paper that works for multiple food types without keep
 Bakeries have different needs — non-stick baking paper for the oven, and presentation paper for display and customer wrapping.
 
 **Best choice:**
-- **Oven use:** [Parchment paper](/products/parchment-papers/) is oven-safe up to 450°F and non-stick
+- **Oven use:** [Parchment paper for oven use](/products/parchment-papers/) is oven-safe up to 450°F and non-stick
 - **Counter display and takeout:** [Custom butter paper](/products/custom-butter-papers/) or greaseproof paper works well for wrapping pastries
 
 ## Key Factors When Choosing Restaurant Wrapping Paper
@@ -400,7 +400,7 @@ Parchment paper is a heavier, silicone-coated paper designed primarily for bakin
 - Available in bleached white and unbleached natural
 - Used in bakeries, commercial kitchens, and food presentation
 
-Our [parchment paper](/products/parchment-papers/) is available in custom-printed versions for bakeries that want branding on their baking sheets and service paper.
+Our [parchment paper for oven use](/products/parchment-papers/) is available in custom-printed versions for bakeries that want branding on their baking sheets and service paper.
 
 ## Key Differences at a Glance
 
@@ -489,7 +489,7 @@ Used for lighter food items and premium presentation. Tissue liners have less gr
 
 ### Parchment Paper Liners
 
-[Parchment paper](/products/parchment-papers/) liners offer a premium non-stick surface and are popular in artisan burger restaurants and farm-to-table casual dining.
+[Parchment paper for oven use](/products/parchment-papers/) liners offer a premium non-stick surface and are popular in artisan burger restaurants and farm-to-table casual dining.
 
 ## Choosing the Right Size
 
@@ -591,7 +591,7 @@ Custom food paper can carry anything from a simple one-color logo to a full-colo
 **Full-color CMYK** — maximum visual impact, recommended for competitive markets
 **All-over pattern** — high brand recognition, particularly effective for delivery and social media
 
-Our [custom deli paper](/products/custom-deli-papers/) and [custom greaseproof paper](/products/custom-greaseproof-papers/) are both available in all print options.
+Our [custom deli paper for counter service](/products/custom-deli-papers/) and our greaseproof range are both available in all print options.
 
 ## Step 4: Select the Right Size
 
