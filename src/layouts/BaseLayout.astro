@@ -112,6 +112,17 @@ const websiteSchema = {
 };
 
 const allSchemas = [orgSchema, websiteSchema, ...schemaArray];
+
+// Google truncates around 65 characters. Past that the brand suffix costs us the
+// tail of the title, which is the part that differentiates the result, so it is
+// dropped rather than the headline. Pages bake the suffix into their own title
+// prop, so the trim has to happen here at the render point.
+const TITLE_BUDGET = 65;
+const BRAND_SUFFIX = ' | The Wax Papers';
+const snippetTitle =
+  title.length > TITLE_BUDGET && title.endsWith(BRAND_SUFFIX)
+    ? title.slice(0, -BRAND_SUFFIX.length)
+    : title;
 ---
 
 <!DOCTYPE html>
@@ -121,7 +132,7 @@ const allSchemas = [orgSchema, websiteSchema, ...schemaArray];
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-  <title>{title}</title>
+  <title>{snippetTitle}</title>
   <meta name="description" content={description} />
   <meta name="google-site-verification" content="6puebT3GbGh1FM8TkKjIgF2EIuPFglLh0XYD2v5Vhks" />
   <link rel="canonical" href={canonicalUrl} />
