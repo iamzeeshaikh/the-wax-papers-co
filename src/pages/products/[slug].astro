@@ -25,11 +25,31 @@ const schemaImages = [product.heroImage, ...product.images]
   .map(img => encodeURI(`https://thewaxpapers.co${img}`));
 
 /*
- * Wholesale price range derived from the on-site PaperConfigurator's live
- * per-sheet pricing: cheapest run (greaseproof, unprinted) is $0.024/sheet
- * at the 1,000-sheet minimum = $24; a fully-optioned large run prices out
- * around $0.19/sheet on a 10,000-sheet order = $1,900.
+ * A single concrete starting price, not a range. Google does not treat an
+ * AggregateOffer as eligible for a Merchant listing rich result, so the offer
+ * below carries one `price` — the site's own floor price, $24.00, derived from
+ * the on-site PaperConfigurator's cheapest per-sheet rate (greaseproof,
+ * unprinted) of $0.024/sheet at the 1,000-sheet minimum.
+ *
+ * PRICE_FROM feeds BOTH the JSON-LD offer and the visible "From $24.00" line
+ * rendered in the product hero below, so the structured-data price can never
+ * drift away from the price a visitor (or Google) can read on the page.
  */
+const PRICE_FROM = 24.0;
+const PRICE_CURRENCY = 'USD';
+const priceFromDisplay = PRICE_FROM.toLocaleString('en-US', {
+  style: 'currency',
+  currency: PRICE_CURRENCY,
+  minimumFractionDigits: 2,
+});
+
+// Build date + 1 year, so the offer never ships with a stale hard-coded date.
+const priceValidUntil = (() => {
+  const d = new Date();
+  d.setFullYear(d.getFullYear() + 1);
+  return d.toISOString().slice(0, 10);
+})();
+
 const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
@@ -45,28 +65,14 @@ const productSchema = {
     "name": "The Wax Papers"
   },
   "offers": {
-    "@type": "AggregateOffer",
+    "@type": "Offer",
     "url": canonicalUrl,
-    "priceCurrency": "USD",
-    "lowPrice": "24.00",
-    "highPrice": "1900.00",
-    "offerCount": 6,
-    "priceValidUntil": "2027-08-04",
+    "priceCurrency": PRICE_CURRENCY,
+    "price": PRICE_FROM.toFixed(2),
+    "priceValidUntil": priceValidUntil,
     "availability": "https://schema.org/InStock",
     "itemCondition": "https://schema.org/NewCondition",
     "seller": { "@id": "https://thewaxpapers.co/#organization" },
-    "shippingDetails": {
-      "@type": "OfferShippingDetails",
-      "shippingDestination": {
-        "@type": "DefinedRegion",
-        "addressCountry": "US"
-      },
-      "deliveryTime": {
-        "@type": "ShippingDeliveryTime",
-        "handlingTime": { "@type": "QuantitativeValue", "minValue": 8, "maxValue": 12, "unitCode": "DAY" },
-        "transitTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 5, "unitCode": "DAY" }
-      }
-    },
     "hasMerchantReturnPolicy": {
       "@type": "MerchantReturnPolicy",
       "applicableCountry": "US",
@@ -227,6 +233,12 @@ const foodSafeHeading = pickVariant([
 
         <h1 class="product-h1">{product.h1}</h1>
         <p class="product-intro">{product.intro}</p>
+
+        <p class="product-price">
+          <span class="product-price-label">From</span>
+          <span class="product-price-value">{priceFromDisplay}</span>
+          <span class="product-price-note">starting price &mdash; final cost depends on size, material, printing and quantity</span>
+        </p>
 
         <div class="product-ctas">
           <a href="/get-quote/" class="btn btn-primary">
@@ -669,6 +681,31 @@ const foodSafeHeading = pickVariant([
   .product-rating strong { color: var(--color-brown); }
   .rating-count { color: var(--color-gray-600); }
   .product-intro { font-size: 0.97rem; color: var(--color-gray-600); line-height: 1.8; margin-bottom: 1.5rem; }
+  .product-price {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .product-price-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-gray-600);
+  }
+  .product-price-value {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--color-copper-dark);
+    line-height: 1.1;
+  }
+  .product-price-note {
+    flex-basis: 100%;
+    font-size: 0.82rem;
+    color: var(--color-gray-600);
+  }
   .product-ctas { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
 
   /* Trust badges */
