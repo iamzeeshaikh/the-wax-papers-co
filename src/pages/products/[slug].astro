@@ -27,15 +27,16 @@ const schemaImages = [product.heroImage, ...product.images]
 /*
  * A single concrete starting price, not a range. Google does not treat an
  * AggregateOffer as eligible for a Merchant listing rich result, so the offer
- * below carries one `price` — the site's own floor price, $24.00, derived from
- * the on-site PaperConfigurator's cheapest per-sheet rate (greaseproof,
- * unprinted) of $0.024/sheet at the 1,000-sheet minimum.
+ * below carries one `price` — the site's own per-unit starting price, $0.30,
+ * which is the figure every product on the site starts from (set by the owner
+ * 2026-09-18; the earlier $24.00 was an order total derived from the
+ * configurator, not a unit price, and was not what the business quotes).
  *
- * PRICE_FROM feeds BOTH the JSON-LD offer and the visible "From $24.00" line
+ * PRICE_FROM feeds BOTH the JSON-LD offer and the visible "From $0.30" line
  * rendered in the product hero below, so the structured-data price can never
  * drift away from the price a visitor (or Google) can read on the page.
  */
-const PRICE_FROM = 24.0;
+const PRICE_FROM = 0.3;
 const PRICE_CURRENCY = 'USD';
 const priceFromDisplay = PRICE_FROM.toLocaleString('en-US', {
   style: 'currency',
@@ -237,6 +238,7 @@ const foodSafeHeading = pickVariant([
         <p class="product-price">
           <span class="product-price-label">From</span>
           <span class="product-price-value">{priceFromDisplay}</span>
+          <span class="product-price-unit">per unit</span>
           <span class="product-price-note">starting price &mdash; final cost depends on size, material, printing and quantity</span>
         </p>
 
@@ -700,6 +702,11 @@ const foodSafeHeading = pickVariant([
     font-weight: 700;
     color: var(--color-copper-dark);
     line-height: 1.1;
+  }
+  .product-price-unit {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-gray-600);
   }
   .product-price-note {
     flex-basis: 100%;
