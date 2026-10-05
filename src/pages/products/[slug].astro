@@ -6,6 +6,7 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import { products, getProductBySlug, getRelatedProducts } from '../../data/products';
 import { blogPosts } from '../../data/blog';
+import legacyRatingsData from '../../data/legacy-ratings.json';
 
 export async function getStaticPaths() {
   return products.map(p => ({ params: { slug: p.slug } }));
@@ -51,6 +52,9 @@ const priceValidUntil = (() => {
   return d.toISOString().slice(0, 10);
 })();
 
+const legacyRating = (legacyRatingsData as Record<string, any>)[product.slug] as
+  { aggregateRating: Record<string, string | number> } | undefined;
+
 const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
@@ -81,7 +85,11 @@ const productSchema = {
       "merchantReturnLink": "https://thewaxpapers.co/terms-and-conditions/",
       "description": "Custom-printed products are not returnable; defective or misprinted orders are replaced or credited when reported within 5 business days of delivery."
     }
-  }
+  },
+  // Restored 2026-10-05: product pages emitted this aggregateRating from launch
+  // until 2026-08-06 (same figures as the visible star badge). Values come
+  // verbatim from src/data/legacy-ratings.json; products without an entry get none.
+  ...(legacyRating ? { "aggregateRating": legacyRating.aggregateRating } : {})
 };
 
 const faqSchema = {

@@ -1,0 +1,253 @@
+{
+  "_source": "git: iamzeeshaikh/the-wax-papers-co @ 90a8f03^ (6f25eb7) src/pages/products/[slug].astro + src/data/products.ts \u2014 Product.aggregateRating emitted on every product page from 0becaac (2026-05-15) until 90a8f03 (2026-08-06); thewaxpapers.co never had a Wayback capture",
+  "bagel-papers": {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.8,
+      "reviewCount": 127,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "_source": "git 6f25eb7:src/data/products.ts"
+  },
+  "christmas-wrapping-papers": {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.9,
+      "reviewCount": 84,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "_source": "git 6f25eb7:src/data/products.ts"
+  },
+  "coffee-sleeves": {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.8,
+      "reviewCount": 156,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "_source": "git 6f25eb7:src/data/products.ts"
+  },
+  "custom-burger-papers": {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.9,
+      "reviewCount": 214,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "_source": "git 6f25eb7:src/data/products.ts"
+  },
+  "custom-butcher-papers": {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.8,
+      "reviewCount": 98,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "_source": "git 6f25eb7:src/data/products.ts"
+  },
+  "custom-butter-papers": {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.7,
+      "reviewCount": 76,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "_source": "git 6f25eb7:src/data/products.ts"
+  },
+  "custom-cheese-papers": {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.9,
+      "reviewCount": 63,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "_source": "git 6f25eb7:src/data/products.ts"
+  },
+  "custom-deli-papers": {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.8,
+      "reviewCount": 189,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "_source": "git 6f25eb7:src/data/products.ts"
+  },
+  "custom-fish-and-chip-papers": {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.8,
+      "reviewCount": 91,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "_source": "git 6f25eb7:src/data/products.ts"
+  },
+  "custom-food-basket-liners": {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.8,
+      "reviewCount": 143,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "_source": "git 6f25eb7:src/data/products.ts"
+  },
+  "custom-food-papers": {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.8,
+      "reviewCount": 167,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "_source": "git 6f25eb7:src/data/products.ts"
+  },
+  "custom-freezer-papers": {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.8,
+      "reviewCount": 82,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "_source": "git 6f25eb7:src/data/products.ts"
+  },
+  "custom-fry-papers": {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.8,
+      "reviewCount": 119,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "_source": "git 6f25eb7:src/data/products.ts"
+  },
+  "custom-greaseproof-papers": {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.9,
+      "reviewCount": 201,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "_source": "git 6f25eb7:src/data/products.ts"
+  },
+  "custom-heat-seal-papers": {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.7,
+      "reviewCount": 54,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "_source": "git 6f25eb7:src/data/products.ts"
+  },
+  "custom-hot-papers": {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.8,
+      "reviewCount": 88,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "_source": "git 6f25eb7:src/data/products.ts"
+  },
+  "custom-kraft-papers": {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.8,
+      "reviewCount": 134,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "_source": "git 6f25eb7:src/data/products.ts"
+  },
+  "custom-pizza-liners": {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.8,
+      "reviewCount": 176,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "_source": "git 6f25eb7:src/data/products.ts"
+  },
+  "custom-printed-tissue-papers": {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.9,
+      "reviewCount": 112,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "_source": "git 6f25eb7:src/data/products.ts"
+  },
+  "custom-sandwich-papers": {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.8,
+      "reviewCount": 158,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "_source": "git 6f25eb7:src/data/products.ts"
+  },
+  "custom-wrapping-papers": {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.8,
+      "reviewCount": 97,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "_source": "git 6f25eb7:src/data/products.ts"
+  },
+  "glassine-papers": {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.7,
+      "reviewCount": 69,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "_source": "git 6f25eb7:src/data/products.ts"
+  },
+  "parchment-papers": {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.9,
+      "reviewCount": 234,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "_source": "git 6f25eb7:src/data/products.ts"
+  },
+  "table-tents": {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.8,
+      "reviewCount": 87,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "_source": "git 6f25eb7:src/data/products.ts"
+  },
+  "taco-wrapping-papers": {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": 4.9,
+      "reviewCount": 103,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "_source": "git 6f25eb7:src/data/products.ts"
+  }
+}
