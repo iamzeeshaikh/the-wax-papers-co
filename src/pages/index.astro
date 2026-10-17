@@ -1,4 +1,5 @@
 ---
+import { withExtras, faqPageSchema } from '../lib/page-faqs';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
@@ -408,15 +409,16 @@ const faqs = [
           <a href="/get-quote/" class="btn btn-primary faq-cta">Get a Free Quote</a>
         </div>
         <div class="faq-list">
-          {faqs.map(f => (
+          {withExtras('/', faqs).map(f => (
             <details class="faq-item">
               <summary>{f.q}</summary>
-              <div class="faq-body">{f.a}</div>
+              <div class="faq-body" set:html={f.a} />
             </details>
           ))}
         </div>
       </div>
     </div>
+    <script type="application/ld+json" set:html={JSON.stringify(faqPageSchema(withExtras('/', faqs)))} />
   </section>
 
   <!-- ═══════════════════════════════════════════
