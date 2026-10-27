@@ -72,11 +72,11 @@ const assurances = [
 <section class="cfg" id={id} aria-labelledby={`${id}-heading`}>
   <div class="container">
     <div class="cfg-head">
-      <span class="cfg-eyebrow">Interactive configurator</span>
-      <h2 id={`${id}-heading`}>Build your {productName.toLowerCase()} spec</h2>
+      <span class="cfg-eyebrow">Design your own</span>
+      <h2 id={`${id}-heading`}>Design Your Custom {productName}</h2>
       <p>
-        Pick your size, material, printing and quantity to see an instant price estimate, then send
-        the spec straight to our production team.
+        Pick your size, material, printing and quantity, then send the spec straight to our
+        production team. We reply with a written price for anything beyond the standard build.
       </p>
     </div>
 
@@ -230,14 +230,6 @@ const assurances = [
             <div><dt>Design support</dt><dd data-summary="design">Not requested</dd></div>
           </dl>
 
-          <div class="cfg-estimate">
-            <p class="cfg-estimate-label">Estimated price range</p>
-            <p class="cfg-estimate-value" data-estimate>Select material &amp; quantity</p>
-            <p class="cfg-estimate-note">
-              Indicative only — final pricing is confirmed once our team reviews your artwork and
-              specification.
-            </p>
-          </div>
 
           <ul class="cfg-assurances">
             {assurances.map((point) => (
@@ -645,20 +637,9 @@ const assurances = [
 
 <script>
   /**
-   * Keeps the summary and the price estimate in step with the buttons, and
+   * Keeps the summary in step with the buttons, and
    * posts the finished spec to /api/quote as a normal multipart submission.
    */
-  const QTY_SCALE: Array<[number, number]> = [
-    [100000, 0.7],
-    [50000, 0.78],
-    [25000, 0.86],
-    [10000, 1],
-    [5000, 1.18],
-    [2500, 1.42],
-    [1000, 1.75],
-    [1, 2.4],
-  ];
-
   const LABELS: Record<string, string> = {
     size: 'Size',
     material: 'Material',
@@ -668,12 +649,7 @@ const assurances = [
     addOn: 'Add-ons',
   };
 
-  function money(value: number): string {
-    return value.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
-  }
-
   document.querySelectorAll<HTMLFormElement>('[data-configurator]').forEach((form) => {
-    const estimate = form.querySelector<HTMLElement>('[data-estimate]');
     const status = form.querySelector<HTMLElement>('[data-status]');
     const submit = form.querySelector<HTMLButtonElement>('[data-submit]');
     const notes = form.querySelector<HTMLTextAreaElement>('[data-notes]');
@@ -694,10 +670,6 @@ const assurances = [
       return picked ? Number(picked.dataset.value) : 0;
     }
 
-    function priceOf(group: string): number {
-      return picks(group).reduce((total, node) => total + Number(node.dataset.price ?? 0), 0);
-    }
-
     function labelFor(group: string): string {
       if (group === 'quantity') {
         const count = quantity();
@@ -706,16 +678,6 @@ const assurances = [
       const labels = picks(group).map((node) => node.dataset.label ?? '');
       if (group === 'size' && labels[0] && dims?.value.trim()) return `${labels[0]} (${dims.value.trim()})`;
       return labels.join(', ');
-    }
-
-    function currentRange(): string {
-      const count = quantity();
-      const material = priceOf('material');
-      if (!material || !count) return '';
-      const scale = QTY_SCALE.find(([threshold]) => count >= threshold)?.[1] ?? 2.4;
-      const unit = (material + priceOf('printing') + priceOf('treatment') + priceOf('addOn')) * scale;
-      const total = unit * count;
-      return `${money(total * 0.88)} – ${money(total * 1.14)}`;
     }
 
     function refresh(): void {
@@ -740,9 +702,6 @@ const assurances = [
         designCell.textContent = wantsDesign ? 'Requested' : 'Not requested';
         designCell.dataset.empty = wantsDesign ? 'false' : 'true';
       }
-
-      const range = currentRange();
-      if (estimate) estimate.textContent = range || 'Select material & quantity';
 
       const chosenCount = Object.keys(LABELS).filter((group) => labelFor(group)).length;
       const countLabel = form.querySelector<HTMLElement>('[data-summary-count]');
@@ -848,7 +807,6 @@ const assurances = [
         .map((group) => `${LABELS[group]}: ${labelFor(group) || 'Not selected'}`)
         .concat(
           `Design support: ${designToggle?.getAttribute('aria-pressed') === 'true' ? 'Yes' : 'No'}`,
-          `Estimated budget: ${currentRange() || 'pending review'}`,
         );
       const extra = notes?.value.trim();
       if (extra) spec.push('', `Notes: ${extra}`);

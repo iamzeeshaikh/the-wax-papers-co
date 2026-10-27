@@ -3,6 +3,8 @@ import { withExtras, plainText } from '../../lib/page-faqs';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { imgFull, imgThumb, imgSrcset } from '../../lib/img';
 import PaperConfigurator from '../../components/PaperConfigurator.astro';
+import OrderBox from '../../components/OrderBox.astro';
+import { PACK_QTY, PACK_PRICE_TEXT, HANDLING_DAYS, TRANSIT_DAYS } from '../../lib/order.mjs';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import { products, getProductBySlug, getRelatedProducts } from '../../data/products';
@@ -27,24 +29,13 @@ const schemaImages = [product.heroImage, ...product.images]
   .map(img => encodeURI(`https://thewaxpapers.co${img}`));
 
 /*
- * A single concrete starting price, not a range. Google does not treat an
- * AggregateOffer as eligible for a Merchant listing rich result, so the offer
- * below carries one `price` — the site's own per-unit starting price, $0.30,
- * which is the figure every product on the site starts from (set by the owner
- * 2026-09-18; the earlier $24.00 was an order total derived from the
- * configurator, not a unit price, and was not what the business quotes).
- *
- * PRICE_FROM feeds BOTH the JSON-LD offer and the visible "From $0.30" line
- * rendered in the product hero below, so the structured-data price can never
- * drift away from the price a visitor (or Google) can read on the page.
+ * The online pack price from src/lib/order.mjs (owner 2026-10-27: 1,000 sheets for
+ * $40.00 on the standard printed build). The order box in the hero, the checkout,
+ * api/order.js and /merchant-feed.xml read the same constant, so the JSON-LD price,
+ * the visible price, the Merchant listing and the order can never drift apart.
+ * eligibleQuantity says the price is for 1,000 sheets.
  */
-const PRICE_FROM = 0.3;
 const PRICE_CURRENCY = 'USD';
-const priceFromDisplay = PRICE_FROM.toLocaleString('en-US', {
-  style: 'currency',
-  currency: PRICE_CURRENCY,
-  minimumFractionDigits: 2,
-});
 
 // Build date + 1 year, so the offer never ships with a stale hard-coded date.
 const priceValidUntil = (() => {
@@ -74,11 +65,22 @@ const productSchema = {
     "@type": "Offer",
     "url": canonicalUrl,
     "priceCurrency": PRICE_CURRENCY,
-    "price": PRICE_FROM.toFixed(2),
+    "price": PACK_PRICE_TEXT,
+    "eligibleQuantity": { "@type": "QuantitativeValue", "value": PACK_QTY, "unitCode": "C62" },
     "priceValidUntil": priceValidUntil,
     "availability": "https://schema.org/InStock",
     "itemCondition": "https://schema.org/NewCondition",
     "seller": { "@id": "https://thewaxpapers.co/#organization" },
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "USD" },
+      "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "US" },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": { "@type": "QuantitativeValue", "minValue": HANDLING_DAYS[0], "maxValue": HANDLING_DAYS[1], "unitCode": "DAY" },
+        "transitTime": { "@type": "QuantitativeValue", "minValue": TRANSIT_DAYS[0], "maxValue": TRANSIT_DAYS[1], "unitCode": "DAY" }
+      }
+    },
     "hasMerchantReturnPolicy": {
       "@type": "MerchantReturnPolicy",
       "applicableCountry": "US",
@@ -245,12 +247,7 @@ const foodSafeHeading = pickVariant([
         <h1 class="product-h1">{product.h1}</h1>
         <p class="product-intro">{product.intro}</p>
 
-        <p class="product-price">
-          <span class="product-price-label">From</span>
-          <span class="product-price-value">{priceFromDisplay}</span>
-          <span class="product-price-unit">per unit</span>
-          <span class="product-price-note">starting price &mdash; final cost depends on size, material, printing and quantity</span>
-        </p>
+        <OrderBox slug={product.slug} title={product.title} />
 
         <div class="product-ctas">
           <a href="/get-quote/" class="btn btn-primary">
@@ -382,7 +379,7 @@ const foodSafeHeading = pickVariant([
             {product.title} from The Wax Papers are custom-printed food packaging papers manufactured to FDA standards for direct food contact. Each sheet is produced from {materialsPhrase} and printed with your logo, brand colors, or a full-sheet design using food-grade inks — trusted for {usesPhrase} by food businesses across all 50 states.
           </p>
           <p>
-            <strong>Key facts:</strong> Minimum order 500 sheets · Ships nationwide from Bensalem, PA · 8–12 business day production · Free digital proof included · No setup fees on standard orders.
+            <strong>Key facts:</strong> Order online at $40.00 per 1,000 sheets with free US shipping · Quoted runs from 500 sheets · Ships nationwide from Bensalem, PA · 8–12 business day production · Free digital proof included · No setup fees on standard orders.
           </p>
           <div class="product-answer-links">
             <a href="/get-quote/" class="btn btn-primary">Get a Free Quote</a>

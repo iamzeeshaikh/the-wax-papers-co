@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { PAYMENT_METHODS, HANDLING_DAYS, TRANSIT_DAYS } from '../lib/order.mjs';
+const pay = Object.fromEntries(PAYMENT_METHODS.map((m) => [m.id, m.detail]));
+---
+
+<BaseLayout title="Order received | The Wax Papers" description="Your custom food paper order has been received. We email a free digital proof before anything prints." noindex={true}>
+  <Fragment slot="navbar"><Navbar /></Fragment>
+  <section class="oc">
+    <div class="container oc-inner">
+      <h1>Order received</h1>
+      <p>Thank you. Your order is with our production team and a copy is on its way to your inbox.</p>
+      <p data-ref hidden>Your order number: <strong data-ref-value></strong></p>
+      <h2>What happens next</h2>
+      <ol>
+        <li>We check your artwork and email a free digital proof.</li>
+        <li>You approve the proof or ask for changes. Nothing prints before you approve.</li>
+        <li data-pay>{pay.paypal}</li>
+        <li>Production takes {HANDLING_DAYS[0]}–{HANDLING_DAYS[1]} business days, then your order ships free by ground and arrives in {TRANSIT_DAYS[0]}–{TRANSIT_DAYS[1]} business days.</li>
+      </ol>
+      <p>Questions? Call <a href="tel:+15034614788">(503) 461-4788</a> or email <a href="mailto:info@thewaxpapers.co">info@thewaxpapers.co</a> and quote your order number.</p>
+      <p><a class="btn btn-primary" href="/products/">Browse all products</a></p>
+    </div>
+  </section>
+  <script is:inline define:vars={{ pay }}>
+    (function () {
+      var q = new URLSearchParams(location.search), ref = q.get('ref'), p = q.get('pay');
+      if (ref) { var r = document.querySelector('[data-ref]'); r.querySelector('[data-ref-value]').textContent = ref; r.hidden = false; }
+      if (p && pay[p]) document.querySelector('[data-pay]').textContent = pay[p];
+    })();
+  </script>
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>
+
+<style>
+  .oc { padding: 56px 0 80px; }
+  .oc-inner { max-width: 760px; }
+  .oc ol { padding-left: 1.2em; line-height: 1.7; }
+</style>

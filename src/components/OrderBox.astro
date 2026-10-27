@@ -1,0 +1,47 @@
+---
+/**
+ * Online order box in the product hero. The price comes from src/lib/order.mjs, the
+ * same constant the Product Offer JSON-LD and /merchant-feed.xml read, so the page, the
+ * Merchant listing and the order can never disagree. "Add to order" keeps the line in
+ * localStorage and opens /checkout/; public/twp-order.js does the interaction.
+ */
+import { PACK_QTY, PACK_PRICE, MAX_PACKS, SHIP_LINE, PAYMENT_LINE, money } from '../lib/order.mjs';
+
+interface Props { slug: string; title: string }
+const { slug, title } = Astro.props;
+const options = Array.from({ length: MAX_PACKS }, (_, i) => i + 1);
+---
+
+<form class="twp-ob" id="order" data-twp-order data-slug={slug} data-pack={PACK_PRICE} action="/checkout/" method="get">
+  <p class="twp-ob-title">Order online</p>
+  <p class="twp-ob-price"><strong>{money(PACK_PRICE)}</strong> <span>for {PACK_QTY.toLocaleString('en-US')} {title.toLowerCase()}</span></p>
+  <p class="twp-ob-ship">{SHIP_LINE}</p>
+  <div class="twp-ob-row">
+    <label class="twp-ob-field">
+      <span>Quantity</span>
+      <select name="packs" aria-label={`Quantity of ${title}`}>
+        {options.map((n) => <option value={n}>{(n * PACK_QTY).toLocaleString('en-US')} sheets</option>)}
+      </select>
+    </label>
+    <p class="twp-ob-total">Total <strong data-total>{money(PACK_PRICE)}</strong></p>
+  </div>
+  <input type="hidden" name="add" value={slug} />
+  <button type="submit" class="btn btn-primary twp-ob-btn">Add to order</button>
+  <p class="twp-ob-note">{PAYMENT_LINE} The price covers our standard printed build. Smaller runs, special sizes, materials and finishes are priced by quote.</p>
+</form>
+<script src="/twp-order.js" defer></script>
+
+<style>
+  .twp-ob { border: 1px solid rgba(0,0,0,.12); background: #fff; border-radius: 10px; padding: 18px 20px; margin: 18px 0 20px; }
+  .twp-ob-title { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; margin: 0 0 6px; color: var(--color-copper, #b06a3b); }
+  .twp-ob-price { margin: 0; font-size: 15px; color: var(--color-charcoal, #222); }
+  .twp-ob-price strong { font-size: 30px; line-height: 1.1; margin-right: 4px; }
+  .twp-ob-ship { margin: 6px 0 14px; font-size: 14px; font-weight: 600; color: #1d7a3a; }
+  .twp-ob-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: end; margin-bottom: 14px; }
+  .twp-ob-field { display: grid; gap: 4px; font-size: 13px; font-weight: 600; }
+  .twp-ob-field select { font: inherit; font-weight: 400; font-size: 16px; padding: 10px 12px; border: 1px solid rgba(0,0,0,.2); border-radius: 8px; background: #fff; width: 100%; }
+  .twp-ob-total { margin: 0 0 10px; font-size: 14px; white-space: nowrap; }
+  .twp-ob-total strong { font-size: 18px; }
+  .twp-ob-btn { width: 100%; justify-content: center; }
+  .twp-ob-note { margin: 12px 0 0; font-size: 13px; line-height: 1.5; color: rgba(0,0,0,.62); }
+</style>

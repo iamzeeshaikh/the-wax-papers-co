@@ -18,7 +18,7 @@ const staticPages = [
   { url: '/contact/',            priority: '0.7', changefreq: 'monthly', lastmod: '2025-11-01' },
   { url: '/sitemap/',            priority: '0.3', changefreq: 'monthly', lastmod: '2025-11-01' },
   { url: '/privacy-policy/',     priority: '0.2', changefreq: 'yearly',  lastmod: '2025-01-01' },
-  { url: '/terms-and-conditions/', priority: '0.2', changefreq: 'yearly', lastmod: '2025-01-01' },
+  { url: '/terms-and-conditions/', priority: '0.2', changefreq: 'yearly', lastmod: '2026-10-27' },
 ];
 
 export const GET: APIRoute = () => {

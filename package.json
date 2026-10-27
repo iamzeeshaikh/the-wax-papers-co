@@ -5,12 +5,13 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/order-catalog.mjs && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
     "astro": "^4.15.0",
+    "busboy": "^1.6.0",
     "formidable": "^3.5.4",
     "nodemailer": "^8.0.7"
   }

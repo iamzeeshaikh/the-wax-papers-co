@@ -1,0 +1,114 @@
+---
+/**
+ * Checkout for the online order box. No card is taken here: the order is emailed to the
+ * office and paid by PayPal invoice, bank transfer invoice or cash on delivery. Lines live
+ * in localStorage; api/order.js re-prices every line from src/lib/order.mjs.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import catalog from '../data/order-catalog.json';
+import { PACK_QTY, PACK_PRICE, MAX_PACKS, SHIP_LINE, PAYMENT_METHODS, HANDLING_DAYS, TRANSIT_DAYS, money } from '../lib/order.mjs';
+
+const cfg = { catalog, pack: PACK_PRICE, qty: PACK_QTY, max: MAX_PACKS };
+const title = 'Checkout | The Wax Papers';
+const description = `Order custom printed food papers online: ${PACK_QTY.toLocaleString('en-US')} sheets for ${money(PACK_PRICE)} per product with free US shipping. Pay by invoice after you approve your free proof.`;
+---
+
+<BaseLayout title={title} description={description} noindex={true}>
+  <Fragment slot="navbar"><Navbar /></Fragment>
+  <section class="co">
+    <div class="container">
+      <h1>Checkout</h1>
+      <p class="co-lede">{SHIP_LINE}. Nothing is printed or charged before you approve a free digital proof of your artwork.</p>
+
+      <form id="twp-co-form" class="co-grid" novalidate>
+        <div class="co-main">
+          <fieldset class="co-set">
+            <legend>Your details</legend>
+            <div class="co-two">
+              <label class="co-f co-wide"><span>Full name *</span><input name="name" autocomplete="name" required maxlength="120" /></label>
+              <label class="co-f"><span>Email *</span><input name="email" type="email" autocomplete="email" required maxlength="180" /></label>
+              <label class="co-f"><span>Phone *</span><input name="phone" type="tel" autocomplete="tel" required maxlength="40" /></label>
+              <label class="co-f co-wide"><span>Business name (optional)</span><input name="company" autocomplete="organization" maxlength="140" /></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="co-set">
+            <legend>Shipping address (United States)</legend>
+            <div class="co-two">
+              <label class="co-f co-wide"><span>Address *</span><input name="address1" autocomplete="address-line1" required maxlength="200" /></label>
+              <label class="co-f co-wide"><span>Apartment, suite, unit (optional)</span><input name="address2" autocomplete="address-line2" maxlength="200" /></label>
+              <label class="co-f"><span>City *</span><input name="city" autocomplete="address-level2" required maxlength="100" /></label>
+              <label class="co-f"><span>State *</span><input name="region" autocomplete="address-level1" required maxlength="60" /></label>
+              <label class="co-f"><span>ZIP code *</span><input name="postal" autocomplete="postal-code" required maxlength="20" /></label>
+            </div>
+            <input type="hidden" name="country" value="US" />
+          </fieldset>
+
+          <fieldset class="co-set">
+            <legend>Payment</legend>
+            {PAYMENT_METHODS.map((m, i) => (
+              <label class="co-pay">
+                <input type="radio" name="payment" value={m.id} checked={i === 0} />
+                <span><strong>{m.name}</strong><br /><small>{m.detail}</small></span>
+              </label>
+            ))}
+          </fieldset>
+
+          <fieldset class="co-set">
+            <legend>Artwork and notes</legend>
+            <label class="co-f"><span>Logo or artwork file (optional, up to 4 MB)</span><input name="artwork" type="file" accept=".pdf,.ai,.eps,.svg,.png,.jpg,.jpeg,.zip" /></label>
+            <label class="co-f"><span>Notes: size, paper, colors, deadline (optional)</span><textarea name="notes" rows="4" maxlength="3000"></textarea></label>
+          </fieldset>
+          <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px" />
+        </div>
+
+        <aside class="co-side">
+          <h2>Your order</h2>
+          <table class="co-lines"><tbody data-lines><tr><td>Your order is empty. <a href="/products/">Choose papers</a></td></tr></tbody></table>
+          <table class="co-sum">
+            <tr><td>Shipping</td><td class="r co-free">Free</td></tr>
+            <tr><th>Total</th><th class="r" data-grand>$0.00</th></tr>
+          </table>
+          <p class="co-small">Production {HANDLING_DAYS[0]}–{HANDLING_DAYS[1]} business days after proof approval, then {TRANSIT_DAYS[0]}–{TRANSIT_DAYS[1]} business days by ground. Prices in US dollars.</p>
+          <p class="co-err" data-err role="alert"></p>
+          <button type="submit" class="btn btn-primary co-btn" data-place disabled>Place order</button>
+          <p class="co-small">Questions? Call <a href="tel:+15034614788">(503) 461-4788</a> or email <a href="mailto:info@thewaxpapers.co">info@thewaxpapers.co</a>.</p>
+        </aside>
+      </form>
+    </div>
+  </section>
+  <script is:inline define:vars={{ cfg }}>window.TWP_CHECKOUT = cfg;</script>
+  <script src="/twp-checkout.js" defer></script>
+  <Fragment slot="footer"><Footer /></Fragment>
+</BaseLayout>
+
+<style>
+  .co { padding: 48px 0 72px; }
+  .co h1 { margin: 0 0 8px; }
+  .co-lede { max-width: 720px; color: rgba(0,0,0,.7); }
+  .co-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 32px; align-items: start; margin-top: 24px; }
+  .co-set { border: 1px solid rgba(0,0,0,.12); background: #fff; border-radius: 10px; padding: 18px 20px; margin: 0 0 20px; }
+  .co-set legend { font-weight: 700; padding: 0 6px; }
+  .co-two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px 16px; }
+  .co-wide { grid-column: 1 / -1; }
+  .co-f { display: grid; gap: 5px; font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+  .co-f input, .co-f textarea, .co-lines :global(select) { font: inherit; font-weight: 400; font-size: 16px; padding: 10px 12px; border: 1px solid rgba(0,0,0,.2); border-radius: 8px; background: #fff; width: 100%; box-sizing: border-box; }
+  .co-pay { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; border-top: 1px solid rgba(0,0,0,.08); cursor: pointer; }
+  .co-pay:first-of-type { border-top: 0; }
+  .co-pay input { margin-top: 4px; }
+  .co-pay small { color: rgba(0,0,0,.62); }
+  .co-side { border: 1px solid rgba(0,0,0,.12); background: #fff; border-radius: 10px; padding: 20px; position: sticky; top: 96px; }
+  .co-side h2 { font-size: 20px; margin: 0 0 12px; }
+  .co-lines, .co-sum { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .co-lines td { padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,.08); vertical-align: top; }
+  .co-sum td, .co-sum th { padding: 8px 0; text-align: left; }
+  .r { text-align: right !important; white-space: nowrap; }
+  .co-free { color: #1d7a3a; font-weight: 600; }
+  .co-small { font-size: 13px; color: rgba(0,0,0,.62); }
+  .co-err { color: #b91c1c; min-height: 1em; font-size: 14px; }
+  .co-btn { width: 100%; justify-content: center; }
+  :global([aria-invalid='true']) { border-color: #b91c1c !important; }
+  @media (max-width: 900px) { .co-grid { grid-template-columns: minmax(0, 1fr); } .co-side { position: static; } .co-two { grid-template-columns: minmax(0, 1fr); } }
+</style>
