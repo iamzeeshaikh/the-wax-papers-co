@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import { PAYMENT_METHODS, HANDLING_DAYS, TRANSIT_DAYS } from '../lib/order.mjs';
+import { PAYMENT_METHODS, HANDLING_DAYS, TRANSIT_LINE } from '../lib/order.mjs';
 const pay = Object.fromEntries(PAYMENT_METHODS.map((m) => [m.id, m.detail]));
 ---
 
@@ -18,7 +18,7 @@ const pay = Object.fromEntries(PAYMENT_METHODS.map((m) => [m.id, m.detail]));
         <li>We check your artwork and email a free digital proof.</li>
         <li>You approve the proof or ask for changes. Nothing prints before you approve.</li>
         <li data-pay>{pay.paypal}</li>
-        <li>Production takes {HANDLING_DAYS[0]}–{HANDLING_DAYS[1]} business days, then your order ships free by ground and arrives in {TRANSIT_DAYS[0]}–{TRANSIT_DAYS[1]} business days.</li>
+        <li>Production takes {HANDLING_DAYS[0]}–{HANDLING_DAYS[1]} business days, then your order ships free and arrives in {TRANSIT_LINE}.</li>
       </ol>
       <p>Questions? Call <a href="tel:+15034614788">(503) 461-4788</a> or email <a href="mailto:info@thewaxpapers.co">info@thewaxpapers.co</a> and quote your order number.</p>
       <p><a class="btn btn-primary" href="/products/">Browse all products</a></p>

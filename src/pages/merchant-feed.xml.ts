@@ -26,7 +26,7 @@ export const GET: APIRoute = () => {
     <g:identifier_exists>no</g:identifier_exists>
     <g:mpn>${x(p.slug)}</g:mpn>
     <g:product_type>${x(p.category)}</g:product_type>
-${SHIP_COUNTRIES.map((c) => `    <g:shipping><g:country>${c.code}</g:country><g:service>Free shipping</g:service><g:price>0.00 USD</g:price><g:min_transit_time>${TRANSIT_DAYS[0]}</g:min_transit_time><g:max_transit_time>${TRANSIT_DAYS[1]}</g:max_transit_time></g:shipping>`).join('\n')}
+${SHIP_COUNTRIES.map((c) => `    <g:shipping><g:country>${c.code}</g:country><g:service>Free shipping</g:service><g:price>0.00 USD</g:price><g:min_transit_time>${c.transit[0]}</g:min_transit_time><g:max_transit_time>${c.transit[1]}</g:max_transit_time></g:shipping>`).join('\n')}
     <g:min_handling_time>${HANDLING_DAYS[0]}</g:min_handling_time>
     <g:max_handling_time>${HANDLING_DAYS[1]}</g:max_handling_time>
   </item>`;

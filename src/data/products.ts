@@ -68,7 +68,7 @@ export const products: Product[] = [
       { q: 'Can I print my logo on bagel paper?', a: 'Absolutely. We offer full-color printing including your logo, brand colors, and custom designs.' },
       { q: 'How long does production take?', a: 'Standard production takes 8–12 business days after artwork approval. Rush orders may be available.' },
       { q: 'What paper types are available for bagel wrapping?', a: 'We offer white wax paper, natural kraft, greaseproof paper, and parchment-style sheets.' },
-      { q: 'Do you ship across the USA?', a: 'Yes. We ship to all 50 states from our fulfillment center in Bensalem, Pennsylvania.' },
+      { q: 'Do you ship across the USA?', a: 'Yes. We ship free to all 50 states from our fulfillment center in Bensalem, Pennsylvania, and also to the UK, Canada and Australia.' },
       { q: 'Can the paper handle damp or oily foods?', a: 'Yes. Our bagel paper is grease-resistant and moisture-resistant, ideal for fresh baked goods.' },
       { q: 'Is there a setup fee for custom printing?', a: 'Setup fees depend on the print method chosen. Contact us for a detailed quote with no hidden charges.' },
     ],

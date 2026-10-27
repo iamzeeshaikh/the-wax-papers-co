@@ -16,7 +16,7 @@ const SITE = 'https://thewaxpapers.co'
 const PHONE = '(503) 461-4788'
 const MAX_FILE = 4 * 1024 * 1024
 const FIELDS = ['name', 'email', 'phone', 'company', 'address1', 'address2', 'city', 'region', 'postal', 'country', 'notes', 'payment', 'items', 'ts', 'website']
-const REQUIRED = ['name', 'email', 'phone', 'address1', 'city', 'region', 'postal']
+const REQUIRED = ['name', 'email', 'phone', 'address1', 'city', 'postal']
 const ALLOWED_EXT = /\.(pdf|ai|eps|svg|png|jpe?g|zip)$/i
 const NAMES = new Map(Object.entries(catalog))
 
@@ -71,7 +71,8 @@ export default async function handler(req, res) {
 
   if (REQUIRED.some((k) => !v[k]) || !/^[^\s@,;<>]+@[^\s@,;<>]+\.[^\s@,;<>]+$/.test(v.email || '')) return res.status(422).json({ ok: false, error: 'Please fill in every required field' })
   const country = SHIP_COUNTRIES.find((c) => c.code === (v.country || 'US'))
-  if (!country) return res.status(422).json({ ok: false, error: 'Online orders ship within the United States; request a quote for other countries' })
+  if (!country) return res.status(422).json({ ok: false, error: 'Online orders ship to the US, UK, Canada and Australia; request a quote for other countries' })
+  if (country.code !== 'GB' && !v.region) return res.status(422).json({ ok: false, error: 'Please fill in every required field' })
   const method = PAYMENT_METHODS.find((m) => m.id === v.payment)
   if (!method) return res.status(422).json({ ok: false, error: 'Choose a payment method' })
   if (method.id === 'cod' && !COD_COUNTRIES.includes(country.code)) return res.status(422).json({ ok: false, error: 'Cash on delivery is for US addresses' })
@@ -129,7 +130,7 @@ export default async function handler(req, res) {
   }
 
   // The buyer's copy is a courtesy; if it fails the order still stands.
-  const steps = ['We check your artwork and email a free digital proof.', 'You approve the proof or ask for changes. Nothing prints before you approve.', method.detail, `Production takes ${HANDLING_DAYS[0]}–${HANDLING_DAYS[1]} business days, then your order ships free by ground and arrives in ${TRANSIT_DAYS[0]}–${TRANSIT_DAYS[1]} business days.`]
+  const steps = ['We check your artwork and email a free digital proof.', 'You approve the proof or ask for changes. Nothing prints before you approve.', method.detail, `Production takes ${HANDLING_DAYS[0]}–${HANDLING_DAYS[1]} business days, then your order ships free to ${country.name} and arrives in ${country.transit[0]}–${country.transit[1]} business days.`]
   try {
     await mailer.sendMail({
       from, to: `"${oneLine(v.name)}" <${oneLine(v.email)}>`, replyTo: 'info@thewaxpapers.co',

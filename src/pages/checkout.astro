@@ -8,9 +8,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import catalog from '../data/order-catalog.json';
-import { PACK_QTY, PACK_PRICE, MAX_PACKS, SHIP_LINE, PAYMENT_METHODS, HANDLING_DAYS, TRANSIT_DAYS, money } from '../lib/order.mjs';
+import { PACK_QTY, PACK_PRICE, MAX_PACKS, SHIP_LINE, SHIP_COUNTRIES, COD_COUNTRIES, TRANSIT_LINE, PAYMENT_METHODS, HANDLING_DAYS, money } from '../lib/order.mjs';
 
-const cfg = { catalog, pack: PACK_PRICE, qty: PACK_QTY, max: MAX_PACKS };
+const cfg = { catalog, pack: PACK_PRICE, qty: PACK_QTY, max: MAX_PACKS, cod: COD_COUNTRIES };
 const title = 'Checkout | The Wax Papers';
 const description = `Order custom printed food papers online: ${PACK_QTY.toLocaleString('en-US')} sheets for ${money(PACK_PRICE)} per product with free US shipping. Pay by invoice after you approve your free proof.`;
 ---
@@ -35,15 +35,15 @@ const description = `Order custom printed food papers online: ${PACK_QTY.toLocal
           </fieldset>
 
           <fieldset class="co-set">
-            <legend>Shipping address (United States)</legend>
+            <legend>Shipping address</legend>
             <div class="co-two">
+              <label class="co-f co-wide"><span>Country *</span><select name="country" id="co-country" autocomplete="country" required>{SHIP_COUNTRIES.map((c) => <option value={c.code}>{c.name}</option>)}</select></label>
               <label class="co-f co-wide"><span>Address *</span><input name="address1" autocomplete="address-line1" required maxlength="200" /></label>
               <label class="co-f co-wide"><span>Apartment, suite, unit (optional)</span><input name="address2" autocomplete="address-line2" maxlength="200" /></label>
               <label class="co-f"><span>City *</span><input name="city" autocomplete="address-level2" required maxlength="100" /></label>
-              <label class="co-f"><span>State *</span><input name="region" autocomplete="address-level1" required maxlength="60" /></label>
-              <label class="co-f"><span>ZIP code *</span><input name="postal" autocomplete="postal-code" required maxlength="20" /></label>
+              <label class="co-f"><span>State, province or county</span><input name="region" autocomplete="address-level1" maxlength="60" /></label>
+              <label class="co-f"><span>ZIP or postcode *</span><input name="postal" autocomplete="postal-code" required maxlength="20" /></label>
             </div>
-            <input type="hidden" name="country" value="US" />
           </fieldset>
 
           <fieldset class="co-set">
@@ -71,7 +71,7 @@ const description = `Order custom printed food papers online: ${PACK_QTY.toLocal
             <tr><td>Shipping</td><td class="r co-free">Free</td></tr>
             <tr><th>Total</th><th class="r" data-grand>$0.00</th></tr>
           </table>
-          <p class="co-small">Production {HANDLING_DAYS[0]}–{HANDLING_DAYS[1]} business days after proof approval, then {TRANSIT_DAYS[0]}–{TRANSIT_DAYS[1]} business days by ground. Prices in US dollars.</p>
+          <p class="co-small">Production {HANDLING_DAYS[0]}–{HANDLING_DAYS[1]} business days after proof approval, then {TRANSIT_LINE}. Prices in US dollars.</p>
           <p class="co-err" data-err role="alert"></p>
           <button type="submit" class="btn btn-primary co-btn" data-place disabled>Place order</button>
           <p class="co-small">Questions? Call <a href="tel:+15034614788">(503) 461-4788</a> or email <a href="mailto:info@thewaxpapers.co">info@thewaxpapers.co</a>.</p>

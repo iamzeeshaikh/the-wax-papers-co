@@ -4,7 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { imgFull, imgThumb, imgSrcset } from '../../lib/img';
 import PaperConfigurator from '../../components/PaperConfigurator.astro';
 import OrderBox from '../../components/OrderBox.astro';
-import { PACK_QTY, PACK_PRICE_TEXT, HANDLING_DAYS, TRANSIT_DAYS } from '../../lib/order.mjs';
+import { PACK_QTY, PACK_PRICE_TEXT, HANDLING_DAYS, SHIP_COUNTRIES } from '../../lib/order.mjs';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import { products, getProductBySlug, getRelatedProducts } from '../../data/products';
@@ -71,19 +71,19 @@ const productSchema = {
     "availability": "https://schema.org/InStock",
     "itemCondition": "https://schema.org/NewCondition",
     "seller": { "@id": "https://thewaxpapers.co/#organization" },
-    "shippingDetails": {
+    "shippingDetails": SHIP_COUNTRIES.map((c) => ({
       "@type": "OfferShippingDetails",
       "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "USD" },
-      "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "US" },
+      "shippingDestination": { "@type": "DefinedRegion", "addressCountry": c.code },
       "deliveryTime": {
         "@type": "ShippingDeliveryTime",
         "handlingTime": { "@type": "QuantitativeValue", "minValue": HANDLING_DAYS[0], "maxValue": HANDLING_DAYS[1], "unitCode": "DAY" },
-        "transitTime": { "@type": "QuantitativeValue", "minValue": TRANSIT_DAYS[0], "maxValue": TRANSIT_DAYS[1], "unitCode": "DAY" }
+        "transitTime": { "@type": "QuantitativeValue", "minValue": c.transit[0], "maxValue": c.transit[1], "unitCode": "DAY" }
       }
-    },
+    })),
     "hasMerchantReturnPolicy": {
       "@type": "MerchantReturnPolicy",
-      "applicableCountry": "US",
+      "applicableCountry": SHIP_COUNTRIES.map((c) => c.code),
       "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
       "merchantReturnLink": "https://thewaxpapers.co/terms-and-conditions/",
       "description": "Custom-printed products are not returnable; defective or misprinted orders are replaced or credited when reported within 5 business days of delivery."

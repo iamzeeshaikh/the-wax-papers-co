@@ -42,6 +42,16 @@
   form.addEventListener('input', function (e) { if (e.target.getAttribute('aria-invalid')) e.target.removeAttribute('aria-invalid'); });
   render();
 
+  // Cash on delivery only for US addresses.
+  var countryEl = form.querySelector('#co-country'), codIn = form.querySelector('input[name=payment][value=cod]');
+  function codRule() {
+    if (!countryEl || !codIn) return;
+    var ok = (C.cod || ['US']).indexOf(countryEl.value) >= 0, box = codIn.closest('label');
+    codIn.disabled = !ok; if (box) box.style.opacity = ok ? '' : '.45';
+    if (!ok && codIn.checked) form.querySelector('input[name=payment][value=paypal]').checked = true;
+  }
+  if (countryEl) { countryEl.addEventListener('change', codRule); codRule(); }
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     errEl.textContent = '';
